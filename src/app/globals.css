@@ -49,14 +49,19 @@
   --color-brand-gold: oklch(0.7 0.15 75);
   --color-brand-navy: oklch(0.22 0.07 265);
   --color-brand-warm: oklch(0.96 0.02 80);
-  --gradient-primary: linear-gradient(135deg, oklch(0.22 0.07 265), oklch(0.35 0.1 265));
-  --gradient-accent: linear-gradient(135deg, oklch(0.7 0.15 75), oklch(0.65 0.18 60));
-  --gradient-hero: linear-gradient(135deg, oklch(0.22 0.07 265) 0%, oklch(0.18 0.08 265) 40%, oklch(0.28 0.1 255) 100%);
-  --gradient-cta: linear-gradient(135deg, oklch(0.7 0.15 75) 0%, oklch(0.6 0.18 60) 50%, oklch(0.65 0.14 45) 100%);
-  --gradient-subtle: linear-gradient(135deg, oklch(0.99 0.005 80) 0%, oklch(0.97 0.01 75) 100%);
+  --gradient-primary: var(--gradient-primary-val);
+  --gradient-accent: var(--gradient-accent-val);
+  --gradient-hero: var(--gradient-hero-val);
+  --gradient-cta: var(--gradient-cta-val);
+  --gradient-subtle: var(--gradient-subtle-val);
 }
 
 :root {
+  --gradient-primary-val: linear-gradient(135deg, oklch(0.22 0.07 265), oklch(0.35 0.1 265));
+  --gradient-accent-val: linear-gradient(135deg, oklch(0.7 0.15 75), oklch(0.65 0.18 60));
+  --gradient-hero-val: linear-gradient(135deg, oklch(0.22 0.07 265) 0%, oklch(0.18 0.08 265) 40%, oklch(0.28 0.1 255) 100%);
+  --gradient-cta-val: linear-gradient(135deg, oklch(0.7 0.15 75) 0%, oklch(0.6 0.18 60) 50%, oklch(0.65 0.14 45) 100%);
+  --gradient-subtle-val: linear-gradient(135deg, oklch(0.99 0.005 80) 0%, oklch(0.97 0.01 75) 100%);
   --background: oklch(0.99 0.003 80);
   --foreground: oklch(0.15 0.03 260);
   --card: oklch(1 0 0);
@@ -92,6 +97,7 @@
 }
 
 .dark {
+  --gradient-subtle-val: linear-gradient(135deg, oklch(0.15 0.03 260) 0%, oklch(0.12 0.04 260) 100%);
   --background: oklch(0.12 0.03 260);
   --foreground: oklch(0.92 0.01 80);
   --card: oklch(0.16 0.04 260);

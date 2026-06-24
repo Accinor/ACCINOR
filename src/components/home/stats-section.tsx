@@ -3,12 +3,13 @@
 import { useTranslations } from "next-intl"
 import { motion } from "framer-motion"
 import { useEffect, useState, useRef } from "react"
+import { Rocket, Users, Target, MapPin } from "lucide-react"
 
 const stats = [
-  { value: 50, suffix: "+", key: "projects", icon: "🚀" },
-  { value: 200, suffix: "+", key: "clients", icon: "👥" },
-  { value: 30, suffix: "+", key: "trainings", icon: "🎯" },
-  { value: 8, suffix: "", key: "cities", icon: "📍" },
+  { value: 50, suffix: "+", key: "projects", icon: Rocket },
+  { value: 200, suffix: "+", key: "clients", icon: Users },
+  { value: 30, suffix: "+", key: "trainings", icon: Target },
+  { value: 8, suffix: "", key: "cities", icon: MapPin },
 ]
 
 function Counter({ to, suffix }: { to: number; suffix: string }) {
@@ -44,10 +45,27 @@ function Counter({ to, suffix }: { to: number; suffix: string }) {
   }, [to])
 
   return (
-    <div ref={ref} className="text-4xl md:text-5xl font-bold text-[var(--brand-navy)]">
+    <div ref={ref} className="text-4xl md:text-5xl font-bold text-white">
       {count}{suffix}
     </div>
   )
+}
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15, delayChildren: 0.3 },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" as const },
+  },
 }
 
 export function StatsSection() {
@@ -55,8 +73,14 @@ export function StatsSection() {
 
   return (
     <section className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[var(--gradient-primary)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,oklch(0.7_0.15_75/0.08),transparent_70%)]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0c1e3a] via-[#0f2347] to-[#0c1e3a]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(245,158,11,0.08),transparent_70%)]" />
+      <motion.div
+        animate={{ rotate: 360 }}
+        transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+        className="absolute -top-40 -right-40 w-80 h-80 rounded-full border border-amber-500/10"
+      />
+
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -70,22 +94,26 @@ export function StatsSection() {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-          {stats.map((stat, i) => (
-            <motion.div
-              key={stat.key}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.15 }}
-              className="text-center"
-            >
-              <div className="text-3xl mb-3">{stat.icon}</div>
-              <Counter to={stat.value} suffix={stat.suffix} />
-              <div className="text-sm text-white/70 mt-2">{t(stat.key)}</div>
-            </motion.div>
-          ))}
-        </div>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-2 lg:grid-cols-4 gap-8"
+        >
+          {stats.map((stat) => {
+            const Icon = stat.icon
+            return (
+              <motion.div key={stat.key} variants={itemVariants} className="text-center">
+                <div className="inline-flex p-3 rounded-xl bg-white/10 mb-4">
+                  <Icon className="w-6 h-6 text-amber-400" />
+                </div>
+                <Counter to={stat.value} suffix={stat.suffix} />
+                <div className="text-sm text-white/60 mt-2">{t(stat.key)}</div>
+              </motion.div>
+            )
+          })}
+        </motion.div>
       </div>
     </section>
   )

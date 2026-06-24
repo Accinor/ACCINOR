@@ -15,18 +15,18 @@ type Post = {
 export function BlogCard({ post, locale }: { post: Post; locale: string }) {
   return (
     <Link href={`/${locale}/blog/${post.slug}`}>
-      <Card className="group h-full overflow-hidden border-border/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+      <Card className="group h-full overflow-hidden border-border/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-2 bg-card">
         {post.cover_image ? (
           <div className="aspect-video relative overflow-hidden">
             <img
               src={post.cover_image}
               alt={post.title}
-              className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+              className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
             />
           </div>
         ) : (
-          <div className="aspect-video relative bg-gradient-to-br from-[var(--brand-navy)] to-blue-900 flex items-center justify-center">
-            <span className="text-4xl font-bold text-white/20">A</span>
+          <div className="aspect-video relative bg-gradient-to-br from-[#0c1e3a] to-blue-900 flex items-center justify-center">
+            <span className="text-6xl font-bold text-white/10">A</span>
           </div>
         )}
         <CardHeader>
@@ -42,7 +42,7 @@ export function BlogCard({ post, locale }: { post: Post; locale: string }) {
               </span>
             )}
           </div>
-          <CardTitle className="text-xl group-hover:text-amber-600 transition-colors duration-200">
+          <CardTitle className="text-xl group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors duration-200">
             {post.title}
           </CardTitle>
         </CardHeader>

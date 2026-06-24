@@ -31,17 +31,34 @@ const gradients = [
   "from-cyan-500 to-cyan-600",
 ]
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12, delayChildren: 0.2 },
+  },
+}
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" as const },
+  },
+}
+
 export function ServicesSection() {
   const t = useTranslations("home.services")
 
   return (
     <section className="py-24 relative">
-      <div className="absolute inset-0 bg-[var(--gradient-subtle)]" />
+      <div className="absolute inset-0 dark:bg-transparent bg-[var(--gradient-subtle)]" />
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
@@ -53,22 +70,22 @@ export function ServicesSection() {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
           {serviceKeys.map((key, i) => {
             const Icon = icons[key as keyof typeof icons]
             return (
-              <motion.div
-                key={key}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-              >
-                <div className="group relative bg-white rounded-xl p-6 border border-border/50 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                  <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${gradients[i]} flex items-center justify-center mb-4 shadow-lg`}>
+              <motion.div key={key} variants={cardVariants}>
+                <div className="group relative bg-card rounded-xl p-6 border border-border/50 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 hover:border-amber-500/30">
+                  <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${gradients[i]} flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                     <Icon className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="font-semibold text-lg mb-2 text-foreground group-hover:text-[var(--brand-navy)] transition-colors">
+                  <h3 className="font-semibold text-lg mb-2 text-foreground transition-colors">
                     {t(`items.${key}.title`)}
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
@@ -79,7 +96,7 @@ export function ServicesSection() {
               </motion.div>
             )
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   )

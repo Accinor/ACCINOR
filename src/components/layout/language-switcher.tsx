@@ -18,16 +18,21 @@ const labels: Record<string, string> = {
   en: "English",
 }
 
-export function LanguageSwitcher() {
+export function LanguageSwitcher({ scrolled }: { scrolled: boolean }) {
   const pathname = usePathname()
-
   const pathWithoutLocale = pathname.replace(/^\/(ar|fr|en)/, "")
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
         render={
-          <Button variant="ghost" size="icon" className="rounded-full">
+          <Button
+            variant="ghost"
+            size="icon"
+            className={`rounded-full transition-colors ${
+              scrolled ? "" : "text-white/80 hover:text-white hover:bg-white/10"
+            }`}
+          >
             <Globe className="w-4 h-4" />
           </Button>
         }

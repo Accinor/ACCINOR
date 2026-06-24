@@ -23,13 +23,30 @@ const icons = [
 ]
 
 const colors = [
-  "text-blue-600 bg-blue-100",
-  "text-amber-600 bg-amber-100",
-  "text-emerald-600 bg-emerald-100",
-  "text-violet-600 bg-violet-100",
-  "text-rose-600 bg-rose-100",
-  "text-cyan-600 bg-cyan-100",
+  "text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-950/50",
+  "text-amber-600 dark:text-amber-400 bg-amber-100 dark:bg-amber-950/50",
+  "text-emerald-600 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-950/50",
+  "text-violet-600 dark:text-violet-400 bg-violet-100 dark:bg-violet-950/50",
+  "text-rose-600 dark:text-rose-400 bg-rose-100 dark:bg-rose-950/50",
+  "text-cyan-600 dark:text-cyan-400 bg-cyan-100 dark:bg-cyan-950/50",
 ]
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.4, ease: "easeOut" as const },
+  },
+}
 
 export function AudienceSection() {
   const t = useTranslations("home.audience")
@@ -41,7 +58,7 @@ export function AudienceSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
@@ -50,21 +67,24 @@ export function AudienceSection() {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-4xl mx-auto"
+        >
           {audienceKeys.map((key, i) => {
             const Icon = icons[i]
             return (
               <motion.div
                 key={key}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
-                whileHover={{ scale: 1.03 }}
+                variants={itemVariants}
+                whileHover={{ scale: 1.05 }}
                 className="group"
               >
-                <div className="relative rounded-xl bg-white border border-border/50 p-6 text-center transition-all duration-300 hover:shadow-lg hover:border-amber-500/30 cursor-default">
-                  <div className={`inline-flex w-12 h-12 rounded-lg ${colors[i]} items-center justify-center mb-3`}>
+                <div className="relative rounded-xl bg-card border border-border/50 p-6 text-center transition-all duration-300 hover:shadow-lg hover:border-amber-500/30 cursor-default">
+                  <div className={`inline-flex w-12 h-12 rounded-lg ${colors[i]} items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300`}>
                     <Icon className="w-6 h-6" />
                   </div>
                   <span className="text-base font-medium text-foreground block">
@@ -75,7 +95,7 @@ export function AudienceSection() {
               </motion.div>
             )
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   )

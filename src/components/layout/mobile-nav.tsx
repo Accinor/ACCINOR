@@ -16,9 +16,10 @@ type Props = {
   links: { href: string; label: string }[]
   open: boolean
   onOpenChange: (open: boolean) => void
+  scrolled?: boolean
 }
 
-export function MobileNav({ links, open, onOpenChange }: Props) {
+export function MobileNav({ links, open, onOpenChange, scrolled }: Props) {
   const params = useParams()
   const locale = params.locale as string
 
@@ -26,22 +27,27 @@ export function MobileNav({ links, open, onOpenChange }: Props) {
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetTrigger
         render={
-          <Button variant="ghost" size="icon" className="lg:hidden">
+          <Button
+            variant="ghost"
+            size="icon"
+            className={`lg:hidden transition-colors ${
+              scrolled ? "" : "text-white/80 hover:text-white hover:bg-white/10"
+            }`}
+          >
             <Menu className="w-5 h-5" />
-            <span className="sr-only">Toggle menu</span>
           </Button>
         }
       />
       <SheetContent side={locale === "ar" ? "right" : "left"}>
         <SheetHeader>
-          <SheetTitle className="text-[var(--brand-navy)]">ACCINOR</SheetTitle>
+          <SheetTitle className="text-foreground">ACCINOR</SheetTitle>
         </SheetHeader>
         <nav className="flex flex-col gap-2 mt-8">
           {links.map((link) => (
             <Link
               key={link.href}
               href={`/${locale}${link.href}`}
-              className="text-lg font-medium text-muted-foreground hover:text-amber-600 transition-colors px-3 py-2 rounded-lg hover:bg-amber-50"
+              className="text-lg font-medium text-muted-foreground hover:text-amber-600 transition-colors px-3 py-2 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-950/30"
               onClick={() => onOpenChange(false)}
             >
               {link.label}

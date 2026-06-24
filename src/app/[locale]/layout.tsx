@@ -58,6 +58,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       lang={locale}
       dir={locale === "ar" ? "rtl" : "ltr"}
       className={`scroll-smooth ${inter.variable} ${cairo.variable}`}
+      suppressHydrationWarning
     >
       <body className="min-h-screen flex flex-col">
         <NextIntlClientProvider messages={messages}>

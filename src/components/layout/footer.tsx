@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl"
 import { useParams } from "next/navigation"
 import Link from "next/link"
+import Image from "next/image"
 import { Mail, MapPin, Phone } from "lucide-react"
 
 export function Footer() {
@@ -48,13 +49,21 @@ export function Footer() {
   ]
 
   return (
-    <footer className="relative border-t border-border/50 bg-[var(--brand-navy)] text-white overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,oklch(0.7_0.15_75/0.08),transparent_60%)]" />
+    <footer className="relative border-t border-border/50 bg-gradient-to-br from-[#0a1628] via-[#0c1e3a] to-[#0a1628] text-white overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(245,158,11,0.06),transparent_60%)]" />
       <div className="container mx-auto px-4 py-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div className="lg:col-span-1">
-            <h3 className="font-bold text-lg mb-4 text-amber-400">{t("site_name")}</h3>
-            <p className="text-sm text-white/60 leading-relaxed mb-6">
+            <Link href={`/${locale}`} className="inline-block mb-4">
+              <Image
+                src="/images/logo.png"
+                alt="ACCINOR"
+                width={160}
+                height={50}
+                className="h-12 w-auto brightness-0 invert opacity-90"
+              />
+            </Link>
+            <p className="text-sm text-white/50 leading-relaxed mb-6">
               {t("footer.description")}
             </p>
             <div className="flex gap-3">
@@ -91,7 +100,7 @@ export function Footer() {
                   <li key={link.href}>
                     <Link
                       href={`/${locale}${link.href}`}
-                      className="text-sm text-white/60 hover:text-amber-400 transition-colors duration-200"
+                      className="text-sm text-white/50 hover:text-amber-400 transition-colors duration-200"
                     >
                       {link.label}
                     </Link>
@@ -106,15 +115,15 @@ export function Footer() {
               {locale === "ar" ? "اتصل بنا" : "Contact"}
             </h4>
             <ul className="space-y-3">
-              <li className="flex items-start gap-3 text-sm text-white/60">
+              <li className="flex items-start gap-3 text-sm text-white/50">
                 <MapPin className="w-4 h-4 mt-0.5 text-amber-400 shrink-0" />
                 <span>Oriental Region, Morocco</span>
               </li>
-              <li className="flex items-start gap-3 text-sm text-white/60">
+              <li className="flex items-start gap-3 text-sm text-white/50">
                 <Mail className="w-4 h-4 mt-0.5 text-amber-400 shrink-0" />
                 <span>contact@accinor.ma</span>
               </li>
-              <li className="flex items-start gap-3 text-sm text-white/60">
+              <li className="flex items-start gap-3 text-sm text-white/50">
                 <Phone className="w-4 h-4 mt-0.5 text-amber-400 shrink-0" />
                 <span>+212 5XX XX XX XX</span>
               </li>
@@ -122,8 +131,8 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/10 mt-12 pt-8 text-center text-sm text-white/40">
-          © {new Date().getFullYear()} {t("site_name")}. {t("footer.rights")}
+        <div className="border-t border-white/10 mt-12 pt-8 text-center text-sm text-white/30">
+          © {new Date().getFullYear()} ACCINOR. {t("footer.rights")}
         </div>
       </div>
     </footer>

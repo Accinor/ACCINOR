@@ -8,6 +8,8 @@ import { MobileNav } from "./mobile-nav"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { useState, useEffect } from "react"
+import { useTheme } from "next-themes"
+import { Sun, Moon } from "lucide-react"
 
 export function Navbar() {
   const t = useTranslations("common")
@@ -15,6 +17,7 @@ export function Navbar() {
   const locale = params.locale as string
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const { theme, setTheme } = useTheme()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -32,11 +35,13 @@ export function Navbar() {
     { href: "/contact", label: t("nav.contact") },
   ]
 
+  const isLight = theme === "light"
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/80 backdrop-blur-xl border-b border-border/50 shadow-sm"
+          ? "bg-background/80 backdrop-blur-xl border-b border-border shadow-sm"
           : "bg-transparent"
       }`}
     >
@@ -45,11 +50,9 @@ export function Navbar() {
           <Image
             src="/images/logo.png"
             alt={t("site_name")}
-            width={120}
-            height={40}
-            className={`h-10 w-auto transition-all duration-300 ${
-              scrolled ? "" : "brightness-0 invert"
-            }`}
+            width={160}
+            height={50}
+            className="h-12 w-auto transition-all duration-300"
             priority
           />
         </Link>
@@ -60,7 +63,7 @@ export function Navbar() {
               key={link.href}
               href={`/${locale}${link.href}`}
               className={`text-sm font-medium transition-colors duration-200 hover:text-amber-500 ${
-                scrolled ? "text-muted-foreground" : "text-white/80"
+                scrolled ? "text-foreground/70" : "text-white/80"
               }`}
             >
               {link.label}
@@ -68,8 +71,17 @@ export function Navbar() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-4">
-          <LanguageSwitcher />
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setTheme(isLight ? "dark" : "light")}
+            className={`p-2 rounded-full transition-all duration-200 hover:bg-white/10 ${
+              scrolled ? "text-foreground hover:bg-accent/10" : "text-white/80"
+            }`}
+            aria-label="Toggle theme"
+          >
+            {isLight ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
+          </button>
+          <LanguageSwitcher scrolled={scrolled} />
           <Link href={`/${locale}/consultation`}>
             <Button
               className={`hidden sm:inline-flex transition-all duration-300 ${
@@ -85,6 +97,7 @@ export function Navbar() {
             links={links}
             open={mobileOpen}
             onOpenChange={setMobileOpen}
+            scrolled={scrolled}
           />
         </div>
       </div>
