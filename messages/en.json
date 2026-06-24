@@ -1,0 +1,188 @@
+{
+  "common": {
+    "site_name": "ACCINOR",
+    "tagline": "From Idea to Project",
+    "nav": {
+      "home": "Home",
+      "about": "About",
+      "services": "Services",
+      "programs": "Training Programs",
+      "funding": "Funding Support",
+      "blog": "Blog",
+      "contact": "Contact"
+    },
+    "cta": {
+      "consultation": "Book a Consultation",
+      "submit_project": "Submit Your Project",
+      "subscribe": "Subscribe",
+      "send": "Send",
+      "learn_more": "Learn More"
+    },
+    "footer": {
+      "rights": "All rights reserved to ACCINOR",
+      "description": "A specialized platform for entrepreneurship support, innovation, and professional coaching in the Oriental region"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "From Idea to Project",
+      "subtitle": "We accompany you at every step of your entrepreneurial journey",
+      "description": "Get consulting, training, and support to turn your idea into a successful, fundable project"
+    },
+    "services": {
+      "title": "Our Services",
+      "subtitle": "A complete range of services to support your entrepreneurial journey",
+      "items": {
+        "consulting": {
+          "title": "Individual Consulting",
+          "desc": "Personalized consulting sessions tailored to your project's needs"
+        },
+        "coaching": {
+          "title": "Personal Coaching",
+          "desc": "Continuous support throughout your project development phases"
+        },
+        "business_plan": {
+          "title": "Business Plans",
+          "desc": "We help you prepare a comprehensive and professional business plan"
+        },
+        "funding": {
+          "title": "Funding Support",
+          "desc": "We guide you toward the best available funding opportunities"
+        },
+        "training": {
+          "title": "Training",
+          "desc": "Training programs in entrepreneurship and practical skills"
+        },
+        "guidance": {
+          "title": "Career Guidance",
+          "desc": "Professional guidance to help you choose the right path"
+        }
+      }
+    },
+    "stats": {
+      "title": "ACCINOR by Numbers",
+      "projects": "Projects Supported",
+      "clients": "Beneficiaries",
+      "trainings": "Trainings",
+      "cities": "Cities"
+    },
+    "audience": {
+      "title": "Who We Serve",
+      "items": {
+        "students": "Students",
+        "youth": "Youth Seeking Opportunities",
+        "project_holders": "Project Holders",
+        "entrepreneurs": "Self-Entrepreneurs",
+        "startups": "Startups",
+        "associations": "Associations"
+      }
+    },
+    "cta": {
+      "title": "Time to Start",
+      "subtitle": "Don't wait any longer. Start your entrepreneurial journey today with ACCINOR"
+    }
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "Building bridges to success for entrepreneurs in the Oriental region",
+    "mission": {
+      "title": "Our Mission",
+      "body": "Helping individuals transition from an idea to a successful, fundable project through consulting, training, and continuous support."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "body": "Towards a strong entrepreneurial ecosystem in the Oriental region that creates jobs and supports innovation."
+    },
+    "values": {
+      "title": "Our Values",
+      "integrity": "Integrity",
+      "excellence": "Excellence",
+      "innovation": "Innovation",
+      "solidarity": "Solidarity"
+    },
+    "region": {
+      "title": "Geographic Focus",
+      "body": "We operate in the Oriental region of Morocco, targeting 8 cities in the first phase"
+    }
+  },
+  "services_page": {
+    "title": "Our Services",
+    "subtitle": "Comprehensive support at every stage of your entrepreneurial journey",
+    "process": {
+      "title": "How We Work",
+      "step1": "Service Request",
+      "step2": "Diagnosis & Assessment",
+      "step3": "Custom Action Plan",
+      "step4": "Follow-up & Evaluation"
+    }
+  },
+  "programs": {
+    "title": "Training Programs",
+    "subtitle": "Professional training programs to enhance your entrepreneurial skills",
+    "notice": "This is demo content — Demo Content"
+  },
+  "funding": {
+    "title": "Funding Support",
+    "subtitle": "We help you access the right funding sources for your project"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Articles and tips on entrepreneurship and innovation",
+    "read_more": "Read More",
+    "notice": "This is demo content — Demo Content"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We're here to answer your questions",
+    "form": {
+      "name": "Full Name",
+      "email": "Email",
+      "phone": "Phone",
+      "message": "Your Message",
+      "success": "Your message has been sent successfully. We will contact you soon."
+    },
+    "info": {
+      "address": "Oriental Region, Morocco",
+      "email": "contact@accinor.ma",
+      "phone": "+212 XXX XX XX XX"
+    }
+  },
+  "consultation": {
+    "title": "Book a Consultation",
+    "subtitle": "Book a free consultation session with our team",
+    "form": {
+      "name": "Full Name",
+      "email": "Email",
+      "phone": "Phone",
+      "service": "Service Type",
+      "message": "Brief description of your project",
+      "success": "Your consultation request has been sent successfully. We will contact you soon."
+    }
+  },
+  "project_submission": {
+    "title": "Submit Your Project",
+    "subtitle": "Share your project idea with us for review and support",
+    "form": {
+      "name": "Full Name",
+      "email": "Email",
+      "phone": "Phone",
+      "project_name": "Project Name",
+      "description": "Project Description",
+      "stage": "Project Stage",
+      "city": "City",
+      "funding": "Funding Required",
+      "success": "Your project has been received successfully. Our team will review it and contact you."
+    }
+  },
+  "admin": {
+    "title": "Dashboard",
+    "login": "Login",
+    "dashboard": "Dashboard",
+    "requests": "Requests",
+    "leads": "Leads",
+    "clients": "Clients",
+    "blog": "Posts",
+    "consultations": "Consultations",
+    "logout": "Logout"
+  }
+}

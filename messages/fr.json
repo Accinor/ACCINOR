@@ -1,0 +1,188 @@
+{
+  "common": {
+    "site_name": "ACCINOR",
+    "tagline": "De l'idée au projet",
+    "nav": {
+      "home": "Accueil",
+      "about": "À propos",
+      "services": "Services",
+      "programs": "Programmes de formation",
+      "funding": "Aide au financement",
+      "blog": "Blog",
+      "contact": "Contact"
+    },
+    "cta": {
+      "consultation": "Réserver une consultation",
+      "submit_project": "Soumettre votre projet",
+      "subscribe": "S'abonner",
+      "send": "Envoyer",
+      "learn_more": "En savoir plus"
+    },
+    "footer": {
+      "rights": "Tous droits réservés à ACCINOR",
+      "description": "Plateforme spécialisée dans le soutien à l'entrepreneuriat, l'innovation et l'accompagnement professionnel dans la région de l'Oriental"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "De l'idée au projet",
+      "subtitle": "Nous vous accompagnons à chaque étape de votre parcours entrepreneurial",
+      "description": "Bénéficiez de conseils, de formations et de soutien pour transformer votre idée en un projet réussi et finançable"
+    },
+    "services": {
+      "title": "Nos services",
+      "subtitle": "Une gamme complète de services pour soutenir votre parcours entrepreneurial",
+      "items": {
+        "consulting": {
+          "title": "Consultations individuelles",
+          "desc": "Sessions de conseil personnalisées selon les besoins de votre projet"
+        },
+        "coaching": {
+          "title": "Accompagnement personnalisé",
+          "desc": "Suivi continu tout au long du développement de votre projet"
+        },
+        "business_plan": {
+          "title": "Plans d'affaires",
+          "desc": "Nous vous aidons à élaborer un plan d'affaires complet et professionnel"
+        },
+        "funding": {
+          "title": "Soutien au financement",
+          "desc": "Nous vous guidons vers les meilleures opportunités de financement disponibles"
+        },
+        "training": {
+          "title": "Formation",
+          "desc": "Programmes de formation en entrepreneuriat et compétences pratiques"
+        },
+        "guidance": {
+          "title": "Orientation professionnelle",
+          "desc": "Conseils pour vous aider à choisir la voie qui vous convient"
+        }
+      }
+    },
+    "stats": {
+      "title": "ACCINOR en chiffres",
+      "projects": "Projets soutenus",
+      "clients": "Bénéficiaires",
+      "trainings": "Formations",
+      "cities": "Villes"
+    },
+    "audience": {
+      "title": "À qui s'adressent nos services ?",
+      "items": {
+        "students": "Étudiants",
+        "youth": "Jeunes chercheurs d'opportunités",
+        "project_holders": "Porteurs de projets",
+        "entrepreneurs": "Auto-entrepreneurs",
+        "startups": "Startups",
+        "associations": "Associations"
+      }
+    },
+    "cta": {
+      "title": "Il est temps de commencer",
+      "subtitle": "N'attendez plus. Commencez votre parcours entrepreneurial dès aujourd'hui avec ACCINOR"
+    }
+  },
+  "about": {
+    "title": "À propos",
+    "subtitle": "Nous construisons des ponts vers le succès pour les entrepreneurs de l'Oriental",
+    "mission": {
+      "title": "Notre mission",
+      "body": "Aider les individus à passer d'une idée à un projet réussi et finançable, grâce à des conseils, des formations et un accompagnement continu."
+    },
+    "vision": {
+      "title": "Notre vision",
+      "body": "Vers un écosystème entrepreneurial fort dans la région de l'Oriental, créateur d'emplois et promoteur de l'innovation."
+    },
+    "values": {
+      "title": "Nos valeurs",
+      "integrity": "Intégrité",
+      "excellence": "Excellence",
+      "innovation": "Innovation",
+      "solidarity": "Solidarité"
+    },
+    "region": {
+      "title": "Focus géographique",
+      "body": "Nous opérons dans la région de l'Oriental au Maroc, ciblant 8 villes dans la première phase"
+    }
+  },
+  "services_page": {
+    "title": "Nos services",
+    "subtitle": "Un soutien complet à chaque étape de votre parcours entrepreneurial",
+    "process": {
+      "title": "Comment travaillons-nous ?",
+      "step1": "Demande de service",
+      "step2": "Diagnostic et évaluation",
+      "step3": "Plan d'action personnalisé",
+      "step4": "Suivi et évaluation"
+    }
+  },
+  "programs": {
+    "title": "Programmes de formation",
+    "subtitle": "Des programmes de formation professionnelle pour renforcer vos compétences entrepreneuriales",
+    "notice": "Ceci est un contenu de démonstration — Demo Content"
+  },
+  "funding": {
+    "title": "Aide au financement",
+    "subtitle": "Nous vous aidons à accéder aux sources de financement adaptées à votre projet"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Articles et conseils en entrepreneuriat et innovation",
+    "read_more": "Lire la suite",
+    "notice": "Ceci est un contenu de démonstration — Demo Content"
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "subtitle": "Nous sommes là pour répondre à vos questions",
+    "form": {
+      "name": "Nom complet",
+      "email": "Email",
+      "phone": "Téléphone",
+      "message": "Votre message",
+      "success": "Votre message a été envoyé avec succès. Nous vous contacterons bientôt."
+    },
+    "info": {
+      "address": "Région de l'Oriental, Maroc",
+      "email": "contact@accinor.ma",
+      "phone": "+212 XXX XX XX XX"
+    }
+  },
+  "consultation": {
+    "title": "Réserver une consultation",
+    "subtitle": "Réservez une séance de consultation gratuite avec notre équipe",
+    "form": {
+      "name": "Nom complet",
+      "email": "Email",
+      "phone": "Téléphone",
+      "service": "Type de service",
+      "message": "Brève description de votre projet",
+      "success": "Votre demande de consultation a été envoyée avec succès. Nous vous contacterons bientôt."
+    }
+  },
+  "project_submission": {
+    "title": "Soumettre votre projet",
+    "subtitle": "Partagez votre idée de projet avec nous pour l'étudier et vous soutenir",
+    "form": {
+      "name": "Nom complet",
+      "email": "Email",
+      "phone": "Téléphone",
+      "project_name": "Nom du projet",
+      "description": "Description du projet",
+      "stage": "Phase du projet",
+      "city": "Ville",
+      "funding": "Financement requis",
+      "success": "Votre projet a été reçu avec succès. Notre équipe l'étudiera et vous contactera."
+    }
+  },
+  "admin": {
+    "title": "Tableau de bord",
+    "login": "Connexion",
+    "dashboard": "Statistiques",
+    "requests": "Demandes",
+    "leads": "Prospects",
+    "clients": "Clients",
+    "blog": "Articles",
+    "consultations": "Consultations",
+    "logout": "Déconnexion"
+  }
+}
