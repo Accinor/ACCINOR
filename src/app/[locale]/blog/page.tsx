@@ -2,6 +2,8 @@ import { createClient } from "@/lib/supabase/server"
 import { BlogCard } from "@/components/blog/blog-card"
 import { getTranslations } from "next-intl/server"
 
+export const dynamic = "force-dynamic"
+
 type Props = {
   params: Promise<{ locale: string }>
 }

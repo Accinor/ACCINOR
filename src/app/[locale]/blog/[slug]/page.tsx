@@ -3,6 +3,8 @@ import { notFound } from "next/navigation"
 import Link from "next/link"
 import { getTranslations } from "next-intl/server"
 
+export const dynamic = "force-dynamic"
+
 type Props = {
   params: Promise<{ locale: string; slug: string }>
 }
