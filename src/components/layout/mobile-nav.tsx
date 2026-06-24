@@ -10,6 +10,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import { Menu } from "lucide-react"
 
 type Props = {
   links: { href: string; label: string }[]
@@ -23,36 +24,24 @@ export function MobileNav({ links, open, onOpenChange }: Props) {
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetTrigger render={
-        <Button variant="ghost" size="icon" className="lg:hidden">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <line x1="3" y1="6" x2="21" y2="6" />
-            <line x1="3" y1="12" x2="21" y2="12" />
-            <line x1="3" y1="18" x2="21" y2="18" />
-          </svg>
-          <span className="sr-only">Toggle menu</span>
-        </Button>
-      } />
+      <SheetTrigger
+        render={
+          <Button variant="ghost" size="icon" className="lg:hidden">
+            <Menu className="w-5 h-5" />
+            <span className="sr-only">Toggle menu</span>
+          </Button>
+        }
+      />
       <SheetContent side={locale === "ar" ? "right" : "left"}>
         <SheetHeader>
-          <SheetTitle>ACCINOR</SheetTitle>
+          <SheetTitle className="text-[var(--brand-navy)]">ACCINOR</SheetTitle>
         </SheetHeader>
-        <nav className="flex flex-col gap-4 mt-8">
+        <nav className="flex flex-col gap-2 mt-8">
           {links.map((link) => (
             <Link
               key={link.href}
               href={`/${locale}${link.href}`}
-              className="text-lg font-medium text-muted-foreground hover:text-primary transition-colors"
+              className="text-lg font-medium text-muted-foreground hover:text-amber-600 transition-colors px-3 py-2 rounded-lg hover:bg-amber-50"
               onClick={() => onOpenChange(false)}
             >
               {link.label}
@@ -63,8 +52,8 @@ export function MobileNav({ links, open, onOpenChange }: Props) {
             className="mt-4"
             onClick={() => onOpenChange(false)}
           >
-            <Button className="w-full">
-              احجز استشارة
+            <Button className="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-lg">
+              {locale === "ar" ? "احجز استشارة" : "Book a Consultation"}
             </Button>
           </Link>
         </nav>

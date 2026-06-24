@@ -4,7 +4,6 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { createClient } from "@/lib/supabase/client"
 import { AdminSidebar } from "@/components/admin/sidebar"
-import { Button } from "@/components/ui/button"
 
 export default function AdminLayout({
   children,
@@ -16,8 +15,8 @@ export default function AdminLayout({
   const supabase = createClient()
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => {
-      if (!data.session) {
+    supabase.auth.getSession().then(({ data }: { data: { session: unknown } | null }) => {
+      if (!data?.session) {
         router.push("/admin/login")
       } else {
         setSession(true)

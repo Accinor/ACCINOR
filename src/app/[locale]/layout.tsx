@@ -4,6 +4,19 @@ import { notFound } from "next/navigation"
 import { routing } from "@/i18n/routing"
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
+import { Inter, Cairo } from "next/font/google"
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+})
+
+const cairo = Cairo({
+  subsets: ["arabic"],
+  variable: "--font-cairo",
+  display: "swap",
+})
 
 type Props = {
   children: React.ReactNode
@@ -41,11 +54,15 @@ export default async function LocaleLayout({ children, params }: Props) {
   const messages = await getMessages()
 
   return (
-    <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"} className="scroll-smooth">
-      <body className="min-h-screen flex flex-col bg-background text-foreground antialiased">
+    <html
+      lang={locale}
+      dir={locale === "ar" ? "rtl" : "ltr"}
+      className={`scroll-smooth ${inter.variable} ${cairo.variable}`}
+    >
+      <body className="min-h-screen flex flex-col">
         <NextIntlClientProvider messages={messages}>
           <Navbar />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1 pt-16">{children}</main>
           <Footer />
         </NextIntlClientProvider>
       </body>

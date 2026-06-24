@@ -21,7 +21,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 
 type Post = {
@@ -42,16 +42,14 @@ export default function AdminBlogPage() {
   const [showForm, setShowForm] = useState(false)
 
   useEffect(() => {
-    loadPosts()
-  }, [])
-
-  const loadPosts = async () => {
-    const { data } = await supabase
+    supabase
       .from("blog_posts")
       .select("*")
       .order("created_at", { ascending: false })
-    if (data) setPosts(data)
-  }
+      .then(({ data }: { data: Post[] | null }) => {
+        if (data) setPosts(data)
+      })
+  }, [])
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -83,12 +81,24 @@ export default function AdminBlogPage() {
 
     setShowForm(false)
     setEditing(null)
-    loadPosts()
+    supabase
+      .from("blog_posts")
+      .select("*")
+      .order("created_at", { ascending: false })
+      .then(({ data }: { data: Post[] | null }) => {
+        if (data) setPosts(data)
+      })
   }
 
   const handleDelete = async (id: string) => {
     await supabase.from("blog_posts").delete().eq("id", id)
-    loadPosts()
+    supabase
+      .from("blog_posts")
+      .select("*")
+      .order("created_at", { ascending: false })
+      .then(({ data }: { data: Post[] | null }) => {
+        if (data) setPosts(data)
+      })
   }
 
   const editPost = (post: Post) => {

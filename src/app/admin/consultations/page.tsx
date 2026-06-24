@@ -30,7 +30,7 @@ export default function AdminConsultationsPage() {
       .from("consultation_requests")
       .select("*")
       .order("created_at", { ascending: false })
-      .then(({ data }) => {
+      .then(({ data }: { data: Request[] | null }) => {
         if (data) setRequests(data)
       })
   }, [])

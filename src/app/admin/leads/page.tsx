@@ -11,16 +11,25 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
+type Contact = {
+  id: string
+  name: string
+  email: string
+  phone: string | null
+  source: string
+  created_at: string
+}
+
 export default function AdminLeadsPage() {
   const supabase = createClient()
-  const [contacts, setContacts] = useState<any[]>([])
+  const [contacts, setContacts] = useState<Contact[]>([])
 
   useEffect(() => {
     supabase
       .from("contacts")
       .select("*")
       .order("created_at", { ascending: false })
-      .then(({ data }) => {
+      .then(({ data }: { data: Contact[] | null }) => {
         if (data) setContacts(data)
       })
   }, [])

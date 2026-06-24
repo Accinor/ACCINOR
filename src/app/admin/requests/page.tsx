@@ -33,8 +33,8 @@ export default function AdminRequestsPage() {
         .from("project_submissions")
         .select("*")
         .order("created_at", { ascending: false })
-        .then(({ data }) => {
-          if (data) setSubmissions(data as unknown as Submission[])
+        .then(({ data }: { data: Submission[] | null }) => {
+          if (data) setSubmissions(data)
         })
     }
   }, [type])

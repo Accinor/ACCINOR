@@ -1,7 +1,6 @@
 "use client"
 
-import { useParams, usePathname } from "next/navigation"
-import { useLocale } from "next-intl"
+import { usePathname } from "next/navigation"
 import { routing } from "@/i18n/routing"
 import {
   DropdownMenu,
@@ -11,6 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import { Globe } from "lucide-react"
 
 const labels: Record<string, string> = {
   ar: "العربية",
@@ -19,17 +19,25 @@ const labels: Record<string, string> = {
 }
 
 export function LanguageSwitcher() {
-  const locale = useLocale()
   const pathname = usePathname()
 
   const pathWithoutLocale = pathname.replace(/^\/(ar|fr|en)/, "")
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger render={<Button variant="ghost" size="sm">{labels[locale] || locale}</Button>} />
+      <DropdownMenuTrigger
+        render={
+          <Button variant="ghost" size="icon" className="rounded-full">
+            <Globe className="w-4 h-4" />
+          </Button>
+        }
+      />
       <DropdownMenuContent align="end">
         {routing.locales.map((l) => (
-          <DropdownMenuItem key={l} render={<Link href={`/${l}${pathWithoutLocale}`} />}>
+          <DropdownMenuItem
+            key={l}
+            render={<Link href={`/${l}${pathWithoutLocale}`} />}
+          >
             {labels[l]}
           </DropdownMenuItem>
         ))}
