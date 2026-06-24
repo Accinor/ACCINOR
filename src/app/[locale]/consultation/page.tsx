@@ -1,6 +1,7 @@
 "use client"
 
 import { useTranslations } from "next-intl"
+import { ConsultationForm } from "@/components/forms/consultation-form"
 
 export default function ConsultationPage() {
   const t = useTranslations("consultation")
@@ -14,9 +15,7 @@ export default function ConsultationPage() {
         </div>
 
         <div className="rounded-lg border p-8">
-          <div className="rounded-lg border p-4 text-center text-muted-foreground">
-            <p>Consultation form will be integrated here (M5)</p>
-          </div>
+          <ConsultationForm />
         </div>
       </div>
     </div>

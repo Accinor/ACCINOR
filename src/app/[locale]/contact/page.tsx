@@ -1,6 +1,7 @@
 "use client"
 
 import { useTranslations } from "next-intl"
+import { ContactForm } from "@/components/forms/contact-form"
 
 export default function ContactPage() {
   const t = useTranslations("contact")
@@ -26,11 +27,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div className="space-y-4">
-            <div className="rounded-lg border p-4 text-center text-muted-foreground">
-              <p>Contact form will be integrated here (M5)</p>
-            </div>
-          </div>
+          <ContactForm />
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 "use client"
 
 import { useTranslations } from "next-intl"
+import { ProjectSubmissionForm } from "@/components/forms/project-submission-form"
 
 export default function ProjectSubmissionPage() {
   const t = useTranslations("project_submission")
@@ -14,9 +15,7 @@ export default function ProjectSubmissionPage() {
         </div>
 
         <div className="rounded-lg border p-8">
-          <div className="rounded-lg border p-4 text-center text-muted-foreground">
-            <p>Project submission form will be integrated here (M5)</p>
-          </div>
+          <ProjectSubmissionForm />
         </div>
       </div>
     </div>
