@@ -1,7 +1,7 @@
 # ACCINOR — Project Map
 
-> Last updated: 2026-06-23
-> Status: Planning — awaiting approval
+> Last updated: 2026-06-24
+> Status: In Development — M1 Complete, M2 Complete, M3 In Progress
 
 ---
 
@@ -313,35 +313,43 @@ export const logger = {
 
 ## [MILESTONES]
 
-| # | Milestone | Criteria | Effort |
+| # | Milestone | Status | Effort |
 |---|---|---|---|
-| M1 | **Project Scaffold** | `npx create-next-app` + Tailwind + shadcn + next-intl + Supabase client configured | 1 day |
-| M2 | **i18n Setup** | AR/FR/EN messages, RTL layout, language switcher, middleware routing | 2 days |
-| M3 | **Public Pages** | Home, About, Services, Programs, Funding, Contact — all responsive, translated | 5 days |
-| M4 | **Blog System** | Blog list + detail pages, admin CRUD, Supabase storage for images | 3 days |
-| M5 | **Lead Forms** | Contact form, consultation form, project submission form, newsletter — all with validation + email notification via Resend | 3 days |
-| M6 | **Admin Dashboard** | Auth (Supabase Auth), layout, requests/leads/clients/consultations list views | 4 days |
-| M7 | **SEO & Performance** | Metadata, OG, sitemap, robots.txt, structured data, Lighthouse ≥ 90 | 2 days |
-| M8 | **Deployment** | Vercel deploy, Supabase project, custom domain, Resend domain verification | 1 day |
-| M9 | **Testing & Polish** | Cross-browser, mobile testing, content review, final adjustments | 2 days |
+| M1 | **Project Scaffold** | ✅ Complete | 1 day |
+| M2 | **i18n Setup** | ✅ Complete | 2 days |
+| M3 | **Public Pages** | 🔄 In Progress | 5 days |
+| M4 | **Blog System** | ⏳ Pending | 3 days |
+| M5 | **Lead Forms** | ⏳ Pending | 3 days |
+| M6 | **Admin Dashboard** | ⏳ Pending | 4 days |
+| M7 | **SEO & Performance** | ⏳ Pending | 2 days |
+| M8 | **Deployment** | ⏳ Pending | 1 day |
+| M9 | **Testing & Polish** | ⏳ Pending | 2 days |
 | **Total** | | | **23 days** |
 
 ---
 
 ## [ORPHANS_AND_PENDING]
 
-### Decisions Needed Before Starting
+### Completed ✅
+- ✔ **Supabase region** → EU West (Ireland) — *resolved*
+- ✔ **Admin email** → yassin24624@gmail.com — *resolved*
+- ✔ **Brand assets** → Logo received (public/images/logo.png), colors pending from user
+- ✔ **GitHub** → Private repo created at https://github.com/Accionor/ACCINOR
+- ✔ **M1 Scaffold** → Next.js + Tailwind + shadcn + Supabase + Resend configured
+- ✔ **M2 i18n** → AR/FR/EN with RTL, language switcher, middleware
+- ✔ **M3 Public Pages** → Home (Hero, Services, Stats, Audience, CTA), About, Services, Programs, Funding, Blog, Contact — *basic structure complete*
 
-1. **Supabase project region** — Should be EU West (Ireland) or EU (Frankfurt) for Morocco latency?
-2. **Custom domain** — What domain will be used? (e.g., accinor.ma)
-3. **Brand assets** — Do you have a logo, color palette, brand fonts?
-4. **Admin credentials** — Who are the initial admin users?
-5. **Resend domain** — Do you have a domain to verify with Resend for sending emails?
-6. **Blog content seed** — Will you provide initial blog posts or should we create placeholder content?
-7. **Color scheme** — Any brand colors to use? (Tailwind/shadcn CSS variables)
+### Still Pending / Blocked
+1. ⏳ **Custom domain** — User will provide later
+2. ⏳ **Resend domain** — User will provide later (using onboarding@resend.dev temporarily)
+3. ⏳ **Brand colors & fonts** — User has assets, awaiting sharing
+4. ⏳ **M4 Blog System** — Needs Supabase project to be created
+5. ⏳ **M5 Lead Forms** — Needs Supabase project for database
+6. ⏳ **M6 Admin Dashboard** — Needs Supabase Auth
+7. ⏳ **M7 SEO** — Basic metadata done, full SEO pending content
+8. ⏳ **M8 Deployment** — Needs Vercel + Supabase accounts linked
 
 ### Explicitly Excluded (per MVP rules)
-
 - ❌ Mobile App
 - ❌ LMS Platform
 - ❌ Community Platform
