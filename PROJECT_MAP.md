@@ -1,7 +1,7 @@
 # ACCINOR — Project Map
 
 > Last updated: 2026-06-24
-> Status: In Development — M1 Complete, M2 Complete, M3 In Progress
+> Status: In Development — M1-M6 Complete, M7-M9 Pending
 
 ---
 
@@ -317,10 +317,10 @@ export const logger = {
 |---|---|---|---|
 | M1 | **Project Scaffold** | ✅ Complete | 1 day |
 | M2 | **i18n Setup** | ✅ Complete | 2 days |
-| M3 | **Public Pages** | 🔄 In Progress | 5 days |
-| M4 | **Blog System** | ⏳ Pending | 3 days |
-| M5 | **Lead Forms** | ⏳ Pending | 3 days |
-| M6 | **Admin Dashboard** | ⏳ Pending | 4 days |
+| M3 | **Public Pages** | ✅ Complete | 5 days |
+| M4 | **Blog System** | ✅ Complete | 3 days |
+| M5 | **Lead Forms** | ✅ Complete | 3 days |
+| M6 | **Admin Dashboard** | ✅ Complete | 4 days |
 | M7 | **SEO & Performance** | ⏳ Pending | 2 days |
 | M8 | **Deployment** | ⏳ Pending | 1 day |
 | M9 | **Testing & Polish** | ⏳ Pending | 2 days |
@@ -333,21 +333,23 @@ export const logger = {
 ### Completed ✅
 - ✔ **Supabase region** → EU West (Ireland) — *resolved*
 - ✔ **Admin email** → yassin24624@gmail.com — *resolved*
-- ✔ **Brand assets** → Logo received (public/images/logo.png), colors pending from user
-- ✔ **GitHub** → Private repo created at https://github.com/Accionor/ACCINOR
+- ✔ **Brand assets** → Logo received (public/images/logo.png)
+- ✔ **GitHub** → Private repo at https://github.com/Accinor/ACCINOR
+- ✔ **Supabase project** → Created + anon key + schema migrated
 - ✔ **M1 Scaffold** → Next.js + Tailwind + shadcn + Supabase + Resend configured
 - ✔ **M2 i18n** → AR/FR/EN with RTL, language switcher, middleware
-- ✔ **M3 Public Pages** → Home (Hero, Services, Stats, Audience, CTA), About, Services, Programs, Funding, Blog, Contact — *basic structure complete*
+- ✔ **M3 Public Pages** → Home, About, Services, Programs, Funding, Blog, Contact — fully functional
+- ✔ **M4 Blog System** → List + detail from DB, admin CRUD
+- ✔ **M5 Lead Forms** → Contact, consultation, project, newsletter — all wired to Supabase
+- ✔ **M6 Admin Dashboard** → Auth, sidebar, stats, tables, blog management
 
 ### Still Pending / Blocked
 1. ⏳ **Custom domain** — User will provide later
 2. ⏳ **Resend domain** — User will provide later (using onboarding@resend.dev temporarily)
-3. ⏳ **Brand colors & fonts** — User has assets, awaiting sharing
-4. ⏳ **M4 Blog System** — Needs Supabase project to be created
-5. ⏳ **M5 Lead Forms** — Needs Supabase project for database
-6. ⏳ **M6 Admin Dashboard** — Needs Supabase Auth
-7. ⏳ **M7 SEO** — Basic metadata done, full SEO pending content
-8. ⏳ **M8 Deployment** — Needs Vercel + Supabase accounts linked
+3. ⏳ **Brand colors & fonts** — Navy+Gold scheme applied, user can share exact brand fonts later
+4. ⏳ **M7 SEO** — Basic metadata done, needs sitemap.xml, robots.txt, structured data, OG images
+5. ⏳ **M8 Deployment** — Needs Vercel account linked
+6. ⏳ **M9 Testing & Polish** — Cross-browser, mobile, Lighthouse ≥ 90
 
 ### Explicitly Excluded (per MVP rules)
 - ❌ Mobile App
