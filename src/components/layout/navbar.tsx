@@ -39,8 +39,8 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-background/80 backdrop-blur-xl ${
-        scrolled ? "border-b border-border shadow-sm" : ""
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-background border-b border-border ${
+        scrolled ? "shadow-sm" : ""
       }`}
     >
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
@@ -50,7 +50,7 @@ export function Navbar() {
             alt={t("site_name")}
             width={200}
             height={60}
-            className="h-14 w-auto transition-all duration-300"
+            className={`h-14 w-auto transition-all duration-300 ${theme === "dark" ? "brightness-0 invert" : ""}`}
             priority
           />
         </Link>
