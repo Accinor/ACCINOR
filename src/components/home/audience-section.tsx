@@ -53,7 +53,7 @@ export function AudienceSection() {
 
   return (
     <section className="py-24 relative">
-      <div className="absolute inset-0 bg-[var(--gradient-subtle)]" />
+      <div className="absolute inset-0 bg-secondary/50 dark:bg-transparent" />
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
