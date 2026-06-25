@@ -16,7 +16,7 @@ export function CtaSection() {
 
   return (
     <section className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-amber-500 via-amber-600 to-orange-700" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#ffb81b] via-[#e5a318] to-[#cc8e14]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(255,255,255,0.1),transparent_60%)]" />
       <motion.div
         animate={{
@@ -63,7 +63,7 @@ export function CtaSection() {
             <Link href={`/${locale}/consultation`}>
               <Button
                 size="lg"
-                className="bg-white text-amber-700 hover:bg-white/90 hover:scale-105 shadow-lg shadow-black/10 hover:shadow-xl transition-all duration-300"
+                className="bg-white text-[#050a30] hover:bg-white/90 hover:scale-105 shadow-lg shadow-black/10 hover:shadow-xl transition-all duration-300 font-bold"
               >
                 <Sparkles className="mr-2 w-4 h-4" />
                 {cta("consultation")}

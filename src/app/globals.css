@@ -5,31 +5,31 @@
 
 @theme inline {
   --color-background: #ffffff;
-  --color-foreground: #0a0a0f;
+  --color-foreground: #050a30;
   --color-card: #ffffff;
-  --color-card-foreground: #0a0a0f;
+  --color-card-foreground: #050a30;
   --color-popover: #ffffff;
-  --color-popover-foreground: #0a0a0f;
-  --color-primary: #0c1e3a;
+  --color-popover-foreground: #050a30;
+  --color-primary: #050a30;
   --color-primary-foreground: #ffffff;
-  --color-secondary: #f3f4f6;
-  --color-secondary-foreground: #0a0a0f;
-  --color-muted: #f3f4f6;
-  --color-muted-foreground: #6b7280;
-  --color-accent: #d97706;
-  --color-accent-foreground: #ffffff;
+  --color-secondary: #f0f2ff;
+  --color-secondary-foreground: #050a30;
+  --color-muted: #f0f2ff;
+  --color-muted-foreground: #5a6180;
+  --color-accent: #ffb81b;
+  --color-accent-foreground: #050a30;
   --color-destructive: #ef4444;
-  --color-border: #e5e7eb;
-  --color-input: #e5e7eb;
-  --color-ring: #d97706;
-  --color-sidebar: #f8fafc;
-  --color-sidebar-foreground: #0a0a0f;
-  --color-sidebar-primary: #0c1e3a;
+  --color-border: #d4d8e6;
+  --color-input: #d4d8e6;
+  --color-ring: #ffb81b;
+  --color-sidebar: #f8f9ff;
+  --color-sidebar-foreground: #050a30;
+  --color-sidebar-primary: #050a30;
   --color-sidebar-primary-foreground: #ffffff;
-  --color-sidebar-accent: #d97706;
-  --color-sidebar-accent-foreground: #ffffff;
-  --color-sidebar-border: #e5e7eb;
-  --color-sidebar-ring: #d97706;
+  --color-sidebar-accent: #ffb81b;
+  --color-sidebar-accent-foreground: #050a30;
+  --color-sidebar-border: #d4d8e6;
+  --color-sidebar-ring: #ffb81b;
   --radius: 0.5rem;
   --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
   --font-mono: ui-monospace, "SF Mono", "Cascadia Code", monospace;
@@ -37,31 +37,31 @@
 }
 
 .dark {
-  --color-background: #05060a;
-  --color-foreground: #f3f4f6;
-  --color-card: #111827;
-  --color-card-foreground: #f3f4f6;
-  --color-popover: #111827;
-  --color-popover-foreground: #f3f4f6;
-  --color-primary: #f59e0b;
-  --color-primary-foreground: #05060a;
-  --color-secondary: #1f2937;
-  --color-secondary-foreground: #f3f4f6;
-  --color-muted: #1f2937;
-  --color-muted-foreground: #9ca3af;
-  --color-accent: #f59e0b;
-  --color-accent-foreground: #05060a;
-  --color-border: #1f2937;
-  --color-input: #1f2937;
-  --color-ring: #f59e0b;
-  --color-sidebar: #111827;
-  --color-sidebar-foreground: #f3f4f6;
-  --color-sidebar-primary: #f59e0b;
-  --color-sidebar-primary-foreground: #05060a;
-  --color-sidebar-accent: #f59e0b;
-  --color-sidebar-accent-foreground: #05060a;
-  --color-sidebar-border: #1f2937;
-  --color-sidebar-ring: #f59e0b;
+  --color-background: #020515;
+  --color-foreground: #f0f2ff;
+  --color-card: #080c24;
+  --color-card-foreground: #f0f2ff;
+  --color-popover: #080c24;
+  --color-popover-foreground: #f0f2ff;
+  --color-primary: #ffb81b;
+  --color-primary-foreground: #020515;
+  --color-secondary: #0e1440;
+  --color-secondary-foreground: #f0f2ff;
+  --color-muted: #0e1440;
+  --color-muted-foreground: #8890b0;
+  --color-accent: #ffb81b;
+  --color-accent-foreground: #020515;
+  --color-border: #1a2060;
+  --color-input: #1a2060;
+  --color-ring: #ffb81b;
+  --color-sidebar: #080c24;
+  --color-sidebar-foreground: #f0f2ff;
+  --color-sidebar-primary: #ffb81b;
+  --color-sidebar-primary-foreground: #020515;
+  --color-sidebar-accent: #ffb81b;
+  --color-sidebar-accent-foreground: #020515;
+  --color-sidebar-border: #1a2060;
+  --color-sidebar-ring: #ffb81b;
 }
 
 @layer base {
@@ -81,6 +81,6 @@ html[lang="ar"] {
 }
 
 ::selection {
-  background: rgba(217, 119, 6, 0.3);
+  background: rgba(255, 184, 27, 0.3);
   color: inherit;
 }

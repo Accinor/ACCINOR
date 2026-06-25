@@ -60,7 +60,7 @@ export function Navbar() {
             <Link
               key={link.href}
               href={`/${locale}${link.href}`}
-              className="relative px-3 py-2 text-sm font-medium text-foreground/70 hover:text-amber-500 transition-colors duration-200 after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:bg-amber-500 after:scale-x-0 after:origin-left after:transition-transform after:duration-200 hover:after:scale-x-100"
+              className="relative px-3 py-2 text-sm font-medium text-foreground/70 hover:text-[#ffb81b] transition-colors duration-200 after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:bg-[#ffb81b] after:scale-x-0 after:origin-left after:transition-transform after:duration-200 hover:after:scale-x-100"
             >
               {link.label}
             </Link>
@@ -70,14 +70,14 @@ export function Navbar() {
         <div className="flex items-center gap-2">
           <button
             onClick={toggle}
-            className="p-2.5 rounded-full text-foreground/70 hover:text-amber-500 hover:bg-amber-500/10 transition-all duration-200"
+            className="p-2.5 rounded-full text-foreground/70 hover:text-[#ffb81b] hover:bg-[#ffb81b]/10 transition-all duration-200"
             aria-label="Toggle theme"
           >
             {isLight ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
           </button>
           <LanguageSwitcher />
           <Link href={`/${locale}/consultation`}>
-            <Button className="hidden sm:inline-flex bg-amber-500 hover:bg-amber-600 text-white shadow-sm">
+            <Button className="hidden sm:inline-flex bg-[#ffb81b] hover:bg-[#e5a318] text-[#050a30] font-bold shadow-sm">
               {t("cta.consultation")}
             </Button>
           </Link>

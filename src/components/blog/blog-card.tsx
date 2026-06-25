@@ -42,7 +42,7 @@ export function BlogCard({ post, locale }: { post: Post; locale: string }) {
               </span>
             )}
           </div>
-          <CardTitle className="text-xl group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors duration-200">
+          <CardTitle className="text-xl group-hover:text-[#ffb81b] transition-colors duration-200">
             {post.title}
           </CardTitle>
         </CardHeader>

@@ -24,6 +24,13 @@
     }
   },
   "home": {
+    "name_meaning": {
+      "title": "الاسم وراء الرسالة",
+      "acc": "<orange>ACC</orange> – <strong>المرافقة</strong> (Accompagnement) و<strong>التسريع</strong> (Accélération) — نرافقك من الفكرة إلى الأثر",
+      "in": "<orange>IN</orange> – <strong>الابتكار</strong> (Innovation) و<strong>الاحتضان</strong> (Incubation) — حيث تنمو الأفكار وتتحول إلى مشاريع",
+      "or": "<orange>OR</orange> – <strong>التوجيه</strong> (Orientation) و<strong>جهة الشرق</strong> (Oriental) — وطننا وقلبنا",
+      "footer": "كل حرف يحكي قصة. كل مقطع هو وعد."
+    },
     "hero": {
       "title": "من الفكرة إلى المشروع",
       "subtitle": "نرافقك في كل خطوة من مسارك الريادي",

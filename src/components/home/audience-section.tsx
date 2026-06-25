@@ -23,8 +23,8 @@ const icons = [
 ]
 
 const colors = [
-  "text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-950/50",
-  "text-amber-600 dark:text-amber-400 bg-amber-100 dark:bg-amber-950/50",
+  "text-[#050a30] dark:text-[#f0f2ff] bg-[#f0f2ff] dark:bg-[#0e1440]",
+  "text-[#ffb81b] dark:text-[#ffb81b] bg-[#ffb81b]/10 dark:bg-[#ffb81b]/10",
   "text-emerald-600 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-950/50",
   "text-violet-600 dark:text-violet-400 bg-violet-100 dark:bg-violet-950/50",
   "text-rose-600 dark:text-rose-400 bg-rose-100 dark:bg-rose-950/50",
@@ -83,14 +83,14 @@ export function AudienceSection() {
                 whileHover={{ scale: 1.05 }}
                 className="group"
               >
-                <div className="relative rounded-xl bg-card border border-border/50 p-6 text-center transition-all duration-300 hover:shadow-lg hover:border-amber-500/30 cursor-default">
+                <div className="relative rounded-xl bg-card border border-border/50 p-6 text-center transition-all duration-300 hover:shadow-lg hover:border-[#ffb81b]/30 cursor-default">
                   <div className={`inline-flex w-12 h-12 rounded-lg ${colors[i]} items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300`}>
                     <Icon className="w-6 h-6" />
                   </div>
                   <span className="text-base font-medium text-foreground block">
                     {t(`items.${key}`)}
                   </span>
-                  <div className="absolute inset-0 rounded-xl ring-1 ring-inset ring-black/5 group-hover:ring-amber-500/20 transition-all duration-300 pointer-events-none" />
+                  <div className="absolute inset-0 rounded-xl ring-1 ring-inset ring-black/5 group-hover:ring-[#ffb81b]/20 transition-all duration-300 pointer-events-none" />
                 </div>
               </motion.div>
             )

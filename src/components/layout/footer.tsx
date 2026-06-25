@@ -49,8 +49,8 @@ export function Footer() {
   ]
 
   return (
-    <footer className="relative border-t border-border/50 bg-gradient-to-br from-[#0a1628] via-[#0c1e3a] to-[#0a1628] text-white overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(245,158,11,0.06),transparent_60%)]" />
+    <footer className="relative border-t border-border/50 bg-gradient-to-br from-[#050a30] via-[#080c24] to-[#050a30] text-white overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,184,27,0.06),transparent_60%)]" />
       <div className="container mx-auto px-4 py-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div className="lg:col-span-1">
@@ -71,7 +71,7 @@ export function Footer() {
                 <a
                   key={social.label}
                   href={social.href}
-                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-amber-500 transition-colors duration-200"
+                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#ffb81b] transition-colors duration-200"
                   aria-label={social.label}
                 >
                   <svg
@@ -100,7 +100,7 @@ export function Footer() {
                   <li key={link.href}>
                     <Link
                       href={`/${locale}${link.href}`}
-                      className="text-sm text-white/50 hover:text-amber-400 transition-colors duration-200"
+                      className="text-sm text-white/50 hover:text-[#ffb81b] transition-colors duration-200"
                     >
                       {link.label}
                     </Link>
@@ -116,15 +116,15 @@ export function Footer() {
             </h4>
             <ul className="space-y-3">
               <li className="flex items-start gap-3 text-sm text-white/50">
-                <MapPin className="w-4 h-4 mt-0.5 text-amber-400 shrink-0" />
+                <MapPin className="w-4 h-4 mt-0.5 text-[#ffb81b] shrink-0" />
                 <span>Oriental Region, Morocco</span>
               </li>
               <li className="flex items-start gap-3 text-sm text-white/50">
-                <Mail className="w-4 h-4 mt-0.5 text-amber-400 shrink-0" />
+                <Mail className="w-4 h-4 mt-0.5 text-[#ffb81b] shrink-0" />
                 <span>contact@accinor.ma</span>
               </li>
               <li className="flex items-start gap-3 text-sm text-white/50">
-                <Phone className="w-4 h-4 mt-0.5 text-amber-400 shrink-0" />
+                <Phone className="w-4 h-4 mt-0.5 text-[#ffb81b] shrink-0" />
                 <span>+212 5XX XX XX XX</span>
               </li>
             </ul>

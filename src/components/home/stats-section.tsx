@@ -73,12 +73,12 @@ export function StatsSection() {
 
   return (
     <section className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0c1e3a] via-[#0f2347] to-[#0c1e3a]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(245,158,11,0.08),transparent_70%)]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#050a30] via-[#070e4a] to-[#050a30]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,184,27,0.08),transparent_70%)]" />
       <motion.div
         animate={{ rotate: 360 }}
         transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-        className="absolute -top-40 -right-40 w-80 h-80 rounded-full border border-amber-500/10"
+        className="absolute -top-40 -right-40 w-80 h-80 rounded-full border border-[#ffb81b]/10"
       />
 
       <div className="container mx-auto px-4 relative z-10">
@@ -106,7 +106,7 @@ export function StatsSection() {
             return (
               <motion.div key={stat.key} variants={itemVariants} className="text-center">
                 <div className="inline-flex p-3 rounded-xl bg-white/10 mb-4">
-                  <Icon className="w-6 h-6 text-amber-400" />
+                  <Icon className="w-6 h-6 text-[#ffb81b]" />
                 </div>
                 <Counter to={stat.value} suffix={stat.suffix} />
                 <div className="text-sm text-white/60 mt-2">{t(stat.key)}</div>

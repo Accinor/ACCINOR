@@ -17,9 +17,9 @@ export function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden -mt-16">
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0c1e3a] via-[#0f2347] to-[#162d5a]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(245,158,11,0.12),transparent_60%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(59,130,246,0.1),transparent_60%)]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#050a30] via-[#070e4a] to-[#0a1260]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,184,27,0.12),transparent_60%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(255,184,27,0.08),transparent_60%)]" />
 
       <motion.div
         animate={{
@@ -27,7 +27,7 @@ export function HeroSection() {
           opacity: [0.15, 0.25, 0.15],
         }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-20 left-10 w-72 h-72 rounded-full bg-amber-500/20 blur-3xl"
+        className="absolute top-20 left-10 w-72 h-72 rounded-full bg-[#ffb81b]/15 blur-3xl"
       />
       <motion.div
         animate={{
@@ -35,7 +35,7 @@ export function HeroSection() {
           opacity: [0.1, 0.2, 0.1],
         }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="absolute bottom-20 right-10 w-96 h-96 rounded-full bg-blue-500/15 blur-3xl"
+        className="absolute bottom-20 right-10 w-96 h-96 rounded-full bg-[#ffb81b]/10 blur-3xl"
       />
 
       <div className="container mx-auto px-4 relative z-10">
@@ -60,7 +60,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-amber-400/30 bg-amber-400/10 text-amber-300 text-sm font-medium mb-8"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#ffb81b]/30 bg-[#ffb81b]/10 text-[#ffb81b] text-sm font-medium mb-8"
           >
             <Sparkles className="w-4 h-4" />
             {t("subtitle")}
@@ -93,7 +93,7 @@ export function HeroSection() {
             <Link href={`/${locale}/consultation`}>
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white shadow-lg shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/30 hover:scale-105 transition-all duration-300"
+                className="bg-[#ffb81b] hover:bg-[#e5a318] text-[#050a30] font-bold shadow-lg shadow-[#ffb81b]/25 hover:shadow-xl hover:shadow-[#ffb81b]/30 hover:scale-105 transition-all duration-300 rounded-full"
               >
                 {cta("consultation")}
                 {!isRtl && <ArrowRight className="ml-2 w-4 h-4" />}
@@ -130,7 +130,7 @@ export function HeroSection() {
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#ffb81b]/30 to-transparent" />
     </section>
   )
 }

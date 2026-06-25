@@ -44,7 +44,7 @@ export function MobileNav({ links, open, onOpenChange }: Props) {
             <Link
               key={link.href}
               href={`/${locale}${link.href}`}
-              className="text-lg font-medium text-muted-foreground hover:text-amber-600 transition-colors px-3 py-2 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-950/30"
+                className="text-lg font-medium text-muted-foreground hover:text-[#ffb81b] transition-colors px-3 py-2 rounded-lg hover:bg-[#ffb81b]/10"
               onClick={() => onOpenChange(false)}
             >
               {link.label}
@@ -55,7 +55,7 @@ export function MobileNav({ links, open, onOpenChange }: Props) {
             className="mt-4"
             onClick={() => onOpenChange(false)}
           >
-            <Button className="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-lg">
+            <Button className="w-full bg-gradient-to-r from-[#ffb81b] to-[#e5a318] text-[#050a30] font-bold shadow-lg">
               {locale === "ar" ? "احجز استشارة" : "Book a Consultation"}
             </Button>
           </Link>
