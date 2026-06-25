@@ -16,10 +16,9 @@ type Props = {
   links: { href: string; label: string }[]
   open: boolean
   onOpenChange: (open: boolean) => void
-  scrolled?: boolean
 }
 
-export function MobileNav({ links, open, onOpenChange, scrolled }: Props) {
+export function MobileNav({ links, open, onOpenChange }: Props) {
   const params = useParams()
   const locale = params.locale as string
 
@@ -30,9 +29,7 @@ export function MobileNav({ links, open, onOpenChange, scrolled }: Props) {
           <Button
             variant="ghost"
             size="icon"
-            className={`lg:hidden transition-colors ${
-              scrolled ? "" : "text-white/80 hover:text-white hover:bg-white/10"
-            }`}
+            className="lg:hidden"
           >
             <Menu className="w-5 h-5" />
           </Button>

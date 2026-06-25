@@ -39,10 +39,8 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-background/80 backdrop-blur-xl border-b border-border shadow-sm"
-          : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-background/80 backdrop-blur-xl ${
+        scrolled ? "border-b border-border shadow-sm" : ""
       }`}
     >
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
@@ -62,9 +60,7 @@ export function Navbar() {
             <Link
               key={link.href}
               href={`/${locale}${link.href}`}
-              className={`text-sm font-medium transition-colors duration-200 hover:text-amber-500 ${
-                scrolled ? "text-foreground/70" : "text-white/80"
-              }`}
+              className="text-sm font-medium text-foreground/70 hover:text-amber-500 transition-colors duration-200"
             >
               {link.label}
             </Link>
@@ -74,22 +70,14 @@ export function Navbar() {
         <div className="flex items-center gap-3">
           <button
             onClick={() => setTheme(isLight ? "dark" : "light")}
-            className={`p-2 rounded-full transition-all duration-200 hover:bg-white/10 ${
-              scrolled ? "text-foreground hover:bg-accent/10" : "text-white/80"
-            }`}
+            className="p-2 rounded-full text-foreground/70 hover:text-amber-500 hover:bg-accent/10 transition-all duration-200"
             aria-label="Toggle theme"
           >
             {isLight ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
           </button>
-          <LanguageSwitcher scrolled={scrolled} />
+          <LanguageSwitcher />
           <Link href={`/${locale}/consultation`}>
-            <Button
-              className={`hidden sm:inline-flex transition-all duration-300 ${
-                scrolled
-                  ? ""
-                  : "bg-white/10 border-white/20 text-white hover:bg-white/20 hover:border-white/30"
-              }`}
-            >
+            <Button className="hidden sm:inline-flex">
               {t("cta.consultation")}
             </Button>
           </Link>
@@ -97,7 +85,6 @@ export function Navbar() {
             links={links}
             open={mobileOpen}
             onOpenChange={setMobileOpen}
-            scrolled={scrolled}
           />
         </div>
       </div>
