@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useRef } from "react"
-import { usePathname } from "next/navigation"
 
 export function SplashCursor({
   SIM_RESOLUTION = 128,
@@ -21,13 +20,10 @@ export function SplashCursor({
   RAINBOW_MODE = false,
   COLOR = "#ffb81b",
 }) {
-  const pathname = usePathname()
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const animationFrameId = useRef<number | null>(null)
-  const isAuthPage = pathname?.includes("/auth/")
 
   useEffect(() => {
-    if (isAuthPage) return
     const canvas = canvasRef.current
     if (!canvas) return
 
@@ -1027,9 +1023,7 @@ export function SplashCursor({
       window.removeEventListener("touchmove", handleTouchMove)
       window.removeEventListener("touchend", handleTouchEnd)
     }
-  }, [isAuthPage])
-
-  if (isAuthPage) return null
+  }, [])
 
   return (
     <div
