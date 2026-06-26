@@ -9,7 +9,20 @@
       "programs": "Training Programs",
       "funding": "Funding Support",
       "blog": "Blog",
-      "contact": "Contact"
+      "contact": "Contact",
+      "about_sub": {
+        "story": "Our Story",
+        "team": "Team",
+        "careers": "Careers"
+      },
+      "services_sub": {
+        "consulting": "Individual Consulting",
+        "coaching": "Personal Coaching",
+        "business_plan": "Business Plans",
+        "training": "Training"
+      },
+      "sign_in": "Sign in",
+      "create_account": "Create account"
     },
     "cta": {
       "consultation": "Book a Consultation",
@@ -179,6 +192,35 @@
       "city": "City",
       "funding": "Funding Required",
       "success": "Your project has been received successfully. Our team will review it and contact you."
+    }
+  },
+  "auth": {
+    "sign_in": {
+      "title": "Sign in",
+      "subtitle": "Welcome back! Please enter your details.",
+      "email": "Email",
+      "password": "Password",
+      "remember": "Remember me",
+      "forgot": "Forgot password?",
+      "button": "Sign in",
+      "no_account": "Don't have an account?",
+      "create_one": "Create one",
+      "or": "or continue with",
+      "error": "Invalid email or password"
+    },
+    "create_account": {
+      "title": "Create an account",
+      "subtitle": "Start your journey with ACCINOR.",
+      "name": "Full name",
+      "email": "Email",
+      "password": "Password",
+      "confirm": "Confirm password",
+      "terms": "I agree to the Terms & Conditions",
+      "button": "Create account",
+      "has_account": "Already have an account?",
+      "sign_in": "Sign in",
+      "or": "or sign up with",
+      "success": "Account created successfully! Check your email to verify."
     }
   },
   "admin": {

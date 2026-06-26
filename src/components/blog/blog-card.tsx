@@ -25,8 +25,8 @@ export function BlogCard({ post, locale }: { post: Post; locale: string }) {
             />
           </div>
         ) : (
-          <div className="aspect-video relative bg-gradient-to-br from-[#0c1e3a] to-blue-900 flex items-center justify-center">
-            <span className="text-6xl font-bold text-white/10">A</span>
+          <div className="aspect-video relative bg-gradient-to-br from-muted to-muted/50 flex items-center justify-center">
+            <span className="text-6xl font-bold text-muted-foreground/10">A</span>
           </div>
         )}
         <CardHeader>

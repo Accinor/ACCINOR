@@ -29,7 +29,7 @@ export function LanguageSwitcher() {
           <Button
             variant="ghost"
             size="icon"
-            className="rounded-full"
+            className="rounded-full text-white/70 hover:text-[#ffb81b] hover:bg-white/10"
           >
             <Globe className="w-4 h-4" />
           </Button>

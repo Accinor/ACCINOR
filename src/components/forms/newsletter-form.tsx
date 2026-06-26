@@ -20,7 +20,7 @@ export function NewsletterForm() {
   }
 
   if (submitted) {
-    return <p className="text-sm text-green-600">Subscribed successfully!</p>
+    return <p className="text-sm text-accent">Subscribed successfully!</p>
   }
 
   return (

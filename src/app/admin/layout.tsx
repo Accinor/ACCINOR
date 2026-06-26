@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
+import { useRouter, usePathname } from "next/navigation"
 import { createClient } from "@/lib/supabase/client"
 import { AdminSidebar } from "@/components/admin/sidebar"
 
@@ -11,20 +11,50 @@ export default function AdminLayout({
   children: React.ReactNode
 }) {
   const router = useRouter()
+  const pathname = usePathname()
   const [session, setSession] = useState<boolean | null>(null)
+  const [isAdmin, setIsAdmin] = useState(false)
   const supabase = createClient()
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }: { data: { session: unknown } | null }) => {
-      if (!data?.session) {
+    async function check() {
+      const { data: { session } } = await supabase.auth.getSession()
+      if (!session) {
         router.push("/admin/login")
-      } else {
-        setSession(true)
+        return
       }
-    })
+      setSession(true)
+
+      // Check role in profiles table
+      const { data: profile } = await supabase
+        .from("profiles")
+        .select("role")
+        .eq("id", session.user.id)
+        .single()
+
+      if (profile?.role === "admin") {
+        setIsAdmin(true)
+        return
+      }
+
+      // Auto-assign admin if email matches
+      if (session.user.email === "yassin24624@gmail.com") {
+        await supabase.from("profiles").upsert({
+          id: session.user.id,
+          email: session.user.email,
+          role: "admin",
+        }, { onConflict: "id" })
+        setIsAdmin(true)
+        return
+      }
+
+      // Not admin — redirect
+      router.push("/admin/login")
+    }
+    check()
   }, [])
 
-  if (session === null) {
+  if (session === null || !isAdmin) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         Loading...

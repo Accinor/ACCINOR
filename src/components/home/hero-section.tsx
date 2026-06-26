@@ -16,7 +16,7 @@ export function HeroSection() {
   const isRtl = locale === "ar"
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden -mt-16">
+    <section className="relative min-h-screen flex items-center overflow-hidden -mt-20">
       <div className="absolute inset-0 bg-gradient-to-br from-[#050a30] via-[#070e4a] to-[#0a1260]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,184,27,0.12),transparent_60%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(255,184,27,0.08),transparent_60%)]" />
@@ -49,9 +49,9 @@ export function HeroSection() {
             <Image
               src="/images/logo.png"
               alt="ACCINOR"
-              width={240}
-              height={75}
-              className="h-16 w-auto brightness-0 invert opacity-90"
+              width={320}
+              height={100}
+              className="h-24 w-auto brightness-0 invert opacity-95"
               priority
             />
           </motion.div>

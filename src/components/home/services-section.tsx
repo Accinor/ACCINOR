@@ -23,7 +23,7 @@ const icons = {
 }
 
 const gradients = [
-  "from-[#050a30] to-[#0a1260]",
+  "from-[#0e1440] to-[#050a30]",
   "from-[#ffb81b] to-[#e5a318]",
   "from-emerald-500 to-emerald-600",
   "from-violet-500 to-violet-600",

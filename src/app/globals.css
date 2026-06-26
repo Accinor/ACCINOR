@@ -30,6 +30,8 @@
   --color-sidebar-accent-foreground: #050a30;
   --color-sidebar-border: #d4d8e6;
   --color-sidebar-ring: #ffb81b;
+  --color-section: #f0f2ff;
+  --color-section-foreground: #050a30;
   --radius: 0.5rem;
   --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
   --font-mono: ui-monospace, "SF Mono", "Cascadia Code", monospace;
@@ -62,6 +64,8 @@
   --color-sidebar-accent-foreground: #020515;
   --color-sidebar-border: #1a2060;
   --color-sidebar-ring: #ffb81b;
+  --color-section: #050a30;
+  --color-section-foreground: #f0f2ff;
 }
 
 @layer base {

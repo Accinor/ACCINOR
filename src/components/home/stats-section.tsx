@@ -45,7 +45,7 @@ function Counter({ to, suffix }: { to: number; suffix: string }) {
   }, [to])
 
   return (
-    <div ref={ref} className="text-4xl md:text-5xl font-bold text-white">
+    <div ref={ref} className="text-4xl md:text-5xl font-bold text-section-foreground">
       {count}{suffix}
     </div>
   )
@@ -72,8 +72,8 @@ export function StatsSection() {
   const t = useTranslations("home.stats")
 
   return (
-    <section className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-[#050a30] via-[#070e4a] to-[#050a30]" />
+    <section className="py-24 relative overflow-hidden bg-section">
+      <div className="absolute inset-0 bg-gradient-to-b from-section via-section/95 to-background" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,184,27,0.08),transparent_70%)]" />
       <motion.div
         animate={{ rotate: 360 }}
@@ -89,7 +89,7 @@ export function StatsSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-section-foreground mb-4">
             {t("title")}
           </h2>
         </motion.div>
@@ -105,11 +105,11 @@ export function StatsSection() {
             const Icon = stat.icon
             return (
               <motion.div key={stat.key} variants={itemVariants} className="text-center">
-                <div className="inline-flex p-3 rounded-xl bg-white/10 mb-4">
+                <div className="inline-flex p-3 rounded-xl bg-section-foreground/10 mb-4">
                   <Icon className="w-6 h-6 text-[#ffb81b]" />
                 </div>
                 <Counter to={stat.value} suffix={stat.suffix} />
-                <div className="text-sm text-white/60 mt-2">{t(stat.key)}</div>
+                <div className="text-sm text-section-foreground/60 mt-2">{t(stat.key)}</div>
               </motion.div>
             )
           })}

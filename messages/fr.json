@@ -9,7 +9,20 @@
       "programs": "Programmes de formation",
       "funding": "Aide au financement",
       "blog": "Blog",
-      "contact": "Contact"
+      "contact": "Contact",
+      "about_sub": {
+        "story": "Notre histoire",
+        "team": "Équipe",
+        "careers": "Carrières"
+      },
+      "services_sub": {
+        "consulting": "Consultations individuelles",
+        "coaching": "Accompagnement personnalisé",
+        "business_plan": "Plans d'affaires",
+        "training": "Formation"
+      },
+      "sign_in": "Connexion",
+      "create_account": "Créer un compte"
     },
     "cta": {
       "consultation": "Réserver une consultation",
@@ -179,6 +192,35 @@
       "city": "Ville",
       "funding": "Financement requis",
       "success": "Votre projet a été reçu avec succès. Notre équipe l'étudiera et vous contactera."
+    }
+  },
+  "auth": {
+    "sign_in": {
+      "title": "Connexion",
+      "subtitle": "Bon retour ! Veuillez saisir vos identifiants.",
+      "email": "Email",
+      "password": "Mot de passe",
+      "remember": "Se souvenir de moi",
+      "forgot": "Mot de passe oublié ?",
+      "button": "Se connecter",
+      "no_account": "Vous n'avez pas de compte ?",
+      "create_one": "Créer un compte",
+      "or": "ou continuer avec",
+      "error": "Email ou mot de passe invalide"
+    },
+    "create_account": {
+      "title": "Créer un compte",
+      "subtitle": "Commencez votre parcours avec ACCINOR.",
+      "name": "Nom complet",
+      "email": "Email",
+      "password": "Mot de passe",
+      "confirm": "Confirmer le mot de passe",
+      "terms": "J'accepte les conditions générales",
+      "button": "Créer un compte",
+      "has_account": "Vous avez déjà un compte ?",
+      "sign_in": "Se connecter",
+      "or": "ou s'inscrire avec",
+      "success": "Compte créé avec succès ! Vérifiez votre email pour confirmer."
     }
   },
   "admin": {

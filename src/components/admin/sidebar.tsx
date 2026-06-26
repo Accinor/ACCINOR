@@ -15,6 +15,7 @@ export function AdminSidebar({ onLogout }: Props) {
     { href: "/admin/clients", label: "Clients" },
     { href: "/admin/blog", label: "Blog Posts" },
     { href: "/admin/consultations", label: "Consultations" },
+    { href: "/admin/users", label: "Users" },
   ]
 
   return (

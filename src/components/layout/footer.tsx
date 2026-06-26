@@ -49,7 +49,8 @@ export function Footer() {
   ]
 
   return (
-    <footer className="relative border-t border-border/50 bg-gradient-to-br from-[#050a30] via-[#080c24] to-[#050a30] text-white overflow-hidden">
+    <footer className="relative border-t border-border/50 bg-section overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-section to-section" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,184,27,0.06),transparent_60%)]" />
       <div className="container mx-auto px-4 py-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
@@ -58,12 +59,12 @@ export function Footer() {
               <Image
                 src="/images/logo.png"
                 alt="ACCINOR"
-                width={160}
-                height={50}
-                className="h-12 w-auto brightness-0 invert opacity-90"
+                width={200}
+                height={65}
+                className="h-14 w-auto opacity-90 dark:brightness-0 dark:invert"
               />
             </Link>
-            <p className="text-sm text-white/50 leading-relaxed mb-6">
+            <p className="text-sm text-section-foreground/50 leading-relaxed mb-6">
               {t("footer.description")}
             </p>
             <div className="flex gap-3">
@@ -71,7 +72,7 @@ export function Footer() {
                 <a
                   key={social.label}
                   href={social.href}
-                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#ffb81b] transition-colors duration-200"
+                  className="w-10 h-10 rounded-full bg-section-foreground/10 flex items-center justify-center hover:bg-[#ffb81b] transition-colors duration-200 text-section-foreground/50 hover:text-white"
                   aria-label={social.label}
                 >
                   <svg
@@ -94,13 +95,13 @@ export function Footer() {
 
           {sections.map((section) => (
             <div key={section.title}>
-              <h4 className="font-semibold mb-4 text-white/90">{section.title}</h4>
+              <h4 className="font-semibold mb-4 text-section-foreground/90">{section.title}</h4>
               <ul className="space-y-3">
                 {section.links.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={`/${locale}${link.href}`}
-                      className="text-sm text-white/50 hover:text-[#ffb81b] transition-colors duration-200"
+                      className="text-sm text-section-foreground/50 hover:text-[#ffb81b] transition-colors duration-200"
                     >
                       {link.label}
                     </Link>
@@ -111,19 +112,19 @@ export function Footer() {
           ))}
 
           <div>
-            <h4 className="font-semibold mb-4 text-white/90">
+            <h4 className="font-semibold mb-4 text-section-foreground/90">
               {locale === "ar" ? "اتصل بنا" : "Contact"}
             </h4>
             <ul className="space-y-3">
-              <li className="flex items-start gap-3 text-sm text-white/50">
+              <li className="flex items-start gap-3 text-sm text-section-foreground/50">
                 <MapPin className="w-4 h-4 mt-0.5 text-[#ffb81b] shrink-0" />
                 <span>Oriental Region, Morocco</span>
               </li>
-              <li className="flex items-start gap-3 text-sm text-white/50">
+              <li className="flex items-start gap-3 text-sm text-section-foreground/50">
                 <Mail className="w-4 h-4 mt-0.5 text-[#ffb81b] shrink-0" />
                 <span>contact@accinor.ma</span>
               </li>
-              <li className="flex items-start gap-3 text-sm text-white/50">
+              <li className="flex items-start gap-3 text-sm text-section-foreground/50">
                 <Phone className="w-4 h-4 mt-0.5 text-[#ffb81b] shrink-0" />
                 <span>+212 5XX XX XX XX</span>
               </li>
@@ -131,7 +132,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/10 mt-12 pt-8 text-center text-sm text-white/30">
+        <div className="border-t border-section-foreground/10 mt-12 pt-8 text-center text-sm text-section-foreground/30">
           © {new Date().getFullYear()} ACCINOR. {t("footer.rights")}
         </div>
       </div>
