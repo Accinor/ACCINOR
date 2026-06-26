@@ -10,7 +10,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import { Menu, ChevronDown } from "lucide-react"
+import { Menu01, ChevronDown } from "@untitledui/icons"
 import { useState } from "react"
 
 type NavLink = {
@@ -96,7 +96,7 @@ export function MobileNav({ links, open, onOpenChange }: Props) {
             size="icon"
             className="lg:hidden text-white/70 hover:text-[#ffb81b] hover:bg-white/10"
           >
-            <Menu className="w-5 h-5" />
+            <Menu01 size={20} />
           </Button>
         }
       />

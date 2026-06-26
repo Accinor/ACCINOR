@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Calendar, User } from "lucide-react"
+import { Calendar, User01 } from "@untitledui/icons"
 
 type Post = {
   id: string
@@ -32,12 +32,12 @@ export function BlogCard({ post, locale }: { post: Post; locale: string }) {
         <CardHeader>
           <div className="flex items-center gap-3 text-xs text-muted-foreground mb-2">
             <span className="flex items-center gap-1">
-              <User className="w-3 h-3" />
+              <User01 size={12} />
               {post.author_name}
             </span>
             {post.published_at && (
               <span className="flex items-center gap-1">
-                <Calendar className="w-3 h-3" />
+                <Calendar size={12} />
                 {new Date(post.published_at).toLocaleDateString()}
               </span>
             )}

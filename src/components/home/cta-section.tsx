@@ -5,85 +5,88 @@ import { useParams } from "next/navigation"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
-import { ArrowRight, MessageCircle, Sparkles } from "lucide-react"
+import { ArrowRight, Mail01 } from "@untitledui/icons"
+import { MagneticButton, Reveal } from "@/components/shared/animations"
+import { EditableText } from "@/components/shared/editable-text"
 
 export function CtaSection() {
   const t = useTranslations("home.cta")
-  const cta = useTranslations("common.cta")
   const params = useParams()
   const locale = params.locale as string
   const isRtl = locale === "ar"
 
   return (
-    <section className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-[#ffb81b] via-[#e5a318] to-[#cc8e14]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(255,255,255,0.1),transparent_60%)]" />
-      <motion.div
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.08, 0.15, 0.08],
-        }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-white/10 blur-3xl"
-      />
-      <motion.div
-        animate={{
-          scale: [1, 1.3, 1],
-          opacity: [0.06, 0.12, 0.06],
-        }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="absolute -bottom-24 -left-24 w-64 h-64 rounded-full bg-white/10 blur-3xl"
-      />
+    <section className="py-32 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0a1035] via-[#0f1645] to-[#050a30]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,184,27,0.1),transparent_60%)]" />
+
+      {[...Array(5)].map((_, i) => (
+        <motion.div
+          key={i}
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [0.04, 0.1, 0.04],
+          }}
+          transition={{
+            duration: 5 + i * 1.5,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: i * 1.2,
+          }}
+          className="absolute w-64 h-64 rounded-full bg-[#ffb81b] blur-[120px]"
+          style={{
+            top: `${15 + i * 18}%`,
+            left: `${10 + i * 18}%`,
+          }}
+        />
+      ))}
 
       <div className="container mx-auto px-4 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="max-w-3xl mx-auto text-center"
-        >
-          <motion.div
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ type: "spring", stiffness: 200, delay: 0.1 }}
-            className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/10 mb-6"
-          >
-            <MessageCircle className="w-8 h-8 text-white" />
-          </motion.div>
-
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            {t("title")}
+        <div className="max-w-3xl mx-auto text-center">
+          <Reveal>
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+            <EditableText page="home" section="cta" field="title" as="span" locale={locale}>
+              {t("title")}
+            </EditableText>
           </h2>
-          <p className="text-lg text-white/80 max-w-xl mx-auto mb-10">
-            {t("subtitle")}
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link href={`/${locale}/consultation`}>
-              <Button
-                size="lg"
-                className="bg-white text-[#050a30] hover:bg-white/90 hover:scale-105 shadow-lg shadow-black/10 hover:shadow-xl transition-all duration-300 font-bold"
-              >
-                <Sparkles className="mr-2 w-4 h-4" />
-                {cta("consultation")}
-                {!isRtl && <ArrowRight className="ml-2 w-4 h-4" />}
-              </Button>
-            </Link>
-            <Link href={`/${locale}/contact`}>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white/30 text-white hover:bg-white/10 hover:border-white/50 hover:scale-105 transition-all duration-300"
-              >
-                {cta("learn_more")}
-              </Button>
-            </Link>
-          </div>
-        </motion.div>
+            <p className="text-lg md:text-xl text-white/70 mb-10 max-w-xl mx-auto">
+              <EditableText page="home" section="cta" field="subtitle" as="span" locale={locale}>
+                {t("subtitle")}
+              </EditableText>
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.2}>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link href={`/${locale}/contact`}>
+                <MagneticButton>
+                  <Button
+                    size="lg"
+                    className="bg-[#ffb81b] hover:bg-[#e5a318] text-[#050a30] font-bold shadow-lg shadow-[#ffb81b]/25 hover:shadow-xl hover:shadow-[#ffb81b]/30 hover:scale-105 transition-all duration-300 rounded-full animate-pulse-glow"
+                  >
+                    <Mail01 size={16} className={isRtl ? "ml-2" : "mr-2"} />
+                    {t("button")}
+                  </Button>
+                </MagneticButton>
+              </Link>
+              <Link href={`/${locale}/services`}>
+                <MagneticButton>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-white/20 text-white hover:bg-white/10 hover:border-white/30 hover:scale-105 transition-all duration-300"
+                  >
+                    {t("secondary")}
+                    {!isRtl && <ArrowRight size={16} className="ml-2" />}
+                  </Button>
+                </MagneticButton>
+              </Link>
+            </div>
+          </Reveal>
+        </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-background to-transparent pointer-events-none" />
     </section>
   )
 }

@@ -6,7 +6,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { motion } from "framer-motion"
-import { Mail, Lock, User, EyeOff, Eye } from "lucide-react"
+import { Mail01, Lock01, User01, EyeOff, Eye } from "@untitledui/icons"
 import { useState } from "react"
 
 export default function CreateAccountPage() {
@@ -55,7 +55,7 @@ export default function CreateAccountPage() {
                   {t("name")}
                 </label>
                 <div className="relative">
-                  <User className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
+                  <User01 size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                   <input
                     id="name"
                     type="text"
@@ -73,7 +73,7 @@ export default function CreateAccountPage() {
                   {t("email")}
                 </label>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
+                  <Mail01 size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                   <input
                     id="email"
                     type="email"
@@ -87,11 +87,11 @@ export default function CreateAccountPage() {
               </div>
 
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-foreground mb-1.5">
-                  {t("password")}
-                </label>
-                <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
+                  <label htmlFor="password" className="block text-sm font-medium text-foreground mb-1.5">
+                    {t("password")}
+                  </label>
+                  <div className="relative">
+                    <Lock01 size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                   <input
                     id="password"
                     type={showPassword ? "text" : "password"}
@@ -107,17 +107,17 @@ export default function CreateAccountPage() {
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
                     tabIndex={-1}
                   >
-                    {showPassword ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
+                    {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                   </button>
                 </div>
               </div>
 
               <div>
-                <label htmlFor="confirmPassword" className="block text-sm font-medium text-foreground mb-1.5">
-                  {t("confirm")}
-                </label>
-                <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
+                  <label htmlFor="confirmPassword" className="block text-sm font-medium text-foreground mb-1.5">
+                    {t("confirm")}
+                  </label>
+                  <div className="relative">
+                    <Lock01 size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                   <input
                     id="confirmPassword"
                     type={showPassword ? "text" : "password"}

@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl"
 import { useParams } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
-import { Mail, MapPin, Phone } from "lucide-react"
+import { Mail01, MarkerPin01, Phone } from "@untitledui/icons"
 
 export function Footer() {
   const t = useTranslations("common")
@@ -117,15 +117,15 @@ export function Footer() {
             </h4>
             <ul className="space-y-3">
               <li className="flex items-start gap-3 text-sm text-section-foreground/50">
-                <MapPin className="w-4 h-4 mt-0.5 text-[#ffb81b] shrink-0" />
+                <MarkerPin01 size={16} className="mt-0.5 text-[#ffb81b] shrink-0" />
                 <span>Oriental Region, Morocco</span>
               </li>
               <li className="flex items-start gap-3 text-sm text-section-foreground/50">
-                <Mail className="w-4 h-4 mt-0.5 text-[#ffb81b] shrink-0" />
+                <Mail01 size={16} className="mt-0.5 text-[#ffb81b] shrink-0" />
                 <span>contact@accinor.ma</span>
               </li>
               <li className="flex items-start gap-3 text-sm text-section-foreground/50">
-                <Phone className="w-4 h-4 mt-0.5 text-[#ffb81b] shrink-0" />
+                <Phone size={16} className="mt-0.5 text-[#ffb81b] shrink-0" />
                 <span>+212 5XX XX XX XX</span>
               </li>
             </ul>

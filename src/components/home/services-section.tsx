@@ -2,102 +2,89 @@
 
 import { useTranslations } from "next-intl"
 import { motion } from "framer-motion"
-import { Lightbulb, Handshake, FileText, Coins, GraduationCap, Compass } from "lucide-react"
+import { useParams } from "next/navigation"
+import {
+  Lightbulb01,
+  Users01,
+  ClipboardCheck,
+  GraduationHat02,
+  TrendUp02,
+  FileSearch02,
+} from "@untitledui/icons"
+import { Reveal, StaggerReveal, StaggerItem } from "@/components/shared/animations"
+import { MagicBentoCard } from "@/components/shared/magic-bento-card"
+import { EditableText } from "@/components/shared/editable-text"
+import { useRef } from "react"
+import { SectionSpotlight } from "@/components/shared/section-spotlight"
 
-const serviceKeys = [
-  "consulting",
-  "coaching",
-  "business_plan",
-  "funding",
-  "training",
-  "guidance",
-] as const
-
-const icons = {
-  consulting: Lightbulb,
-  coaching: Handshake,
-  business_plan: FileText,
-  funding: Coins,
-  training: GraduationCap,
-  guidance: Compass,
-}
-
-const gradients = [
-  "from-[#0e1440] to-[#050a30]",
-  "from-[#ffb81b] to-[#e5a318]",
-  "from-emerald-500 to-emerald-600",
-  "from-violet-500 to-violet-600",
-  "from-rose-500 to-rose-600",
-  "from-cyan-500 to-cyan-600",
+const serviceIcons = [
+  Lightbulb01,
+  Users01,
+  ClipboardCheck,
+  GraduationHat02,
+  TrendUp02,
+  FileSearch02,
 ]
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.12, delayChildren: 0.2 },
-  },
-}
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: "easeOut" as const },
-  },
-}
 
 export function ServicesSection() {
   const t = useTranslations("home.services")
+  const params = useParams()
+  const locale = params.locale as string
+  const sectionRef = useRef<HTMLElement>(null)
 
   return (
-    <section className="py-24 relative">
-      <div className="absolute inset-0  bg-secondary/50" />
-      <div className="container mx-auto px-4 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            {t("title")}
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            {t("subtitle")}
-          </p>
-        </motion.div>
+    <section ref={sectionRef} className="py-24 relative overflow-hidden">
+      <SectionSpotlight sectionRef={sectionRef} glowColor="255, 184, 27" spotlightRadius={280} />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/97 to-background" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,184,27,0.05),transparent_80%)]" />
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          {serviceKeys.map((key, i) => {
-            const Icon = icons[key as keyof typeof icons]
-            return (
-              <motion.div key={key} variants={cardVariants}>
-                <div className="group relative bg-card rounded-xl p-6 border border-border/50 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 hover:border-[#ffb81b]/30">
-                  <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${gradients[i]} flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                    <Icon className="w-6 h-6 text-white" />
-                  </div>
-                  <h3 className="font-semibold text-lg mb-2 text-foreground transition-colors">
-                    {t(`items.${key}.title`)}
-                  </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {t(`items.${key}.desc`)}
-                  </p>
-                  <div className="absolute inset-0 rounded-xl ring-1 ring-inset ring-black/5 group-hover:ring-[#ffb81b]/20 transition-all duration-300 pointer-events-none" />
-                </div>
-              </motion.div>
-            )
-          })}
-        </motion.div>
+      <div className="container mx-auto px-4 relative z-10">
+        <Reveal>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-center">
+            <EditableText page="home" section="services" field="title" as="span" locale={locale}>
+              {t("title")}
+            </EditableText>
+          </h2>
+          <p className="text-lg text-muted-foreground mb-16 text-center max-w-2xl mx-auto">
+            <EditableText page="home" section="services" field="subtitle" as="span" locale={locale}>
+              {t("subtitle")}
+            </EditableText>
+          </p>
+        </Reveal>
+
+        <StaggerReveal staggerDelay={0.08}>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {(["consulting", "coaching", "business_plan", "training", "funding_support", "feasibility"] as const).map(
+              (service, i) => {
+                const Icon = serviceIcons[i]
+                return (
+                  <StaggerItem key={service}>
+                    <MagicBentoCard>
+                      <div className="relative p-6 rounded-2xl border border-border/50 bg-card/40 backdrop-blur-sm">
+                        <motion.div
+                          whileHover={{ rotate: [0, -10, 10, 0] }}
+                          transition={{ duration: 0.4 }}
+                          className="w-12 h-12 rounded-xl bg-[#ffb81b]/15 flex items-center justify-center mb-4"
+                        >
+                          <Icon size={24} color="#ffb81b" />
+                        </motion.div>
+                        <h3 className="text-xl font-semibold text-foreground mb-2">
+                          {t(`services_list.${service}.title`)}
+                        </h3>
+                        <p className="text-muted-foreground text-sm leading-relaxed">
+                          {t(`services_list.${service}.description`)}
+                        </p>
+                      </div>
+                    </MagicBentoCard>
+                  </StaggerItem>
+                )
+              }
+            )}
+          </div>
+        </StaggerReveal>
       </div>
+
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent pointer-events-none" />
     </section>
   )
 }

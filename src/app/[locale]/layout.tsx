@@ -4,6 +4,9 @@ import { notFound } from "next/navigation"
 import { routing } from "@/i18n/routing"
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
+import { SplashCursor } from "@/components/shared/splash-cursor"
+import { EditModeProvider } from "@/contexts/edit-mode"
+import { EditModeToggle } from "@/components/shared/edit-mode-toggle"
 import { Inter, Cairo } from "next/font/google"
 
 const inter = Inter({
@@ -62,9 +65,13 @@ export default async function LocaleLayout({ children, params }: Props) {
     >
       <body className="min-h-screen flex flex-col">
         <NextIntlClientProvider messages={messages}>
-          <Navbar />
-          <main className="flex-1 pt-16">{children}</main>
-          <Footer />
+          <SplashCursor />
+          <EditModeProvider>
+            <Navbar />
+            <main className="flex-1 pt-16">{children}</main>
+            <Footer />
+            <EditModeToggle />
+          </EditModeProvider>
         </NextIntlClientProvider>
       </body>
     </html>

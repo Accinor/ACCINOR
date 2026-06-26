@@ -1,120 +1,66 @@
 "use client"
 
 import { useTranslations } from "next-intl"
+import { useParams } from "next/navigation"
 import { motion } from "framer-motion"
-import { useEffect, useState, useRef } from "react"
-import { Rocket, Users, Target, MapPin } from "lucide-react"
-
-const stats = [
-  { value: 50, suffix: "+", key: "projects", icon: Rocket },
-  { value: 200, suffix: "+", key: "clients", icon: Users },
-  { value: 30, suffix: "+", key: "trainings", icon: Target },
-  { value: 8, suffix: "", key: "cities", icon: MapPin },
-]
-
-function Counter({ to, suffix }: { to: number; suffix: string }) {
-  const [count, setCount] = useState(0)
-  const ref = useRef<HTMLDivElement>(null)
-  const started = useRef(false)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !started.current) {
-          started.current = true
-          const duration = 2000
-          const steps = 60
-          const increment = to / steps
-          let current = 0
-          const timer = setInterval(() => {
-            current += increment
-            if (current >= to) {
-              setCount(to)
-              clearInterval(timer)
-            } else {
-              setCount(Math.floor(current))
-            }
-          }, duration / steps)
-        }
-      },
-      { threshold: 0.3 }
-    )
-
-    if (ref.current) observer.observe(ref.current)
-    return () => observer.disconnect()
-  }, [to])
-
-  return (
-    <div ref={ref} className="text-4xl md:text-5xl font-bold text-section-foreground">
-      {count}{suffix}
-    </div>
-  )
-}
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.15, delayChildren: 0.3 },
-  },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: "easeOut" as const },
-  },
-}
+import { CountUp, Reveal } from "@/components/shared/animations"
+import { EditableText } from "@/components/shared/editable-text"
 
 export function StatsSection() {
   const t = useTranslations("home.stats")
+  const params = useParams()
+  const locale = params.locale as string
+
+  const stats = [
+    { value: 150, suffix: "+", label: t("projects") },
+    { value: 50, suffix: "+", label: t("trainings") },
+    { value: 30, suffix: "+", label: t("partners") },
+    { value: 8, suffix: "", label: t("cities") },
+  ]
 
   return (
-    <section className="py-24 relative overflow-hidden bg-section">
-      <div className="absolute inset-0 bg-gradient-to-b from-section via-section/95 to-background" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,184,27,0.08),transparent_70%)]" />
+    <section className="py-24 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
+      <div className="absolute inset-0 bg-[linear-gradient(45deg,rgba(255,184,27,0.04)_1px,transparent_1px),linear-gradient(-45deg,rgba(255,184,27,0.04)_1px,transparent_1px)] bg-[size:40px_40px]" />
+
       <motion.div
-        animate={{ rotate: 360 }}
-        transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-        className="absolute -top-40 -right-40 w-80 h-80 rounded-full border border-[#ffb81b]/10"
+        animate={{ scale: [1, 1.1, 1], opacity: [0.04, 0.08, 0.04] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-[#ffb81b] blur-[150px]"
       />
 
       <div className="container mx-auto px-4 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold text-section-foreground mb-4">
-            {t("title")}
+        <Reveal>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-16 text-center">
+            <EditableText page="home" section="stats" field="title" as="span" locale={locale}>
+              {t("title")}
+            </EditableText>
           </h2>
-        </motion.div>
+        </Reveal>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-8"
-        >
-          {stats.map((stat) => {
-            const Icon = stat.icon
-            return (
-              <motion.div key={stat.key} variants={itemVariants} className="text-center">
-                <div className="inline-flex p-3 rounded-xl bg-section-foreground/10 mb-4">
-                  <Icon className="w-6 h-6 text-[#ffb81b]" />
-                </div>
-                <Counter to={stat.value} suffix={stat.suffix} />
-                <div className="text-sm text-section-foreground/60 mt-2">{t(stat.key)}</div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+          {stats.map((stat, i) => (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="text-center group"
+            >
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                className="text-4xl md:text-5xl font-bold text-[#ffb81b] mb-2 transition-transform"
+              >
+                <CountUp end={stat.value} suffix={stat.suffix} duration={2} />
               </motion.div>
-            )
-          })}
-        </motion.div>
+              <div className="text-muted-foreground text-sm">{stat.label}</div>
+            </motion.div>
+          ))}
+        </div>
       </div>
+
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent pointer-events-none" />
     </section>
   )
 }

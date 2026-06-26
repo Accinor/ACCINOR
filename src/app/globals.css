@@ -30,6 +30,74 @@
   --color-sidebar-ring: #ffb81b;
   --color-section: #0a1440;
   --color-section-foreground: #e8eaf6;
+
+  --color-utility-neutral-50: #fafafa;
+  --color-utility-neutral-100: #f5f5f5;
+  --color-utility-neutral-200: #e5e5e5;
+  --color-utility-neutral-500: #737373;
+  --color-utility-neutral-700: #404040;
+
+  --color-utility-brand-50: #fff9e6;
+  --color-utility-brand-100: #fff0c2;
+  --color-utility-brand-200: #ffe69e;
+  --color-utility-brand-500: #ffb81b;
+  --color-utility-brand-700: #b37b00;
+
+  --color-utility-red-50: #fef2f2;
+  --color-utility-red-100: #fee2e2;
+  --color-utility-red-200: #fecaca;
+  --color-utility-red-500: #ef4444;
+  --color-utility-red-700: #b91c1c;
+
+  --color-utility-yellow-50: #fffbeb;
+  --color-utility-yellow-100: #fef3c7;
+  --color-utility-yellow-200: #fde68a;
+  --color-utility-yellow-500: #f59e0b;
+  --color-utility-yellow-700: #a16207;
+
+  --color-utility-green-50: #f0fdf4;
+  --color-utility-green-100: #dcfce7;
+  --color-utility-green-200: #bbf7d0;
+  --color-utility-green-500: #22c55e;
+  --color-utility-green-700: #15803d;
+
+  --color-utility-slate-50: #f8fafc;
+  --color-utility-slate-100: #f1f5f9;
+  --color-utility-slate-200: #e2e8f0;
+  --color-utility-slate-500: #64748b;
+  --color-utility-slate-700: #334155;
+
+  --color-utility-blue-50: #eff6ff;
+  --color-utility-blue-100: #dbeafe;
+  --color-utility-blue-200: #bfdbfe;
+  --color-utility-blue-500: #3b82f6;
+  --color-utility-blue-700: #1d4ed8;
+
+  --color-utility-indigo-50: #eef2ff;
+  --color-utility-indigo-100: #e0e7ff;
+  --color-utility-indigo-200: #c7d2fe;
+  --color-utility-indigo-500: #6366f1;
+  --color-utility-indigo-700: #4338ca;
+
+  --color-utility-purple-50: #faf5ff;
+  --color-utility-purple-100: #f3e8ff;
+  --color-utility-purple-200: #e9d5ff;
+  --color-utility-purple-500: #a855f7;
+  --color-utility-purple-700: #7e22ce;
+
+  --color-utility-pink-50: #fdf2f8;
+  --color-utility-pink-100: #fce7f3;
+  --color-utility-pink-200: #fbcfe8;
+  --color-utility-pink-500: #ec4899;
+  --color-utility-pink-700: #be185d;
+
+  --color-utility-orange-50: #fff7ed;
+  --color-utility-orange-100: #ffedd5;
+  --color-utility-orange-200: #fed7aa;
+  --color-utility-orange-500: #f97316;
+  --color-utility-orange-700: #c2410c;
+
+  --shadow-xs-skeuomorphic: 0px 1px 2px 0px rgba(16, 24, 40, 0.05), 0px 0px 0px 1px rgba(16, 24, 40, 0.05) inset;
   --radius: 0.5rem;
   --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
   --font-mono: ui-monospace, "SF Mono", "Cascadia Code", monospace;
@@ -50,6 +118,67 @@
 
 html[lang="ar"] {
   --font-sans: var(--font-cairo), system-ui, -apple-system, sans-serif;
+}
+
+@keyframes slow-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(255, 184, 27, 0.2), 0 0 40px rgba(255, 184, 27, 0.1); }
+  50% { box-shadow: 0 0 30px rgba(255, 184, 27, 0.4), 0 0 60px rgba(255, 184, 27, 0.2); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* MagicBentoCard styles */
+.magic-bento-card {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  --glow-x: 50%;
+  --glow-y: 50%;
+  --glow-intensity: 0;
+  --glow-radius: 200px;
+}
+
+.magic-bento-card:hover {
+  transform: translateY(-2px);
+}
+
+.magic-bento-card--border-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1.5px;
+  background: radial-gradient(
+    var(--glow-radius) circle at var(--glow-x) var(--glow-y),
+    rgba(255, 184, 27, calc(var(--glow-intensity) * 0.9)) 0%,
+    rgba(255, 184, 27, calc(var(--glow-intensity) * 0.4)) 30%,
+    transparent 60%
+  );
+  border-radius: inherit;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.section-spotlight {
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+  pointer-events: none;
 }
 
 ::selection {

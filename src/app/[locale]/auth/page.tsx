@@ -6,7 +6,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { motion } from "framer-motion"
-import { Mail, Lock, User, EyeOff, Eye, Phone, MapPin, Building, Lightbulb } from "lucide-react"
+import { Mail01, Lock01, User01, EyeOff, Eye, Phone, MarkerPin01, Building01, Lightbulb05 } from "@untitledui/icons"
 import { useState } from "react"
 import { createClient } from "@/lib/supabase/client"
 
@@ -194,7 +194,7 @@ export default function AuthPage() {
                     {t("sign_in.email")}
                   </label>
                   <div className="relative">
-                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
+                    <Mail01 size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                     <input
                       id="si-email"
                       type="email"
@@ -212,7 +212,7 @@ export default function AuthPage() {
                     {t("sign_in.password")}
                   </label>
                   <div className="relative">
-                    <Lock className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
+                    <Lock01 size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                     <input
                       id="si-password"
                       type={showPassword ? "text" : "password"}
@@ -228,7 +228,7 @@ export default function AuthPage() {
                       className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
                       tabIndex={-1}
                     >
-                      {showPassword ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
+                      {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                     </button>
                   </div>
                 </div>
@@ -246,7 +246,7 @@ export default function AuthPage() {
                       {t("create_account.name")}
                     </label>
                     <div className="relative">
-                      <User className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
+                      <User01 size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                       <input
                         id="reg-name"
                         type="text"
@@ -264,7 +264,7 @@ export default function AuthPage() {
                       {t("create_account.email")}
                     </label>
                     <div className="relative">
-                      <Mail className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
+<Mail01 size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                       <input
                         id="reg-email"
                         type="email"
@@ -279,11 +279,11 @@ export default function AuthPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="reg-password" className="block text-sm font-medium text-foreground mb-1">
-                    {t("create_account.password")}
-                  </label>
-                  <div className="relative">
-                    <Lock className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
+                    <label htmlFor="reg-password" className="block text-sm font-medium text-foreground mb-1">
+                      {t("create_account.password")}
+                    </label>
+                    <div className="relative">
+                      <Lock01 size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                     <input
                       id="reg-password"
                       type={showPassword ? "text" : "password"}
@@ -300,7 +300,7 @@ export default function AuthPage() {
                       className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
                       tabIndex={-1}
                     >
-                      {showPassword ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
+                      {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                     </button>
                   </div>
                 </div>
@@ -311,7 +311,7 @@ export default function AuthPage() {
                       Phone
                     </label>
                     <div className="relative">
-                      <Phone className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
+                      <Phone size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                       <input
                         id="reg-phone"
                         type="tel"
@@ -328,7 +328,7 @@ export default function AuthPage() {
                       Region
                     </label>
                     <div className="relative">
-                      <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground pointer-events-none" />
+                      <MarkerPin01 size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
                       <select
                         id="reg-region"
                         value={region}
@@ -350,7 +350,7 @@ export default function AuthPage() {
                     City
                   </label>
                   <div className="relative">
-                    <Building className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
+                    <Building01 size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                     <input
                       id="reg-city"
                       type="text"
@@ -372,7 +372,7 @@ export default function AuthPage() {
                       onChange={(e) => setHasProject(e.target.checked)}
                       className="rounded border-border accent-[#ffb81b]"
                     />
-                    <Lightbulb className="size-4 text-[#ffb81b]" />
+                    <Lightbulb05 size={16} className="text-[#ffb81b]" />
                     Do you have a project?
                   </label>
 

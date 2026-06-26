@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { Globe } from "lucide-react"
+import { Globe06 } from "@untitledui/icons"
 
 const labels: Record<string, string> = {
   ar: "العربية",
@@ -31,7 +31,7 @@ export function LanguageSwitcher() {
             size="icon"
             className="rounded-full text-white/70 hover:text-[#ffb81b] hover:bg-white/10"
           >
-            <Globe className="w-4 h-4" />
+            <Globe06 size={16} />
           </Button>
         }
       />
