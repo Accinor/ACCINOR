@@ -27,7 +27,7 @@ export function NameMeaningSection() {
       />
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -38,25 +38,24 @@ export function NameMeaningSection() {
             {t("title")}
           </motion.h2>
 
-          <div className={`flex flex-col gap-8 ${isRtl ? "items-end" : "items-start"}`}>
+          <div className="flex flex-col gap-6">
             {(["acc", "in", "or"] as const).map((part, i) => (
               <motion.div
                 key={part}
-                initial={{ opacity: 0, x: isRtl ? 30 : -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.15 }}
-                className="group w-full md:w-auto"
+                transition={{ duration: 0.5, delay: i * 0.15 }}
+                className="w-full"
               >
-                <div className={`inline-flex items-center gap-3 md:gap-4 px-6 md:px-10 py-4 md:py-5 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm hover:bg-card/80 hover:border-[#ffb81b]/30 transition-all duration-300 ${isRtl ? "flex-row-reverse" : ""}`}>
-                  <span className="text-2xl md:text-3xl font-black text-[#ffb81b] shrink-0">{part.toUpperCase()}</span>
-                  <span className="w-px h-8 bg-border shrink-0" />
-                  <span
-                    className="text-base md:text-lg text-section-foreground/80 leading-relaxed"
-                    dangerouslySetInnerHTML={{
-                      __html: t.raw(part).replace(/<orange>/g, '<span class="text-[#ffb81b] font-bold">').replace(/<\/orange>/g, "</span>"),
-                    }}
-                  />
+                <div className={`flex items-center gap-4 md:gap-6 px-6 md:px-10 py-5 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm hover:bg-card/80 hover:border-[#ffb81b]/30 transition-all duration-300 ${isRtl ? "flex-row-reverse" : ""}`}>
+                  <div className="shrink-0 bg-[#ffb81b] text-[#050a30] font-black text-xl md:text-2xl rounded-xl px-4 py-3 min-w-[80px] text-center">
+                    {part.toUpperCase()}
+                  </div>
+                  <span className="w-px h-10 bg-border shrink-0 hidden sm:block" />
+                  <span className="text-base md:text-lg text-section-foreground/80 leading-relaxed">
+                    {t(part)}
+                  </span>
                 </div>
               </motion.div>
             ))}
