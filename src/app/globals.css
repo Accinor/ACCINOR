@@ -1,63 +1,27 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
-
 @theme inline {
-  --color-background: #ffffff;
-  --color-foreground: #050a30;
-  --color-card: #ffffff;
-  --color-card-foreground: #050a30;
-  --color-popover: #ffffff;
-  --color-popover-foreground: #050a30;
-  --color-primary: #050a30;
-  --color-primary-foreground: #ffffff;
-  --color-secondary: #f0f2ff;
-  --color-secondary-foreground: #050a30;
-  --color-muted: #f0f2ff;
-  --color-muted-foreground: #5a6180;
-  --color-accent: #ffb81b;
-  --color-accent-foreground: #050a30;
-  --color-destructive: #ef4444;
-  --color-border: #d4d8e6;
-  --color-input: #d4d8e6;
-  --color-ring: #ffb81b;
-  --color-sidebar: #f8f9ff;
-  --color-sidebar-foreground: #050a30;
-  --color-sidebar-primary: #050a30;
-  --color-sidebar-primary-foreground: #ffffff;
-  --color-sidebar-accent: #ffb81b;
-  --color-sidebar-accent-foreground: #050a30;
-  --color-sidebar-border: #d4d8e6;
-  --color-sidebar-ring: #ffb81b;
-  --color-section: #f0f2ff;
-  --color-section-foreground: #050a30;
-  --radius: 0.5rem;
-  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
-  --font-mono: ui-monospace, "SF Mono", "Cascadia Code", monospace;
-  --font-heading: var(--font-sans);
-}
-
-.dark {
   --color-background: #050a30;
-  --color-foreground: #f0f2ff;
-  --color-card: #080c24;
-  --color-card-foreground: #f0f2ff;
-  --color-popover: #080c24;
-  --color-popover-foreground: #f0f2ff;
+  --color-foreground: #e8eaf6;
+  --color-card: #0a1440;
+  --color-card-foreground: #e8eaf6;
+  --color-popover: #0a1440;
+  --color-popover-foreground: #e8eaf6;
   --color-primary: #ffb81b;
   --color-primary-foreground: #050a30;
   --color-secondary: #0e1440;
-  --color-secondary-foreground: #f0f2ff;
+  --color-secondary-foreground: #e8eaf6;
   --color-muted: #0e1440;
   --color-muted-foreground: #8890b0;
   --color-accent: #ffb81b;
   --color-accent-foreground: #050a30;
+  --color-destructive: #ef4444;
   --color-border: #1a2060;
   --color-input: #1a2060;
   --color-ring: #ffb81b;
-  --color-sidebar: #080c24;
-  --color-sidebar-foreground: #f0f2ff;
+  --color-sidebar: #0a1440;
+  --color-sidebar-foreground: #e8eaf6;
   --color-sidebar-primary: #ffb81b;
   --color-sidebar-primary-foreground: #050a30;
   --color-sidebar-accent: #ffb81b;
@@ -65,7 +29,11 @@
   --color-sidebar-border: #1a2060;
   --color-sidebar-ring: #ffb81b;
   --color-section: #0a1440;
-  --color-section-foreground: #f0f2ff;
+  --color-section-foreground: #e8eaf6;
+  --radius: 0.5rem;
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Code", monospace;
+  --font-heading: var(--font-sans);
 }
 
 @layer base {

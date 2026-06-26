@@ -101,7 +101,7 @@ export default function AdminUsersPage() {
                     <span
                       className={`inline-block rounded-full px-2 py-0.5 text-xs font-medium ${
                         profile.role === "admin"
-                          ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+                          ? "bg-green-100 text-green-800 bg-green-900 text-green-200"
                           : "bg-muted text-muted-foreground"
                       }`}
                     >

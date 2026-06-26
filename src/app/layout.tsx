@@ -1,6 +1,5 @@
 import type { Metadata } from "next"
 import "./globals.css"
-import { ThemeProvider } from "@/components/providers/theme-provider"
 
 export const metadata: Metadata = {
   title: {
@@ -44,5 +43,5 @@ export function generateStaticParams() {
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  return <ThemeProvider>{children}</ThemeProvider>
+  return children
 }

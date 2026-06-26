@@ -8,8 +8,7 @@ import { MobileNav } from "./mobile-nav"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { useState, useEffect } from "react"
-import { useTheme } from "@/components/providers/theme-provider"
-import { Sun, Moon, ChevronDown, User } from "lucide-react"
+import { ChevronDown, User } from "lucide-react"
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -30,7 +29,6 @@ export function Navbar() {
   const pathname = usePathname()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const { theme, toggle } = useTheme()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -69,8 +67,6 @@ export function Navbar() {
     if (href === "/") return pathname === `/${locale}` || pathname === `/${locale}/`
     return pathname.startsWith(`/${locale}${href}`)
   }
-
-  const isLight = theme === "light"
 
   return (
     <header
@@ -133,13 +129,6 @@ export function Navbar() {
             <User className="size-4" />
             {t("nav.sign_in")}
           </Link>
-          <button
-            onClick={toggle}
-            className="p-2.5 rounded-full text-white/70 hover:text-[#ffb81b] hover:bg-white/10 transition-all duration-200"
-            aria-label="Toggle theme"
-          >
-            {isLight ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
-          </button>
           <LanguageSwitcher />
           <MobileNav
             links={links}

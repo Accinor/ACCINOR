@@ -23,12 +23,12 @@ const icons = [
 ]
 
 const colors = [
-  "text-[#050a30] dark:text-[#f0f2ff] bg-[#f0f2ff] dark:bg-[#0e1440]",
-  "text-[#ffb81b] dark:text-[#ffb81b] bg-[#ffb81b]/10 dark:bg-[#ffb81b]/10",
-  "text-emerald-600 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-950/50",
-  "text-violet-600 dark:text-violet-400 bg-violet-100 dark:bg-violet-950/50",
-  "text-rose-600 dark:text-rose-400 bg-rose-100 dark:bg-rose-950/50",
-  "text-cyan-600 dark:text-cyan-400 bg-cyan-100 dark:bg-cyan-950/50",
+  "text-[#050a30] text-[#f0f2ff] bg-[#f0f2ff] bg-[#0e1440]",
+  "text-[#ffb81b] text-[#ffb81b] bg-[#ffb81b]/10 bg-[#ffb81b]/10",
+  "text-emerald-600 text-emerald-400 bg-emerald-100 bg-emerald-950/50",
+  "text-violet-600 text-violet-400 bg-violet-100 bg-violet-950/50",
+  "text-rose-600 text-rose-400 bg-rose-100 bg-rose-950/50",
+  "text-cyan-600 text-cyan-400 bg-cyan-100 bg-cyan-950/50",
 ]
 
 const containerVariants = {
@@ -53,7 +53,7 @@ export function AudienceSection() {
 
   return (
     <section className="py-24 relative">
-      <div className="absolute inset-0 bg-secondary/50 dark:bg-transparent" />
+      <div className="absolute inset-0 bg-secondary/50 bg-transparent" />
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

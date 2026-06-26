@@ -61,7 +61,7 @@ export function Footer() {
                 alt="ACCINOR"
                 width={200}
                 height={65}
-                className="h-14 w-auto opacity-90 dark:brightness-0 dark:invert"
+                className="h-14 w-auto opacity-90 brightness-0 invert"
               />
             </Link>
             <p className="text-sm text-section-foreground/50 leading-relaxed mb-6">
