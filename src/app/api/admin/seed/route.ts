@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server"
 import { getAdminClient } from "@/lib/supabase/admin"
-import { logger } from "@/logger"
 
 const ADMINS = [
   { email: "yassin24624@gmail.com", password: "AccinorAdmin2026!1" },
@@ -13,48 +12,54 @@ export async function POST() {
     const results: { email: string; success: boolean; error?: string }[] = []
 
     for (const { email, password } of ADMINS) {
-      const db = admin.from("profiles") as any
+      try {
+        let userId: string | null = null
 
-      const { data: existingUser } = await db.select("id").eq("email", email).single()
+        const { data: existingProfile } = await admin
+          .from("profiles")
+          .select("id, role")
+          .eq("email", email)
+          .maybeSingle()
 
-      if (existingUser) {
-        const { error: updateError } = await db.update({ role: "admin" }).eq("id", existingUser.id)
+        if (existingProfile) {
+          userId = existingProfile.id
+          await admin.from("profiles").update({ role: "admin" }).eq("id", userId)
+          results.push({ email, success: true })
+          continue
+        }
+
+        const { data: userData, error: createError } = await admin.auth.admin.createUser({
+          email,
+          password,
+          email_confirm: true,
+        })
+
+        if (createError) {
+          results.push({ email, success: false, error: createError.message })
+          continue
+        }
+
+        userId = userData.user.id
+
+        const { error: profileError } = await admin.from("profiles").upsert({
+          id: userId,
+          email: userData.user.email!,
+          full_name: email.split("@")[0],
+          role: "admin",
+        })
+
         results.push({
           email,
-          success: !updateError,
-          error: updateError?.message,
+          success: !profileError,
+          error: profileError?.message,
         })
-        continue
+      } catch (err: any) {
+        results.push({ email, success: false, error: err?.message })
       }
-
-      const { data: userData, error: createError } = await admin.auth.admin.createUser({
-        email,
-        password,
-        email_confirm: true,
-      })
-
-      if (createError) {
-        results.push({ email, success: false, error: createError.message })
-        continue
-      }
-
-      const { error: profileError } = await (admin.from("profiles") as any).upsert({
-        id: userData.user.id,
-        email: userData.user.email!,
-        full_name: email.split("@")[0],
-        role: "admin",
-      })
-
-      results.push({
-        email,
-        success: !profileError,
-        error: profileError?.message,
-      })
     }
 
     return NextResponse.json({ results })
   } catch (err) {
-    logger.error("Seed failed", { error: String(err) })
-    return NextResponse.json({ error: "Seed failed" }, { status: 500 })
+    return NextResponse.json({ error: "Seed failed: " + String(err) }, { status: 500 })
   }
 }

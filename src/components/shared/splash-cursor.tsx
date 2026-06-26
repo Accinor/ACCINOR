@@ -24,10 +24,10 @@ export function SplashCursor({
   const pathname = usePathname()
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const animationFrameId = useRef<number | null>(null)
-
-  if (pathname?.includes("/auth/")) return null
+  const isAuthPage = pathname?.includes("/auth/")
 
   useEffect(() => {
+    if (isAuthPage) return
     const canvas = canvasRef.current
     if (!canvas) return
 
@@ -1027,7 +1027,9 @@ export function SplashCursor({
       window.removeEventListener("touchmove", handleTouchMove)
       window.removeEventListener("touchend", handleTouchEnd)
     }
-  }, [])
+  }, [isAuthPage])
+
+  if (isAuthPage) return null
 
   return (
     <div
