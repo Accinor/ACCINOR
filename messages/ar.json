@@ -39,9 +39,9 @@
   "home": {
     "name_meaning": {
       "title": "الاسم وراء الرسالة",
-      "acc": "ACC, Accompagnement, Accélération: نرافقك من الفكرة إلى الأثر",
-      "in": "IN, Innovation, Incubation: حيث تنمو الأفكار وتتحول إلى مشاريع",
-      "or": "OR, Orientation, Originalité: نرشدك بهدف ورؤية",
+      "acc": "Accompaniment, Acceleration: نقف معك، من أول ومضة فكرة إلى اللحظة التي تغيّر فيها العالم",
+      "in": "Innovation, Incubation: حيث تُصقل الأفكار الخام وتُغذى وتنطلق كمشاريع ذات قيمة حقيقية",
+      "or": "Orientation, Originality: توجيه واضح ورؤية أصيلة — نساعدك على بناء ما لا يمكن إلا لك أن تبنيه",
       "footer": "كل حرف يحكي قصة. كل مقطع هو وعد."
     },
     "hero": {
