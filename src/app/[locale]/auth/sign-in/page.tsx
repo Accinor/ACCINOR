@@ -4,7 +4,6 @@ import { useTranslations } from "next-intl"
 import { useParams, useRouter } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
-import { motion } from "framer-motion"
 import { Mail01, Lock01, EyeOff, Eye, ArrowRight } from "@untitledui/icons"
 import { useState } from "react"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
@@ -46,12 +45,7 @@ export default function SignInPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-background px-4 py-12">
       <div className="w-full max-w-sm">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="flex flex-col items-center"
-        >
+        <div className="flex flex-col items-center">
           <Link href={`/${locale}`} className="mb-8">
             <Image
               src="/images/logo.png"
@@ -147,7 +141,7 @@ export default function SignInPage() {
               </Link>
             </CardFooter>
           </Card>
-        </motion.div>
+        </div>
       </div>
     </div>
   )
