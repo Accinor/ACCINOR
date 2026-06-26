@@ -9,21 +9,21 @@ const ADMINS = [
 export async function POST() {
   try {
     const admin = getAdminClient()
+    const profiles = admin.from("profiles") as any
     const results: { email: string; success: boolean; error?: string }[] = []
 
     for (const { email, password } of ADMINS) {
       try {
         let userId: string | null = null
 
-        const { data: existingProfile } = await admin
-          .from("profiles")
+        const { data: existingProfile } = await profiles
           .select("id, role")
           .eq("email", email)
           .maybeSingle()
 
         if (existingProfile) {
           userId = existingProfile.id
-          await admin.from("profiles").update({ role: "admin" }).eq("id", userId)
+          await profiles.update({ role: "admin" }).eq("id", userId)
           results.push({ email, success: true })
           continue
         }
@@ -41,7 +41,7 @@ export async function POST() {
 
         userId = userData.user.id
 
-        const { error: profileError } = await admin.from("profiles").upsert({
+        const { error: profileError } = await profiles.upsert({
           id: userId,
           email: userData.user.email!,
           full_name: email.split("@")[0],
