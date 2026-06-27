@@ -9,6 +9,10 @@ const intlMiddleware = createMiddleware({
 })
 
 export async function proxy(request: NextRequest) {
+  if (request.nextUrl.pathname === '/') {
+    return NextResponse.redirect(new URL('/ar', request.url))
+  }
+
   const intlResponse = intlMiddleware(request)
 
   const response = NextResponse.next({
