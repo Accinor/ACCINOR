@@ -22,6 +22,11 @@ export async function POST() {
 
         if (existing) {
           userId = existing.id
+          const { error: updateError } = await admin.auth.admin.updateUserById(userId, { password, email_confirm: true })
+          if (updateError) {
+            results.push({ email, success: false, error: updateError.message })
+            continue
+          }
         } else {
           const { data: userData, error: createError } = await admin.auth.admin.createUser({
             email,
