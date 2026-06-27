@@ -43,6 +43,14 @@ export default function SignInPage() {
         }
         throw authError
       }
+
+      // Sync profile (create if missing, set admin role for admins)
+      try {
+        await fetch("/api/auth/sync-profile", { method: "POST" })
+      } catch {
+        // Non-critical - profile will be created on next visit
+      }
+
       router.push(nextUrl)
     } catch (err: any) {
       setError(err?.message || t("error"))

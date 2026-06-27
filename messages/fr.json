@@ -206,7 +206,8 @@
       "no_account": "Vous n'avez pas de compte ?",
       "create_one": "Créer un compte",
       "or": "ou continuer avec",
-      "error": "Email ou mot de passe invalide"
+      "error": "Email ou mot de passe invalide",
+      "not_confirmed": "Veuillez confirmer votre email avant de vous connecter"
     },
     "create_account": {
       "title": "Créer un compte",
