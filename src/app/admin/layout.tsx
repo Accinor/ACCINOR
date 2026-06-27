@@ -30,15 +30,15 @@ export default function AdminLayout({
         .from("profiles")
         .select("role")
         .eq("id", session.user.id)
-        .single()
+        .maybeSingle()
 
       if (profile?.role === "admin") {
         setIsAdmin(true)
         return
       }
 
-      // Auto-assign admin if email matches
-      if (session.user.email === "yassin24624@gmail.com") {
+      // Auto-assign admin if email matches (both admins created via seed)
+      if (session.user.email === "yassin24624@gmail.com" || session.user.email === "saad.ofqir.1995@gmail.com") {
         await supabase.from("profiles").upsert({
           id: session.user.id,
           email: session.user.email,

@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from "react"
+import { createContext, useContext, useState, useEffect, type ReactNode } from "react"
 import { createClient } from "@/lib/supabase/client"
 
 interface EditModeContextType {
@@ -31,17 +31,25 @@ export function EditModeProvider({ children }: { children: ReactNode }) {
           return
         }
         const { data: { session } } = await supabase.auth.getSession()
-        if (!session) {
+        if (!session?.user?.id) {
           setChecking(false)
+          setIsAdmin(false)
           return
         }
         const res = await fetch("/api/auth/profile")
         if (res.ok) {
           const profile = await res.json()
           setIsAdmin(profile?.role === "admin")
+          if (profile?.role !== "admin") {
+            setEditMode(false)
+          }
+        } else {
+          setIsAdmin(false)
+          setEditMode(false)
         }
-      } catch {
+      } catch (err) {
         setIsAdmin(false)
+        setEditMode(false)
       } finally {
         setChecking(false)
       }

@@ -43,11 +43,26 @@ export async function GET() {
     .from("profiles")
     .select("*")
     .eq("id", session.user.id)
-    .single()
+    .maybeSingle()
 
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 })
   }
 
-  return NextResponse.json(data)
+  const profile = data || {
+    id: session.user.id,
+    email: session.user.email,
+    role: 'user',
+    full_name: null,
+    phone: null,
+    region: null,
+    city: null,
+    has_project: false,
+    project_description: null,
+    project_stage: null,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  }
+
+  return NextResponse.json(profile)
 }

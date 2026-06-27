@@ -1,7 +1,7 @@
 "use client"
 
 import { useTranslations } from "next-intl"
-import { useParams, useRouter } from "next/navigation"
+import { useParams, useRouter, useSearchParams } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
 import { Mail01, Lock01, EyeOff, Eye, ArrowRight } from "@untitledui/icons"
@@ -18,6 +18,8 @@ export default function SignInPage() {
   const params = useParams()
   const locale = params.locale as string
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const nextUrl = searchParams.get("next") || `/${locale}`
   const [showPassword, setShowPassword] = useState(false)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -32,9 +34,16 @@ export default function SignInPage() {
       const supabase = createClient()
       if (!supabase) throw new Error("Client not available")
       const { error: authError } = await supabase.auth.signInWithPassword({ email, password })
-      if (authError) throw authError
-      router.push(`/${locale}`)
-      router.refresh()
+      if (authError) {
+        if (authError.message.includes("Invalid login credentials")) {
+          throw new Error(t("error"))
+        }
+        if (authError.message.includes("Email not confirmed")) {
+          throw new Error(t("not_confirmed"))
+        }
+        throw authError
+      }
+      router.push(nextUrl)
     } catch (err: any) {
       setError(err?.message || t("error"))
     } finally {
@@ -118,7 +127,7 @@ export default function SignInPage() {
                     {t("remember")}
                   </label>
                   <Link
-                    href="#"
+                    href={`/${locale}/auth/forgot-password`}
                     className="text-sm font-medium text-primary hover:underline"
                   >
                     {t("forgot")}

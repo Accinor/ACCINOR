@@ -15,21 +15,16 @@ export default function AuthCallbackPage() {
       const { data: { session } } = await supabase.auth.getSession()
       if (!session) return
 
-      // Ensure a profile exists for this user
-      const { data: profile } = await supabase
-        .from("profiles")
-        .select("id")
-        .eq("id", session.user.id)
-        .single()
+      // Ensure a profile exists for this user (use upsert to create if missing)
+      // Only yassin24624@gmail.com and saad.ofqir.1995@gmail.com are admins
+      const isAdmin = session.user.email === "yassin24624@gmail.com" || session.user.email === "saad.ofqir.1995@gmail.com"
 
-      if (!profile) {
-        await supabase.from("profiles").upsert({
-          id: session.user.id,
-          email: session.user.email,
-          full_name: session.user.user_metadata?.full_name || session.user.user_metadata?.name || null,
-          role: session.user.email === "yassin24624@gmail.com" ? "admin" : "user",
-        }, { onConflict: "id" })
-      }
+      await supabase.from("profiles").upsert({
+        id: session.user.id,
+        email: session.user.email,
+        full_name: session.user.user_metadata?.full_name || session.user.user_metadata?.name || null,
+        role: isAdmin ? "admin" : "user",
+      }, { onConflict: "id" })
 
       router.push(`/${locale}`)
       router.refresh()

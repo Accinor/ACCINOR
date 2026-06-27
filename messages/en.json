@@ -206,7 +206,8 @@
       "no_account": "Don't have an account?",
       "create_one": "Create one",
       "or": "or continue with",
-      "error": "Invalid email or password"
+      "error": "Invalid email or password",
+      "not_confirmed": "Please confirm your email before signing in"
     },
     "create_account": {
       "title": "Create an account",
