@@ -12,30 +12,28 @@ export async function POST() {
     const profiles = admin.from("profiles") as any
     const results: { email: string; success: boolean; error?: string }[] = []
 
+    const { data: listData } = await admin.auth.admin.listUsers()
+    const existingByEmail = new Map(listData?.users.map(u => [u.email, u]) ?? [])
+
     for (const { email, password } of ADMINS) {
       try {
         let userId: string | null = null
+        const existing = existingByEmail.get(email)
 
-        const { data: userData, error: createError } = await admin.auth.admin.createUser({
-          email,
-          password,
-          email_confirm: true,
-        })
+        if (existing) {
+          userId = existing.id
+        } else {
+          const { data: userData, error: createError } = await admin.auth.admin.createUser({
+            email,
+            password,
+            email_confirm: true,
+          })
 
-        if (createError) {
-          if (createError.message.includes("already registered")) {
-            const { data: listData } = await admin.auth.admin.listUsers()
-            const existingUser = listData?.users.find(u => u.email === email)
-            if (!existingUser) {
-              results.push({ email, success: false, error: "User registered but not found in list" })
-              continue
-            }
-            userId = existingUser.id
-          } else {
+          if (createError) {
             results.push({ email, success: false, error: createError.message })
             continue
           }
-        } else {
+
           userId = userData.user.id
         }
 
