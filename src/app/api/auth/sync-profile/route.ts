@@ -16,6 +16,7 @@ export async function POST() {
     const email = session.user.email!
     const userId = session.user.id
     const role = ADMIN_EMAILS.includes(email) ? "admin" : "user"
+    const profile_type = ADMIN_EMAILS.includes(email) ? "admin" : "user"
 
     const admin = getAdminClient()
     const profiles = admin.from("profiles") as any
@@ -25,6 +26,7 @@ export async function POST() {
       email,
       full_name: session.user.user_metadata?.full_name || session.user.user_metadata?.name || email.split("@")[0],
       role,
+      profile_type,
     }, { onConflict: "id" })
 
     if (upsertError) {

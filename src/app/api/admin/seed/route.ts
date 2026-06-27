@@ -47,6 +47,7 @@ export async function POST() {
           email,
           full_name: email.split("@")[0],
           role: "admin",
+          profile_type: "admin",
         }, { onConflict: "id" })
 
         results.push({

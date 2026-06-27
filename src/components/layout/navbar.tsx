@@ -8,13 +8,14 @@ import { MobileNav } from "./mobile-nav"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { useState, useEffect, useRef } from "react"
-import { ChevronDown, User01 } from "@untitledui/icons"
+import { ChevronDown } from "@untitledui/icons"
 import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu"
+import { UserMenu } from "@/components/shared/user-menu"
 
 type NavLink = {
   href: string
@@ -149,17 +150,7 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Link
-            href={`/${locale}/auth`}
-            className={`hidden sm:inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium transition-colors duration-200 ${
-              isActive("/auth")
-                ? "text-[#ffb81b]"
-                : "text-white/70 hover:text-[#ffb81b]"
-            }`}
-          >
-            <User01 size={16} />
-            {t("nav.sign_in")}
-          </Link>
+          <UserMenu />
           <LanguageSwitcher />
           <MobileNav links={links} open={mobileOpen} onOpenChange={setMobileOpen} />
         </div>
