@@ -16,18 +16,6 @@ export async function POST() {
       try {
         let userId: string | null = null
 
-        const { data: existingProfile } = await profiles
-          .select("id, role")
-          .eq("email", email)
-          .maybeSingle()
-
-        if (existingProfile) {
-          userId = existingProfile.id
-          await profiles.update({ role: "admin" }).eq("id", userId)
-          results.push({ email, success: true })
-          continue
-        }
-
         const { data: userData, error: createError } = await admin.auth.admin.createUser({
           email,
           password,
@@ -35,18 +23,28 @@ export async function POST() {
         })
 
         if (createError) {
-          results.push({ email, success: false, error: createError.message })
-          continue
+          if (createError.message.includes("already registered")) {
+            const { data: listData } = await admin.auth.admin.listUsers()
+            const existingUser = listData?.users.find(u => u.email === email)
+            if (!existingUser) {
+              results.push({ email, success: false, error: "User registered but not found in list" })
+              continue
+            }
+            userId = existingUser.id
+          } else {
+            results.push({ email, success: false, error: createError.message })
+            continue
+          }
+        } else {
+          userId = userData.user.id
         }
-
-        userId = userData.user.id
 
         const { error: profileError } = await profiles.upsert({
           id: userId,
-          email: userData.user.email!,
+          email,
           full_name: email.split("@")[0],
           role: "admin",
-        })
+        }, { onConflict: "id" })
 
         results.push({
           email,
