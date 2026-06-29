@@ -40,9 +40,9 @@ export default function ProfilePage() {
 
   useEffect(() => {
     async function load() {
+      const { data: { session } } = await supabase.auth.getSession()
+      if (!session) { router.push(`/${locale}/auth`); return }
       try {
-        const { data: { session } } = await supabase.auth.getSession()
-        if (!session) { router.push(`/${locale}/auth`); return }
         const res = await fetch("/api/auth/profile")
         if (res.ok) {
           const p = await res.json()
