@@ -16,7 +16,14 @@ export default function AdminLayout({
   const [isAdmin, setIsAdmin] = useState(false)
   const supabase = createClient()
 
+  const isLoginPage = pathname === "/admin/login"
+
   useEffect(() => {
+    if (isLoginPage) {
+      setSession(false)
+      return
+    }
+
     let cancelled = false
     async function check() {
       const { data: { session } } = await supabase.auth.getSession()
@@ -26,7 +33,6 @@ export default function AdminLayout({
       }
       setSession(true)
 
-      // Sync profile via API (handles admin role assignment)
       try {
         const res = await fetch("/api/auth/sync-profile", { method: "POST" })
         if (res.ok && !cancelled) {
@@ -38,7 +44,6 @@ export default function AdminLayout({
         }
       } catch {}
 
-      // Fallback: check role directly
       const { data: profile } = await supabase
         .from("profiles")
         .select("role")
@@ -50,12 +55,15 @@ export default function AdminLayout({
         return
       }
 
-      // Not admin — redirect
       if (!cancelled) router.push("/admin/login")
     }
     check()
     return () => { cancelled = true }
-  }, [])
+  }, [isLoginPage])
+
+  if (isLoginPage) {
+    return <>{children}</>
+  }
 
   if (session === null || !isAdmin) {
     return (

@@ -4,6 +4,11 @@ import { getAdminClient } from "@/lib/supabase/admin"
 
 const ADMIN_EMAILS = ["yassin24624@gmail.com", "saad.ofqir.1995@gmail.com"]
 
+const ADMIN_NAMES: Record<string, string> = {
+  "yassin24624@gmail.com": "Yassine Benali",
+  "saad.ofqir.1995@gmail.com": "Saad Ofqir",
+}
+
 export async function POST() {
   try {
     const supabase = await createClient()
@@ -24,7 +29,7 @@ export async function POST() {
     const { error: upsertError } = await profiles.upsert({
       id: userId,
       email,
-      full_name: session.user.user_metadata?.full_name || session.user.user_metadata?.name || email.split("@")[0],
+      full_name: ADMIN_NAMES[email] || session.user.user_metadata?.full_name || session.user.user_metadata?.name || email.split("@")[0],
       role,
       profile_type,
     }, { onConflict: "id" })

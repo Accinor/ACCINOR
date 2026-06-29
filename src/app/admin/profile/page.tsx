@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from "react"
 import { createClient } from "@/lib/supabase/client"
+import { useRouter } from "next/navigation"
 
 type Profile = {
   id: string
@@ -30,6 +31,7 @@ const DEFAULT_NOTIFICATIONS = {
 
 export default function AdminProfile() {
   const supabase = createClient()
+  const router = useRouter()
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const [profile, setProfile] = useState<Profile | null>(null)
@@ -45,17 +47,34 @@ export default function AdminProfile() {
   const [passwordSuccess, setPasswordSuccess] = useState("")
   const [passwordChanging, setPasswordChanging] = useState(false)
 
-  useEffect(() => {
-    fetch("/api/auth/profile")
-      .then((r) => r.json())
-      .then((data) => {
-        setProfile({
-          ...data,
-          notifications: data.notifications || { ...DEFAULT_NOTIFICATIONS },
-        })
+  async function loadProfile() {
+    try {
+      const res = await fetch("/api/auth/profile")
+      if (!res.ok) throw new Error("Failed to load profile")
+      const data = await res.json()
+      if (data.error) throw new Error(data.error)
+      setProfile({
+        ...data,
+        notifications: data.notifications || { ...DEFAULT_NOTIFICATIONS },
       })
-      .catch(() => setError("Failed to load profile"))
-      .finally(() => setLoading(false))
+    } catch (err: any) {
+      setError(err.message || "Failed to load profile")
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    loadProfile()
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event: string) => {
+      if (event === "SIGNED_IN") {
+        setLoading(true)
+        loadProfile()
+      }
+    })
+
+    return () => subscription?.unsubscribe()
   }, [])
 
   function updateField(field: keyof Profile, value: any) {
@@ -67,7 +86,7 @@ export default function AdminProfile() {
       if (!prev) return prev
       return {
         ...prev,
-        notifications: { ...prev.notifications, [key]: value } as Record<string, boolean>,
+        notifications: { ...(prev.notifications as Record<string, boolean>), [key]: value },
       }
     })
   }
@@ -78,29 +97,33 @@ export default function AdminProfile() {
     setError("")
     setSaved(false)
 
-    const res = await fetch("/api/auth/profile", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        full_name: profile.full_name,
-        phone: profile.phone,
-        region: profile.region,
-        city: profile.city,
-        bio: profile.bio,
-        title: profile.title,
-        website: profile.website,
-        linkedin_url: profile.linkedin_url,
-        position: profile.position,
-        notifications: profile.notifications,
-      }),
-    })
+    try {
+      const res = await fetch("/api/auth/profile", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          full_name: profile.full_name,
+          phone: profile.phone,
+          region: profile.region,
+          city: profile.city,
+          bio: profile.bio,
+          title: profile.title,
+          website: profile.website,
+          linkedin_url: profile.linkedin_url,
+          position: profile.position,
+          notifications: profile.notifications,
+        }),
+      })
 
-    if (!res.ok) {
-      const data = await res.json()
-      setError(data.error || "Failed to save")
-    } else {
+      if (!res.ok) {
+        const data = await res.json()
+        throw new Error(data.error || "Failed to save")
+      }
+
       setSaved(true)
       setTimeout(() => setSaved(false), 3000)
+    } catch (err: any) {
+      setError(err.message)
     }
 
     setSaving(false)
@@ -121,17 +144,16 @@ export default function AdminProfile() {
     const formData = new FormData()
     formData.append("avatar", file)
 
-    const res = await fetch("/api/auth/upload-avatar", {
-      method: "POST",
-      body: formData,
-    })
-
-    if (!res.ok) {
-      const data = await res.json()
-      setError(data.error || "Upload failed")
-    } else {
+    try {
+      const res = await fetch("/api/auth/upload-avatar", { method: "POST", body: formData })
+      if (!res.ok) {
+        const data = await res.json()
+        throw new Error(data.error || "Upload failed")
+      }
       const data = await res.json()
       updateField("avatar_url", data.avatar_url)
+    } catch (err: any) {
+      setError(err.message)
     }
 
     setAvatarUploading(false)
@@ -139,10 +161,10 @@ export default function AdminProfile() {
 
   async function handleAvatarRemove() {
     setAvatarUploading(true)
-    const res = await fetch("/api/auth/delete-avatar", { method: "POST" })
-    if (res.ok) {
-      updateField("avatar_url", null)
-    }
+    try {
+      const res = await fetch("/api/auth/delete-avatar", { method: "POST" })
+      if (res.ok) updateField("avatar_url", null)
+    } catch {}
     setAvatarUploading(false)
   }
 
@@ -163,22 +185,26 @@ export default function AdminProfile() {
 
     setPasswordChanging(true)
 
-    const res = await fetch("/api/auth/change-password", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        current_password: passwordData.current,
-        new_password: passwordData.new,
-      }),
-    })
+    try {
+      const res = await fetch("/api/auth/change-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          current_password: passwordData.current,
+          new_password: passwordData.new,
+        }),
+      })
 
-    if (!res.ok) {
-      const data = await res.json()
-      setPasswordError(data.error || "Failed to change password")
-    } else {
+      if (!res.ok) {
+        const data = await res.json()
+        throw new Error(data.error || "Failed to change password")
+      }
+
       setPasswordSuccess("Password changed successfully")
       setPasswordData({ current: "", new: "", confirm: "" })
       setTimeout(() => setPasswordSuccess(""), 3000)
+    } catch (err: any) {
+      setPasswordError(err.message)
     }
 
     setPasswordChanging(false)
@@ -193,12 +219,19 @@ export default function AdminProfile() {
   }
 
   if (!profile) {
-    return <div className="text-center py-20 text-muted-foreground">Failed to load profile.</div>
+    return (
+      <div className="text-center py-20 text-muted-foreground">
+        <p>Failed to load profile.</p>
+        <button onClick={() => { setLoading(true); setError(""); loadProfile() }}
+          className="mt-4 px-4 py-2 rounded-lg bg-[#ffb81b] text-[#050a30] text-sm font-bold">Retry</button>
+      </div>
+    )
   }
 
-  const initials = (profile.full_name || profile.email)
+  const displayName = profile.full_name || profile.email.split("@")[0]
+  const initials = displayName
     .split(" ")
-    .map((n) => n[0])
+    .map((n: string) => n[0])
     .join("")
     .toUpperCase()
     .slice(0, 2)
@@ -207,7 +240,9 @@ export default function AdminProfile() {
     <div className="max-w-3xl mx-auto space-y-8 pb-12">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold">Profile Settings</h1>
+          <h1 className="text-2xl font-bold">
+            {profile.full_name ? `${profile.full_name.split(" ")[0] || ""}'s Profile` : "Profile Settings"}
+          </h1>
           <p className="text-sm text-muted-foreground mt-1">
             Manage your personal information and preferences
           </p>
@@ -215,7 +250,7 @@ export default function AdminProfile() {
         <button
           onClick={handleSave}
           disabled={saving}
-          className="px-6 py-2 rounded-lg bg-[#ffb81b] hover:bg-[#e5a318] text-[#050a30] font-bold text-sm transition disabled:opacity-50 flex items-center gap-2"
+          className="px-6 py-2.5 rounded-lg bg-[#ffb81b] hover:bg-[#e5a318] text-[#050a30] font-bold text-sm transition disabled:opacity-50 flex items-center gap-2 shadow-sm"
         >
           {saving ? (
             <>
@@ -236,20 +271,26 @@ export default function AdminProfile() {
       </div>
 
       {error && (
-        <div className="rounded-lg bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 p-3 text-sm text-red-700 dark:text-red-400">
+        <div className="rounded-lg bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 p-4 text-sm text-red-700 dark:text-red-400 flex items-start gap-2">
+          <svg className="w-5 h-5 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
           {error}
         </div>
       )}
 
       {saved && (
-        <div className="rounded-lg bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 p-3 text-sm text-green-700 dark:text-green-400">
+        <div className="rounded-lg bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 p-3 text-sm text-green-700 dark:text-green-400 flex items-center gap-2">
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          </svg>
           Profile updated successfully.
         </div>
       )}
 
       {/* ──── Avatar + Header ──── */}
       <div className="rounded-xl border bg-card p-6">
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-6 flex-wrap sm:flex-nowrap">
           <div className="relative shrink-0">
             {profile.avatar_url ? (
               <img
@@ -269,9 +310,7 @@ export default function AdminProfile() {
             )}
           </div>
           <div className="flex-1 min-w-0">
-            <h2 className="text-lg font-bold truncate">
-              {profile.full_name || profile.email}
-            </h2>
+            <h2 className="text-lg font-bold truncate">{displayName}</h2>
             <p className="text-sm text-muted-foreground">{profile.email}</p>
             <span className="inline-block mt-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#ffb81b]/10 text-[#ffb81b] border border-[#ffb81b]/20 capitalize">
               {profile.role || "user"}
@@ -288,7 +327,7 @@ export default function AdminProfile() {
             <button
               onClick={() => fileInputRef.current?.click()}
               disabled={avatarUploading}
-              className="px-4 py-1.5 rounded-lg border border-input bg-background text-sm font-medium hover:bg-muted transition disabled:opacity-50"
+              className="px-4 py-1.5 rounded-lg border border-input bg-background text-sm font-medium hover:bg-muted transition disabled:opacity-50 text-center"
             >
               Change Photo
             </button>
@@ -296,7 +335,7 @@ export default function AdminProfile() {
               <button
                 onClick={handleAvatarRemove}
                 disabled={avatarUploading}
-                className="px-4 py-1.5 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 dark:hover:bg-red-950/20 transition disabled:opacity-50"
+                className="px-4 py-1.5 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 dark:hover:bg-red-950/20 transition disabled:opacity-50 text-center"
               >
                 Remove
               </button>
@@ -429,7 +468,7 @@ export default function AdminProfile() {
             placeholder="e.g. CEO & Founder, Lead Consultant"
           />
           <p className="text-xs text-muted-foreground mt-1">
-            Example: &ldquo;CEO &amp; Founder at ACCINOR&rdquo; will appear next to your name on public pages.
+            This position appears next to your name on public pages.
           </p>
         </div>
       </div>

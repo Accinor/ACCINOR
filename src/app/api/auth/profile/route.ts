@@ -46,6 +46,11 @@ export async function POST(req: NextRequest) {
   return NextResponse.json({ success: true })
 }
 
+const DEFAULT_ADMIN_NAMES: Record<string, string> = {
+  "yassin24624@gmail.com": "Yassine Benali",
+  "saad.ofqir.1995@gmail.com": "Saad Ofqir",
+}
+
 export async function GET() {
   const supabase = await createClient()
   const { data: { session } } = await supabase.auth.getSession()
@@ -64,24 +69,35 @@ export async function GET() {
     return NextResponse.json({ error: error.message }, { status: 500 })
   }
 
-  const profile = data || {
+  const email = session.user.email!
+  const knownName = DEFAULT_ADMIN_NAMES[email]
+  const metaName = session.user.user_metadata?.full_name || session.user.user_metadata?.name
+  const emailName = email.split("@")[0]
+
+  const profile = data ? {
+    ...data,
+    full_name: data.full_name || knownName || metaName || emailName,
+  } : {
     id: session.user.id,
-    email: session.user.email,
-    role: 'user',
-    full_name: null,
+    email,
+    role: knownName ? "admin" : "user",
+    full_name: knownName || metaName || emailName,
     phone: null,
     region: null,
     city: null,
     avatar_url: null,
     bio: null,
-    profile_type: 'user',
+    profile_type: knownName ? "admin" : "user",
     website: null,
     title: null,
+    position: null,
+    linkedin_url: null,
+    notifications: null,
     has_project: false,
     project_description: null,
     project_stage: null,
     created_at: new Date().toISOString(),
-    updated_at: new Date().toISOString()
+    updated_at: new Date().toISOString(),
   }
 
   return NextResponse.json(profile)
