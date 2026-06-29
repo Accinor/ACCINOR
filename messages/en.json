@@ -140,7 +140,9 @@
     },
     "cta": {
       "title": "Time to Start",
-      "subtitle": "Don't wait any longer. Start your entrepreneurial journey today with ACCINOR"
+      "subtitle": "Don't wait any longer. Start your entrepreneurial journey today with ACCINOR",
+      "button": "Contact Us",
+      "secondary": "View Services"
     }
   },
   "about": {

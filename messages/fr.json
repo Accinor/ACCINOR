@@ -140,7 +140,9 @@
     },
     "cta": {
       "title": "Il est temps de commencer",
-      "subtitle": "N'attendez plus. Commencez votre parcours entrepreneurial dès aujourd'hui avec ACCINOR"
+      "subtitle": "N'attendez plus. Commencez votre parcours entrepreneurial dès aujourd'hui avec ACCINOR",
+      "button": "Contactez-nous",
+      "secondary": "Voir les services"
     }
   },
   "about": {
