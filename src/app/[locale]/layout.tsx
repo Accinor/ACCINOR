@@ -67,11 +67,6 @@ export default async function LocaleLayout({ children, params }: Props) {
       <body className="min-h-screen flex flex-col">
         <NextIntlClientProvider messages={messages}>
           <SplashCursorWrapper />
-          <div className="stars-container" aria-hidden="true">
-            <div id="stars" />
-            <div id="stars2" />
-            <div id="stars3" />
-          </div>
           <EditModeProvider>
             <Navbar />
             <main className="flex-1 pt-16">{children}</main>
