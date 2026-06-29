@@ -231,7 +231,12 @@ export default function AuthPage() {
                 </div>
 
                 <Button type="submit" disabled={loading} className="w-full bg-[#ffb81b] hover:bg-[#e5a318] text-[#050a30] font-bold">
-                  {loading ? "..." : t("sign_in.button")}
+                  {loading ? (
+                    <span className="flex items-center justify-center gap-2">
+                      <span className="w-4 h-4 border-2 border-[#050a30]/30 border-t-[#050a30] rounded-full animate-spin" />
+                      Signing in...
+                    </span>
+                  ) : t("sign_in.button")}
                 </Button>
               </form>
             ) : (
@@ -427,7 +432,12 @@ export default function AuthPage() {
                 </label>
 
                 <Button type="submit" disabled={loading} className="w-full bg-[#ffb81b] hover:bg-[#e5a318] text-[#050a30] font-bold">
-                  {loading ? "..." : t("create_account.button")}
+                  {loading ? (
+                    <span className="flex items-center justify-center gap-2">
+                      <span className="w-4 h-4 border-2 border-[#050a30]/30 border-t-[#050a30] rounded-full animate-spin" />
+                      Creating account...
+                    </span>
+                  ) : t("create_account.button")}
                 </Button>
               </form>
             )}

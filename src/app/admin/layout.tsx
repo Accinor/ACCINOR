@@ -17,6 +17,7 @@ export default function AdminLayout({
   const supabase = createClient()
 
   useEffect(() => {
+    let cancelled = false
     async function check() {
       const { data: { session } } = await supabase.auth.getSession()
       if (!session) {
@@ -25,39 +26,44 @@ export default function AdminLayout({
       }
       setSession(true)
 
-      // Check role in profiles table
+      // Sync profile via API (handles admin role assignment)
+      try {
+        const res = await fetch("/api/auth/sync-profile", { method: "POST" })
+        if (res.ok && !cancelled) {
+          const { role } = await res.json()
+          if (role === "admin") {
+            setIsAdmin(true)
+            return
+          }
+        }
+      } catch {}
+
+      // Fallback: check role directly
       const { data: profile } = await supabase
         .from("profiles")
         .select("role")
         .eq("id", session.user.id)
         .maybeSingle()
 
-      if (profile?.role === "admin") {
-        setIsAdmin(true)
-        return
-      }
-
-      // Auto-assign admin if email matches (both admins created via seed)
-      if (session.user.email === "yassin24624@gmail.com" || session.user.email === "saad.ofqir.1995@gmail.com") {
-        await supabase.from("profiles").upsert({
-          id: session.user.id,
-          email: session.user.email,
-          role: "admin",
-        }, { onConflict: "id" })
+      if (!cancelled && profile?.role === "admin") {
         setIsAdmin(true)
         return
       }
 
       // Not admin — redirect
-      router.push("/admin/login")
+      if (!cancelled) router.push("/admin/login")
     }
     check()
+    return () => { cancelled = true }
   }, [])
 
   if (session === null || !isAdmin) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        Loading...
+      <div className="flex items-center justify-center min-h-screen bg-background">
+        <div className="flex flex-col items-center gap-3">
+          <div className="w-8 h-8 border-2 border-[#ffb81b]/30 border-t-[#ffb81b] rounded-full animate-spin" />
+          <p className="text-sm text-muted-foreground">Verifying access...</p>
+        </div>
       </div>
     )
   }

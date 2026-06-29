@@ -93,7 +93,7 @@ export function Navbar() {
           <img
             src="/images/logo.png"
             alt={t("site_name")}
-            className={`brightness-0 invert transition-all duration-500 ${
+            className={`transition-all duration-500 ${
               scrolled ? "h-12 w-auto" : "h-16 w-auto"
             }`}
           />

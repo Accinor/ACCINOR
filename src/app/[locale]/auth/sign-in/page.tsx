@@ -84,7 +84,7 @@ export default function AuthPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background px-4 py-12 overflow-hidden relative">
+    <div className="min-h-screen flex items-center justify-center bg-background px-4 py-12 relative">
       {/* Soft Backdrop Glows */}
       <div className="fixed inset-0 pointer-events-none">
         <div className="absolute left-1/2 top-20 -translate-x-1/2 w-[600px] h-[460px] bg-gradient-to-tr from-[#ffb81b]/15 to-transparent rounded-full blur-3xl" />
@@ -96,13 +96,13 @@ export default function AuthPage() {
           <img
             src="/images/logo.png"
             alt={common("site_name")}
-            className="h-14 w-auto brightness-0 invert opacity-95"
+            className="h-14 w-auto"
           />
         </Link>
 
         <form
           onSubmit={handleSubmit}
-          className="w-full text-center bg-white/6 border border-white/10 rounded-2xl px-8 pb-8 pt-10"
+          className="w-full bg-white/6 border border-white/10 rounded-2xl px-8 pb-8 pt-10"
         >
           <h1 className="text-white text-3xl font-medium">
             {mode === "login" ? t("sign_in.title") : t("create_account.title")}
@@ -125,7 +125,7 @@ export default function AuthPage() {
           )}
 
           {mode === "register" && (
-            <div className="flex items-center mt-6 w-full bg-white/5 ring-2 ring-white/10 focus-within:ring-[#ffb81b]/60 h-12 rounded-full overflow-hidden pl-6 gap-2 transition-all">
+            <div className="flex items-center mt-6 w-full bg-white/5 ring-2 ring-white/10 focus-within:ring-[#ffb81b]/60 h-12 rounded-full pl-6 gap-2 transition-all">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-white/60 shrink-0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="12" cy="8" r="5" />
                 <path d="M20 21a8 8 0 0 0-16 0" />
@@ -142,7 +142,7 @@ export default function AuthPage() {
             </div>
           )}
 
-          <div className={`flex items-center w-full bg-white/5 ring-2 ring-white/10 focus-within:ring-[#ffb81b]/60 h-12 rounded-full overflow-hidden pl-6 gap-2 transition-all ${mode === "register" ? "mt-4" : "mt-6"}`}>
+          <div className={`flex items-center w-full bg-white/5 ring-2 ring-white/10 focus-within:ring-[#ffb81b]/60 h-12 rounded-full pl-6 gap-2 transition-all ${mode === "register" ? "mt-4" : "mt-6"}`}>
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-white/60 shrink-0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <rect width="20" height="16" x="2" y="4" rx="2" />
               <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
@@ -159,7 +159,7 @@ export default function AuthPage() {
             />
           </div>
 
-          <div className="flex items-center mt-4 w-full bg-white/5 ring-2 ring-white/10 focus-within:ring-[#ffb81b]/60 h-12 rounded-full overflow-hidden pl-6 pr-3 gap-2 transition-all">
+          <div className="flex items-center mt-4 w-full bg-white/5 ring-2 ring-white/10 focus-within:ring-[#ffb81b]/60 h-12 rounded-full pl-6 pr-3 gap-2 transition-all">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-white/60 shrink-0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
               <path d="M7 11V7a5 5 0 0 1 10 0v4" />
