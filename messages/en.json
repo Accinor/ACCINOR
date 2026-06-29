@@ -77,6 +77,32 @@
           "title": "Career Guidance",
           "desc": "Professional guidance to help you choose the right path"
         }
+      },
+      "services_list": {
+        "consulting": {
+          "title": "Individual Consulting",
+          "description": "Personalized consulting sessions tailored to your project's needs"
+        },
+        "coaching": {
+          "title": "Personal Coaching",
+          "description": "Continuous support throughout your project development phases"
+        },
+        "business_plan": {
+          "title": "Business Plans",
+          "description": "We help you prepare a comprehensive and professional business plan"
+        },
+        "training": {
+          "title": "Training",
+          "description": "Training programs in entrepreneurship and practical skills"
+        },
+        "funding_support": {
+          "title": "Funding Support",
+          "description": "We guide you toward the best available funding opportunities"
+        },
+        "feasibility": {
+          "title": "Feasibility Studies",
+          "description": "We help you conduct economic feasibility studies for your project"
+        }
       }
     },
     "stats": {
@@ -84,17 +110,32 @@
       "projects": "Projects Supported",
       "clients": "Beneficiaries",
       "trainings": "Trainings",
+      "partners": "Partners",
       "cities": "Cities"
     },
     "audience": {
       "title": "Who We Serve",
+      "subtitle": "We serve a wide range of entrepreneurial profiles",
       "items": {
         "students": "Students",
         "youth": "Youth Seeking Opportunities",
         "project_holders": "Project Holders",
-        "entrepreneurs": "Self-Entrepreneurs",
-        "startups": "Startups",
-        "associations": "Associations"
+        "entrepreneurs": {
+          "title": "Entrepreneurs",
+          "description": "Comprehensive support for entrepreneurs to turn ideas into successful projects"
+        },
+        "startups": {
+          "title": "Startups",
+          "description": "Supporting startups through growth and expansion phases"
+        },
+        "organizations": {
+          "title": "Organizations",
+          "description": "Innovative solutions for organizations to support entrepreneurship"
+        },
+        "investors": {
+          "title": "Investors",
+          "description": "Connecting investors with promising opportunities in the region"
+        }
       }
     },
     "cta": {

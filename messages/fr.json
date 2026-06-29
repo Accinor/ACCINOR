@@ -77,6 +77,32 @@
           "title": "Orientation professionnelle",
           "desc": "Conseils pour vous aider à choisir la voie qui vous convient"
         }
+      },
+      "services_list": {
+        "consulting": {
+          "title": "Consultations individuelles",
+          "description": "Sessions de conseil personnalisées selon les besoins de votre projet"
+        },
+        "coaching": {
+          "title": "Accompagnement personnalisé",
+          "description": "Suivi continu tout au long du développement de votre projet"
+        },
+        "business_plan": {
+          "title": "Plans d'affaires",
+          "description": "Nous vous aidons à élaborer un plan d'affaires complet et professionnel"
+        },
+        "training": {
+          "title": "Formation",
+          "description": "Programmes de formation en entrepreneuriat et compétences pratiques"
+        },
+        "funding_support": {
+          "title": "Soutien au financement",
+          "description": "Nous vous guidons vers les meilleures opportunités de financement disponibles"
+        },
+        "feasibility": {
+          "title": "Études de faisabilité",
+          "description": "Nous vous aidons à réaliser des études de faisabilité économique pour votre projet"
+        }
       }
     },
     "stats": {
@@ -84,17 +110,32 @@
       "projects": "Projets soutenus",
       "clients": "Bénéficiaires",
       "trainings": "Formations",
+      "partners": "Partenaires",
       "cities": "Villes"
     },
     "audience": {
       "title": "À qui s'adressent nos services ?",
+      "subtitle": "Nous servons un large éventail de profils entrepreneuriaux",
       "items": {
         "students": "Étudiants",
         "youth": "Jeunes chercheurs d'opportunités",
         "project_holders": "Porteurs de projets",
-        "entrepreneurs": "Auto-entrepreneurs",
-        "startups": "Startups",
-        "associations": "Associations"
+        "entrepreneurs": {
+          "title": "Entrepreneurs",
+          "description": "Accompagnement complet pour transformer les idées en projets réussis"
+        },
+        "startups": {
+          "title": "Startups",
+          "description": "Soutien aux startups dans leurs phases de croissance et d'expansion"
+        },
+        "organizations": {
+          "title": "Organisations",
+          "description": "Solutions innovantes pour les organisations soutenant l'entrepreneuriat"
+        },
+        "investors": {
+          "title": "Investisseurs",
+          "description": "Mise en relation des investisseurs avec des opportunités prometteuses dans la région"
+        }
       }
     },
     "cta": {
