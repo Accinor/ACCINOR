@@ -10,9 +10,13 @@ export async function POST(req: NextRequest) {
   }
 
   const body = await req.json()
-  const { full_name, phone, region, city, has_project, project_description, project_stage } = body
+  const {
+    full_name, phone, region, city,
+    has_project, project_description, project_stage,
+    bio, title, website, linkedin_url, position, notifications
+  } = body
 
-  const { error } = await supabase.from("profiles").upsert({
+  const profileData: Record<string, any> = {
     id: session.user.id,
     email: session.user.email!,
     full_name,
@@ -22,7 +26,18 @@ export async function POST(req: NextRequest) {
     has_project: has_project || false,
     project_description: has_project ? project_description : null,
     project_stage: has_project ? project_stage : null,
-  }, { onConflict: "id" })
+    bio: bio || null,
+    title: title || null,
+    website: website || null,
+    linkedin_url: linkedin_url || null,
+    position: position || null,
+  }
+
+  if (notifications !== undefined) {
+    profileData.notifications = notifications
+  }
+
+  const { error } = await supabase.from("profiles").upsert(profileData, { onConflict: "id" })
 
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 })

@@ -7,6 +7,7 @@ import { Footer } from "@/components/layout/footer"
 import { SplashCursorWrapper } from "@/components/shared/splash-cursor-wrapper"
 import { EditModeProvider } from "@/contexts/edit-mode"
 import { EditModeToggle } from "@/components/shared/edit-mode-toggle"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Inter, Cairo } from "next/font/google"
 
 const inter = Inter({
@@ -73,6 +74,7 @@ export default async function LocaleLayout({ children, params }: Props) {
             <EditModeToggle />
           </EditModeProvider>
         </NextIntlClientProvider>
+        <SpeedInsights />
       </body>
     </html>
   )

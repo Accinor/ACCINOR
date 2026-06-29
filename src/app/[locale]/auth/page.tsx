@@ -191,7 +191,7 @@ export default function AuthPage() {
                     {t("sign_in.email")}
                   </label>
                   <div className="relative">
-                    <Mail01 size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+                    <Mail01 size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
                     <input
                       id="si-email"
                       type="email"
@@ -209,7 +209,7 @@ export default function AuthPage() {
                     {t("sign_in.password")}
                   </label>
                   <div className="relative">
-                    <Lock01 size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+                    <Lock01 size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
                     <input
                       id="si-password"
                       type={showPassword ? "text" : "password"}
@@ -248,7 +248,7 @@ export default function AuthPage() {
                       {t("create_account.name")}
                     </label>
                     <div className="relative">
-                      <User01 size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+                      <User01 size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
                       <input
                         id="reg-name"
                         type="text"
@@ -266,7 +266,7 @@ export default function AuthPage() {
                       {t("create_account.email")}
                     </label>
                     <div className="relative">
-<Mail01 size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+<Mail01 size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
                       <input
                         id="reg-email"
                         type="email"
@@ -285,7 +285,7 @@ export default function AuthPage() {
                       {t("create_account.password")}
                     </label>
                     <div className="relative">
-                      <Lock01 size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+                      <Lock01 size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
                     <input
                       id="reg-password"
                       type={showPassword ? "text" : "password"}
@@ -313,7 +313,7 @@ export default function AuthPage() {
                       Phone
                     </label>
                     <div className="relative">
-                      <Phone size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+                      <Phone size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
                       <input
                         id="reg-phone"
                         type="tel"
@@ -352,7 +352,7 @@ export default function AuthPage() {
                     City
                   </label>
                   <div className="relative">
-                    <Building01 size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+                    <Building01 size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
                     <input
                       id="reg-city"
                       type="text"

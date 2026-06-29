@@ -1,0 +1,3 @@
+ALTER TABLE profiles ADD COLUMN IF NOT EXISTS linkedin_url TEXT;
+ALTER TABLE profiles ADD COLUMN IF NOT EXISTS position TEXT;
+ALTER TABLE profiles ADD COLUMN IF NOT EXISTS notifications JSONB DEFAULT '{}'::jsonb;

@@ -10,6 +10,7 @@ type Props = {
 export function AdminSidebar({ onLogout }: Props) {
   const links = [
     { href: "/admin", label: "Dashboard" },
+    { href: "/admin/profile", label: "Profile" },
     { href: "/admin/requests", label: "Requests" },
     { href: "/admin/leads", label: "Leads" },
     { href: "/admin/clients", label: "Clients" },
