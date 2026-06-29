@@ -3,7 +3,6 @@
 import { useTranslations } from "next-intl"
 import { useParams, useRouter, useSearchParams } from "next/navigation"
 import Link from "next/link"
-import Image from "next/image"
 import { useState } from "react"
 import { createClient } from "@/lib/supabase/client"
 
@@ -94,11 +93,9 @@ export default function AuthPage() {
 
       <div className="w-full max-w-sm relative z-10">
         <Link href={`/${locale}`} className="flex justify-center mb-8">
-          <Image
+          <img
             src="/images/logo.png"
             alt={common("site_name")}
-            width={1563}
-            height={1563}
             className="h-14 w-auto brightness-0 invert opacity-95"
           />
         </Link>

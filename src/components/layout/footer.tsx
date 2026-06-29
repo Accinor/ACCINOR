@@ -3,7 +3,6 @@
 import { useTranslations } from "next-intl"
 import { useParams } from "next/navigation"
 import Link from "next/link"
-import Image from "next/image"
 import { Mail01, MarkerPin01, Phone } from "@untitledui/icons"
 
 export function Footer() {
@@ -56,11 +55,9 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div className="lg:col-span-1">
             <Link href={`/${locale}`} className="inline-block mb-4">
-              <Image
+              <img
                 src="/images/logo.png"
                 alt="ACCINOR"
-                width={1563}
-                height={1563}
                 className="h-14 w-auto opacity-90 brightness-0 invert"
               />
             </Link>

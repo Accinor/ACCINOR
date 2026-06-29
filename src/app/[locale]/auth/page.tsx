@@ -4,7 +4,6 @@ import { useTranslations } from "next-intl"
 import { useParams, useRouter } from "next/navigation"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import Image from "next/image"
 import { motion } from "framer-motion"
 import { Mail01, Lock01, User01, EyeOff, Eye, Phone, MarkerPin01, Building01, Lightbulb05 } from "@untitledui/icons"
 import { useState } from "react"
@@ -145,11 +144,9 @@ export default function AuthPage() {
           className="flex flex-col items-center"
         >
           <Link href={`/${locale}`} className="mb-6">
-            <Image
+            <img
               src="/images/logo.png"
               alt={common("site_name")}
-              width={1563}
-              height={1563}
               className="h-14 w-auto"
             />
           </Link>

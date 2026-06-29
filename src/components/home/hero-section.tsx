@@ -6,7 +6,6 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import { ArrowRight, Stars02 } from "@untitledui/icons"
-import Image from "next/image"
 import { MagneticButton } from "@/components/shared/animations"
 import { EditableText } from "@/components/shared/editable-text"
 
@@ -58,13 +57,10 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="flex justify-center mb-8"
           >
-            <Image
+            <img
               src="/images/logo.png"
               alt="ACCINOR"
-              width={200}
-              height={200}
               className="h-28 w-auto brightness-0 invert opacity-95"
-              priority
             />
           </motion.div>
 

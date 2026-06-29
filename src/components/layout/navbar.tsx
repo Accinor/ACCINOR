@@ -6,7 +6,6 @@ import Link from "next/link"
 import { LanguageSwitcher } from "./language-switcher"
 import { MobileNav } from "./mobile-nav"
 import { Button } from "@/components/ui/button"
-import Image from "next/image"
 import { useState, useEffect, useRef } from "react"
 import { ChevronDown } from "@untitledui/icons"
 import {
@@ -91,15 +90,12 @@ export function Navbar() {
       >
         <Link href={`/${locale}`} className="flex items-center gap-2 shrink-0 group relative">
           <div className="absolute -inset-4 bg-[#ffb81b]/0 group-hover:bg-[#ffb81b]/5 rounded-2xl transition-all duration-500" />
-          <Image
+          <img
             src="/images/logo.png"
             alt={t("site_name")}
-            width={1563}
-            height={1563}
             className={`brightness-0 invert transition-all duration-500 ${
               scrolled ? "h-12 w-auto" : "h-16 w-auto"
             }`}
-            priority
           />
         </Link>
 
