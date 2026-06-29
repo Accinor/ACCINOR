@@ -59,8 +59,8 @@ export function Footer() {
               <Image
                 src="/images/logo.png"
                 alt="ACCINOR"
-                width={200}
-                height={65}
+                width={1563}
+                height={1563}
                 className="h-14 w-auto opacity-90 brightness-0 invert"
               />
             </Link>

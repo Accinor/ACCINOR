@@ -61,9 +61,9 @@ export function HeroSection() {
             <Image
               src="/images/logo.png"
               alt="ACCINOR"
-              width={320}
-              height={100}
-              className="h-24 w-auto brightness-0 invert opacity-95"
+              width={200}
+              height={200}
+              className="h-28 w-auto brightness-0 invert opacity-95"
               priority
             />
           </motion.div>

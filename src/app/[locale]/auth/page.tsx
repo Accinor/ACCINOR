@@ -148,8 +148,8 @@ export default function AuthPage() {
             <Image
               src="/images/logo.png"
               alt={common("site_name")}
-              width={200}
-              height={65}
+              width={1563}
+              height={1563}
               className="h-14 w-auto"
             />
           </Link>

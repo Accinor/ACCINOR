@@ -94,8 +94,8 @@ export function Navbar() {
           <Image
             src="/images/logo.png"
             alt={t("site_name")}
-            width={240}
-            height={75}
+            width={1563}
+            height={1563}
             className={`brightness-0 invert transition-all duration-500 ${
               scrolled ? "h-12 w-auto" : "h-16 w-auto"
             }`}
