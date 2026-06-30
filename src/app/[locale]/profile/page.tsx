@@ -26,7 +26,7 @@ const NOTIFICATION_KEYS = [
 ] as const
 
 export default function ProfilePage() {
-  const t = useTranslations("common.profile")
+  const t = useTranslations("common")
   const params = useParams()
   const locale = params.locale as string
   const isRtl = locale === "ar"
@@ -116,8 +116,8 @@ export default function ProfilePage() {
 
   const handlePasswordChange = useCallback(async (e: React.FormEvent) => {
     e.preventDefault(); setPwdError(""); setPwdSuccess("")
-    if (pwd.new !== pwd.confirm) { setPwdError(t("password_error_match")); return }
-    if (pwd.new.length < 6) { setPwdError(t("password_error_length")); return }
+    if (pwd.new !== pwd.confirm) { setPwdError(t("profile.password_error_match")); return }
+    if (pwd.new.length < 6) { setPwdError(t("profile.password_error_length")); return }
     setPwdSaving(true)
     try {
       const res = await fetch("/api/auth/change-password", {
@@ -125,7 +125,7 @@ export default function ProfilePage() {
         body: JSON.stringify({ current_password: pwd.current, new_password: pwd.new }),
       })
       if (!res.ok) { const d = await res.json(); throw new Error(d.error || "Failed") }
-      setPwdSuccess(t("password_success")); setPwd({ current: "", new: "", confirm: "" })
+      setPwdSuccess(t("profile.password_success")); setPwd({ current: "", new: "", confirm: "" })
       setTimeout(() => setPwdSuccess(""), 3000)
     } catch (err: any) { setPwdError(err.message) }
     setPwdSaving(false)
@@ -141,7 +141,7 @@ export default function ProfilePage() {
     <div className="min-h-screen flex items-center justify-center bg-background">
       <div className="flex flex-col items-center gap-3">
         <div className="w-6 h-6 border-2 border-muted-foreground/30 border-t-[#ffb81b] rounded-full animate-spin" />
-        <p className="text-sm text-muted-foreground">{t("loading")}</p>
+        <p className="text-sm text-muted-foreground">{t("profile.loading")}</p>
       </div>
     </div>
   )
@@ -155,12 +155,12 @@ export default function ProfilePage() {
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
-            <span>{t("settings")}</span>
+            <span>{t("profile.settings")}</span>
             <ChevronRight size={14} className={cn(isRtl && "rotate-180")} />
-            <span className="text-foreground font-medium">{t("title")}</span>
+            <span className="text-foreground font-medium">{t("profile.title")}</span>
           </div>
-          <h1 className="text-2xl font-bold text-foreground">{t("title")}</h1>
-          <p className="text-sm text-muted-foreground mt-1">{t("subtitle")}</p>
+          <h1 className="text-2xl font-bold text-foreground">{t("profile.title")}</h1>
+          <p className="text-sm text-muted-foreground mt-1">{t("profile.subtitle")}</p>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-8">
@@ -182,7 +182,7 @@ export default function ProfilePage() {
                     )}
                   >
                     <Icon size={16} />
-                    {t(key === "details" ? "my_details" : key)}
+                    {t(key === "details" ? "profile.my_details" : `profile.${key}`)}
                   </button>
                 )
               })}
@@ -229,7 +229,7 @@ export default function ProfilePage() {
                         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-input bg-background text-xs font-medium text-foreground hover:bg-muted transition disabled:opacity-50"
                       >
                         <Camera01 size={14} />
-                        {t("avatar_change")}
+                        {t("profile.avatar_change")}
                       </button>
                       {form.avatar_url && (
                         <button
@@ -238,7 +238,7 @@ export default function ProfilePage() {
                           className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-input bg-background text-xs font-medium text-destructive hover:bg-destructive/5 transition disabled:opacity-50"
                         >
                           <Trash01 size={14} />
-                          {t("avatar_remove")}
+                          {t("profile.avatar_remove")}
                         </button>
                       )}
                     </div>
@@ -248,10 +248,10 @@ export default function ProfilePage() {
 
                 {/* Personal info */}
                 <div className="rounded-xl border bg-card p-5 space-y-4">
-                  <h3 className="text-sm font-semibold text-foreground">{t("my_details")}</h3>
+                  <h3 className="text-sm font-semibold text-foreground">{t("profile.my_details")}</h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="flex flex-col gap-1.5">
-                      <label className="text-xs font-medium text-foreground">{t("first_name")}</label>
+                      <label className="text-xs font-medium text-foreground">{t("profile.first_name")}</label>
                       <input
                         type="text"
                         value={form.first_name || ""}
@@ -260,7 +260,7 @@ export default function ProfilePage() {
                       />
                     </div>
                     <div className="flex flex-col gap-1.5">
-                      <label className="text-xs font-medium text-foreground">{t("last_name")}</label>
+                      <label className="text-xs font-medium text-foreground">{t("profile.last_name")}</label>
                       <input
                         type="text"
                         value={form.last_name || ""}
@@ -271,7 +271,7 @@ export default function ProfilePage() {
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="flex flex-col gap-1.5">
-                      <label className="text-xs font-medium text-foreground">{t("email")}</label>
+                      <label className="text-xs font-medium text-foreground">{t("profile.email")}</label>
                       <input
                         type="email"
                         value={form.email}
@@ -280,7 +280,7 @@ export default function ProfilePage() {
                       />
                     </div>
                     <div className="flex flex-col gap-1.5">
-                      <label className="text-xs font-medium text-foreground">{t("phone")}</label>
+                      <label className="text-xs font-medium text-foreground">{t("profile.phone")}</label>
                       <input
                         type="tel"
                         value={form.phone || ""}
@@ -291,7 +291,7 @@ export default function ProfilePage() {
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="flex flex-col gap-1.5">
-                      <label className="text-xs font-medium text-foreground">{t("city")}</label>
+                      <label className="text-xs font-medium text-foreground">{t("profile.city")}</label>
                       <input
                         type="text"
                         value={form.city || ""}
@@ -300,7 +300,7 @@ export default function ProfilePage() {
                       />
                     </div>
                     <div className="flex flex-col gap-1.5">
-                      <label className="text-xs font-medium text-foreground">{t("region")}</label>
+                      <label className="text-xs font-medium text-foreground">{t("profile.region")}</label>
                       <input
                         type="text"
                         value={form.region || ""}
@@ -310,28 +310,28 @@ export default function ProfilePage() {
                     </div>
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-xs font-medium text-foreground">{t("bio")}</label>
+                    <label className="text-xs font-medium text-foreground">{t("profile.bio")}</label>
                     <textarea
                       value={form.bio || ""}
                       onChange={(e) => update("bio", e.target.value)}
                       rows={3}
                       className="w-full rounded-lg border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-2 focus:ring-[#ffb81b]/60 focus:border-transparent transition resize-none"
-                      placeholder={t("bio_placeholder")}
+                      placeholder={t("profile.bio_placeholder")}
                     />
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="flex flex-col gap-1.5">
-                      <label className="text-xs font-medium text-foreground">{t("title_position")}</label>
+                      <label className="text-xs font-medium text-foreground">{t("profile.title_position")}</label>
                       <input
                         type="text"
                         value={form.title || ""}
                         onChange={(e) => update("title", e.target.value)}
                         className="w-full rounded-lg border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-2 focus:ring-[#ffb81b]/60 focus:border-transparent transition"
-                        placeholder={t("title_placeholder")}
+                        placeholder={t("profile.title_placeholder")}
                       />
                     </div>
                     <div className="flex flex-col gap-1.5">
-                      <label className="text-xs font-medium text-foreground">{t("website")}</label>
+                      <label className="text-xs font-medium text-foreground">{t("profile.website")}</label>
                       <input
                         type="url"
                         value={form.website || ""}
@@ -341,7 +341,7 @@ export default function ProfilePage() {
                     </div>
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-xs font-medium text-foreground">{t("linkedin")}</label>
+                    <label className="text-xs font-medium text-foreground">{t("profile.linkedin")}</label>
                     <input
                       type="url"
                       value={form.linkedin_url || ""}
@@ -358,13 +358,13 @@ export default function ProfilePage() {
                     className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-input text-sm text-muted-foreground hover:text-destructive hover:border-destructive/30 transition"
                   >
                     <LogOut01 size={14} />
-                    {t("sign_out")}
+                    {t("profile.sign_out")}
                   </button>
                   <div className="flex items-center gap-3">
                     {saved && (
                       <span className="text-xs text-green-500 flex items-center gap-1">
                         <Check size={14} />
-                        {t("saved")}
+                        {t("profile.saved")}
                       </span>
                     )}
                     <button
@@ -372,7 +372,7 @@ export default function ProfilePage() {
                       disabled={saving}
                       className="px-6 py-2 rounded-lg bg-[#ffb81b] text-[#050a30] font-medium text-sm hover:bg-[#e5a318] transition disabled:opacity-50"
                     >
-                      {saving ? t("saving") : t("save")}
+                      {saving ? t("profile.saving") : t("profile.save")}
                     </button>
                   </div>
                 </div>
@@ -383,7 +383,7 @@ export default function ProfilePage() {
             {section === "password" && (
               <>
                 <div className="rounded-xl border bg-card p-5 space-y-4">
-                  <h3 className="text-sm font-semibold text-foreground">{t("password")}</h3>
+                  <h3 className="text-sm font-semibold text-foreground">{t("profile.password")}</h3>
 
                   {pwdError && (
                     <div className="flex items-center gap-2 rounded-lg border border-destructive/30 bg-destructive/5 px-4 py-3 text-sm text-destructive">
@@ -401,7 +401,7 @@ export default function ProfilePage() {
 
                   <form onSubmit={handlePasswordChange} className="space-y-4">
                     <div className="flex flex-col gap-1.5">
-                      <label className="text-xs font-medium text-foreground">{t("current_password")}</label>
+                      <label className="text-xs font-medium text-foreground">{t("profile.current_password")}</label>
                       <input
                         type="password"
                         value={pwd.current}
@@ -412,7 +412,7 @@ export default function ProfilePage() {
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="flex flex-col gap-1.5">
-                        <label className="text-xs font-medium text-foreground">{t("new_password")}</label>
+                        <label className="text-xs font-medium text-foreground">{t("profile.new_password")}</label>
                         <input
                           type="password"
                           value={pwd.new}
@@ -423,7 +423,7 @@ export default function ProfilePage() {
                         />
                       </div>
                       <div className="flex flex-col gap-1.5">
-                        <label className="text-xs font-medium text-foreground">{t("confirm_password")}</label>
+                        <label className="text-xs font-medium text-foreground">{t("profile.confirm_password")}</label>
                         <input
                           type="password"
                           value={pwd.confirm}
@@ -439,7 +439,7 @@ export default function ProfilePage() {
                       disabled={pwdSaving}
                       className="px-6 py-2 rounded-lg bg-[#ffb81b] text-[#050a30] font-medium text-sm hover:bg-[#e5a318] transition disabled:opacity-50"
                     >
-                      {pwdSaving ? t("updating") : t("update_password")}
+                      {pwdSaving ? t("profile.updating") : t("profile.update_password")}
                     </button>
                   </form>
                 </div>
@@ -450,33 +450,25 @@ export default function ProfilePage() {
             {section === "notifications" && (
               <>
                 <div className="rounded-xl border bg-card p-5 space-y-4">
-                  <h3 className="text-sm font-semibold text-foreground">{t("notifications")}</h3>
+                  <h3 className="text-sm font-semibold text-foreground">{t("profile.notifications")}</h3>
                   <div className="space-y-1">
                     {NOTIFICATION_KEYS.map(({ key, msg }) => (
                       <label
                         key={key}
                         className="flex items-center justify-between py-3 px-1 cursor-pointer group rounded-lg hover:bg-muted/50 transition"
                       >
-                        <span className="text-sm text-foreground">{t(msg)}</span>
-                        <button
-                          type="button"
+                        <span className="text-sm text-foreground">{t(`profile.${msg}`)}</span>
+                        <div
                           onClick={() => updateNotif(key, !(form.notifications as Record<string, boolean>)?.[key])}
                           className={cn(
-                            "relative w-10 h-6 rounded-full transition-colors shrink-0",
+                            "inline-flex items-center w-10 h-6 rounded-full transition-colors shrink-0 cursor-pointer",
                             (form.notifications as Record<string, boolean>)?.[key]
-                              ? "bg-[#ffb81b]"
-                              : "bg-muted-foreground/30"
+                              ? "bg-[#ffb81b] justify-end"
+                              : "bg-muted-foreground/30 justify-start"
                           )}
                         >
-                          <span
-                            className={cn(
-                              "absolute top-0.5 w-5 h-5 rounded-full bg-white shadow-sm transition-transform",
-                              (form.notifications as Record<string, boolean>)?.[key]
-                                ? isRtl ? "right-0.5 translate-x-0" : "left-0.5 translate-x-4"
-                                : isRtl ? "right-0.5" : "left-0.5"
-                            )}
-                          />
-                        </button>
+                          <span className="w-5 h-5 rounded-full bg-white shadow-sm mx-0.5" />
+                        </div>
                       </label>
                     ))}
                   </div>
@@ -486,7 +478,7 @@ export default function ProfilePage() {
                   {saved && (
                     <span className="text-xs text-green-500 flex items-center gap-1">
                       <Check size={14} />
-                      {t("saved")}
+                      {t("profile.saved")}
                     </span>
                   )}
                   <button
@@ -494,7 +486,7 @@ export default function ProfilePage() {
                     disabled={saving}
                     className="px-6 py-2 rounded-lg bg-[#ffb81b] text-[#050a30] font-medium text-sm hover:bg-[#e5a318] transition disabled:opacity-50"
                   >
-                    {saving ? t("saving") : t("save")}
+                    {saving ? t("profile.saving") : t("profile.save")}
                   </button>
                 </div>
               </>
