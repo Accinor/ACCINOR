@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { createClient } from "@/lib/supabase/server"
+import { getAdminClient } from "@/lib/supabase/admin"
 
 export async function POST(req: NextRequest) {
   const supabase = await createClient()
@@ -39,7 +40,9 @@ export async function POST(req: NextRequest) {
     profileData.notifications = notifications
   }
 
-  const { error } = await supabase.from("profiles").upsert(profileData, { onConflict: "id" })
+  const admin = getAdminClient()
+  const profiles = admin.from("profiles") as any
+  const { error } = await profiles.upsert(profileData, { onConflict: "id" })
 
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 })
