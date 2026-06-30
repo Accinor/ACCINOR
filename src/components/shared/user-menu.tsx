@@ -84,6 +84,15 @@ export function UserMenu() {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem
+          render={
+            <a href="/admin/profile" className="w-full flex items-center gap-2" />
+          }
+        >
+          <User01 size={16} />
+          Profile
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem
           variant="destructive"
           render={<button className="w-full flex items-center gap-2" />}
           onClick={handleLogout}
