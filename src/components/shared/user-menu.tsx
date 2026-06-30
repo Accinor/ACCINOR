@@ -87,7 +87,8 @@ export function UserMenu() {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem
-          render={<Link href={`/${locale}/profile`} className="w-full flex items-center gap-2" />}
+          render={<button className="w-full flex items-center gap-2" />}
+          onClick={() => { window.location.href = `/${locale}/profile` }}
         >
           <User01 size={16} />
           My Profile
