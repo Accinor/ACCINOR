@@ -63,6 +63,12 @@ export function AdminSidebar({ onLogout }: Props) {
 
   return (
     <aside className="w-64 border-r bg-card p-4 flex flex-col">
+      {/* Brand logo — backdoor to main site */}
+      <Link href="/" className="flex items-center gap-2 px-2 py-2 mb-4 border-b border-border">
+        <span className="text-lg font-bold text-[#ffb81b]">ACCINOR</span>
+        <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Admin</span>
+      </Link>
+
       {/* Profile section with dropdown */}
       <div className="relative mb-6" ref={dropdownRef}>
         <button

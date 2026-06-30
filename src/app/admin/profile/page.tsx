@@ -192,14 +192,14 @@ export default function AdminProfile() {
 
       {/* ──── PROFILE CARD ──── */}
       <div className="relative w-full bg-white/90 dark:bg-white/5 backdrop-blur-3xl rounded-2xl p-8 shadow-[12px_12px_12px_-20px_rgba(0,0,0,0.3)] transform-gpu">
-        <div className="absolute left-0 top-0 w-full h-24 bg-[#7d988a] dark:bg-[#4d5d54] rounded-2xl rounded-b-none z-0" />
+          <div className="absolute left-0 top-0 w-full h-24 bg-[#ffb81b] dark:bg-[#c99400] rounded-2xl rounded-b-none z-0" />
 
         <div className="relative z-10 flex flex-col items-center">
           <div className="w-24 h-24 rounded-full overflow-hidden border-[3px] border-white shadow-[0px_0px_6px_rgba(0,0,0,0.6)] -mt-12 mb-4 bg-[#f0f2f5] dark:bg-muted flex items-center justify-center">
             {profile.avatar_url ? (
               <img src={profile.avatar_url} alt="Avatar" className="w-full h-full object-cover" />
             ) : (
-              <span className="text-xl font-bold text-[#7d988a] dark:text-[#ffb81b]">{initials}</span>
+              <span className="text-xl font-bold text-[#ffb81b]">{initials}</span>
             )}
             {avatarUploading && (
               <div className="absolute inset-0 rounded-full bg-black/40 flex items-center justify-center">
@@ -267,7 +267,7 @@ export default function AdminProfile() {
       {/* ──── SAVE BAR ──── */}
       <div className="flex items-center justify-end gap-4">
         <button onClick={handleSave} disabled={saving}
-          className="px-8 py-2.5 rounded-xl bg-[#7d988a] hover:bg-[#4d5d54] text-white font-semibold text-sm transition-all disabled:opacity-50 flex items-center gap-2 shadow-sm hover:-translate-y-0.5">
+          className="px-8 py-2.5 rounded-xl bg-[#ffb81b] hover:bg-[#e5a318] text-[#050a30] font-semibold text-sm transition-all disabled:opacity-50 flex items-center gap-2 shadow-sm hover:-translate-y-0.5">
           {saving ? (
             <><span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /> Saving...</>
           ) : saved ? (
@@ -290,22 +290,22 @@ export default function AdminProfile() {
           <div className="space-y-3">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <input type="text" value={profile.first_name || ""} onChange={e => updateField("first_name", e.target.value)}
-                className="w-full rounded-lg border border-input bg-background py-2.5 px-3 text-sm outline-none focus:ring-2 focus:ring-[#7d988a] focus:border-transparent transition"
+                className="w-full rounded-lg border border-input bg-background py-2.5 px-3 text-sm outline-none focus:ring-2 focus:ring-[#ffb81b] focus:border-transparent transition"
                 placeholder="First Name" />
               <input type="text" value={profile.last_name || ""} onChange={e => updateField("last_name", e.target.value)}
-                className="w-full rounded-lg border border-input bg-background py-2.5 px-3 text-sm outline-none focus:ring-2 focus:ring-[#7d988a] focus:border-transparent transition"
+                className="w-full rounded-lg border border-input bg-background py-2.5 px-3 text-sm outline-none focus:ring-2 focus:ring-[#ffb81b] focus:border-transparent transition"
                 placeholder="Last Name" />
             </div>
             <input type="email" value={profile.email} disabled
               className="w-full rounded-lg border border-input bg-muted py-2.5 px-3 text-sm text-muted-foreground outline-none cursor-not-allowed" />
             <input type="tel" value={profile.phone || ""} onChange={e => updateField("phone", e.target.value)}
-              className="w-full rounded-lg border border-input bg-background py-2.5 px-3 text-sm outline-none focus:ring-2 focus:ring-[#7d988a] focus:border-transparent transition"
+              className="w-full rounded-lg border border-input bg-background py-2.5 px-3 text-sm outline-none focus:ring-2 focus:ring-[#ffb81b] focus:border-transparent transition"
               placeholder="+212 6XX XX XX XX" />
             <input type="text" value={profile.title || ""} onChange={e => updateField("title", e.target.value)}
-              className="w-full rounded-lg border border-input bg-background py-2.5 px-3 text-sm outline-none focus:ring-2 focus:ring-[#7d988a] focus:border-transparent transition"
+              className="w-full rounded-lg border border-input bg-background py-2.5 px-3 text-sm outline-none focus:ring-2 focus:ring-[#ffb81b] focus:border-transparent transition"
               placeholder="Title / Role" />
             <textarea value={profile.bio || ""} onChange={e => updateField("bio", e.target.value)} rows={3}
-              className="w-full rounded-lg border border-input bg-background py-2.5 px-3 text-sm outline-none focus:ring-2 focus:ring-[#7d988a] focus:border-transparent transition resize-none"
+              className="w-full rounded-lg border border-input bg-background py-2.5 px-3 text-sm outline-none focus:ring-2 focus:ring-[#ffb81b] focus:border-transparent transition resize-none"
               placeholder="Tell us about yourself..." />
           </div>
         </div>
@@ -320,10 +320,10 @@ export default function AdminProfile() {
               Social Links
             </h3>
             <input type="url" value={profile.website || ""} onChange={e => updateField("website", e.target.value)}
-              className="w-full rounded-lg border border-input bg-background py-2.5 px-3 text-sm outline-none focus:ring-2 focus:ring-[#7d988a] focus:border-transparent transition"
+              className="w-full rounded-lg border border-input bg-background py-2.5 px-3 text-sm outline-none focus:ring-2 focus:ring-[#ffb81b] focus:border-transparent transition"
               placeholder="Website URL" />
             <input type="url" value={profile.linkedin_url || ""} onChange={e => updateField("linkedin_url", e.target.value)}
-              className="w-full rounded-lg border border-input bg-background py-2.5 px-3 text-sm outline-none focus:ring-2 focus:ring-[#7d988a] focus:border-transparent transition"
+              className="w-full rounded-lg border border-input bg-background py-2.5 px-3 text-sm outline-none focus:ring-2 focus:ring-[#ffb81b] focus:border-transparent transition"
               placeholder="LinkedIn URL" />
           </div>
 
@@ -336,7 +336,7 @@ export default function AdminProfile() {
               Public Profile
             </h3>
             <input type="text" value={profile.position || ""} onChange={e => updateField("position", e.target.value)}
-              className="w-full rounded-lg border border-input bg-background py-2.5 px-3 text-sm outline-none focus:ring-2 focus:ring-[#7d988a] focus:border-transparent transition"
+              className="w-full rounded-lg border border-input bg-background py-2.5 px-3 text-sm outline-none focus:ring-2 focus:ring-[#ffb81b] focus:border-transparent transition"
               placeholder="e.g. CEO & Founder" />
             <p className="text-xs text-muted-foreground">This position appears next to your name on public pages.</p>
           </div>
@@ -358,14 +358,14 @@ export default function AdminProfile() {
           )}
           <form onSubmit={handlePasswordChange} className="space-y-3">
             <input type="password" value={passwordData.current} onChange={e => setPasswordData({ ...passwordData, current: e.target.value })}
-              className="w-full rounded-lg border border-input bg-background py-2.5 px-3 text-sm outline-none focus:ring-2 focus:ring-[#7d988a] focus:border-transparent transition"
+              className="w-full rounded-lg border border-input bg-background py-2.5 px-3 text-sm outline-none focus:ring-2 focus:ring-[#ffb81b] focus:border-transparent transition"
               placeholder="Current Password" required />
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <input type="password" value={passwordData.new} onChange={e => setPasswordData({ ...passwordData, new: e.target.value })}
-                className="w-full rounded-lg border border-input bg-background py-2.5 px-3 text-sm outline-none focus:ring-2 focus:ring-[#7d988a] focus:border-transparent transition"
+                className="w-full rounded-lg border border-input bg-background py-2.5 px-3 text-sm outline-none focus:ring-2 focus:ring-[#ffb81b] focus:border-transparent transition"
                 placeholder="New Password" minLength={6} required />
               <input type="password" value={passwordData.confirm} onChange={e => setPasswordData({ ...passwordData, confirm: e.target.value })}
-                className="w-full rounded-lg border border-input bg-background py-2.5 px-3 text-sm outline-none focus:ring-2 focus:ring-[#7d988a] focus:border-transparent transition"
+                className="w-full rounded-lg border border-input bg-background py-2.5 px-3 text-sm outline-none focus:ring-2 focus:ring-[#ffb81b] focus:border-transparent transition"
                 placeholder="Confirm" minLength={6} required />
             </div>
             <button type="submit" disabled={passwordChanging}
@@ -393,7 +393,7 @@ export default function AdminProfile() {
               <label key={item.key} className="flex items-center justify-between py-2 cursor-pointer group">
                 <span className="text-sm text-foreground">{item.label}</span>
                 <button type="button" onClick={() => updateNotification(item.key, !profile.notifications?.[item.key])}
-                  className={`relative w-10 h-6 rounded-full transition-colors ${profile.notifications?.[item.key] ? "bg-[#7d988a]" : "bg-muted-foreground/30"}`}>
+                  className={`relative w-10 h-6 rounded-full transition-colors ${profile.notifications?.[item.key] ? "bg-[#ffb81b]" : "bg-muted-foreground/30"}`}>
                   <span className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white shadow-sm transition-transform ${profile.notifications?.[item.key] ? "translate-x-4" : ""}`} />
                 </button>
               </label>
