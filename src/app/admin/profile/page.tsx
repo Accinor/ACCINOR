@@ -8,6 +8,8 @@ type Profile = {
   id: string
   email: string
   full_name: string | null
+  first_name: string | null
+  last_name: string | null
   phone: string | null
   region: string | null
   city: string | null
@@ -94,7 +96,8 @@ export default function AdminProfile() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          full_name: profile.full_name, phone: profile.phone,
+          first_name: profile.first_name, last_name: profile.last_name,
+          phone: profile.phone,
           region: profile.region, city: profile.city,
           bio: profile.bio, title: profile.title,
           website: profile.website, linkedin_url: profile.linkedin_url,
@@ -163,7 +166,7 @@ export default function AdminProfile() {
     )
   }
 
-  const displayName = profile.full_name || profile.email.split("@")[0]
+  const displayName = [profile.first_name, profile.last_name].filter(Boolean).join(" ") || profile.full_name || profile.email.split("@")[0]
   const initials = displayName.split(" ").map((n: string) => n[0]).join("").toUpperCase().slice(0, 2)
 
   return (
@@ -285,9 +288,14 @@ export default function AdminProfile() {
             Personal Information
           </h3>
           <div className="space-y-3">
-            <input type="text" value={profile.full_name || ""} onChange={e => updateField("full_name", e.target.value)}
-              className="w-full rounded-lg border border-input bg-background py-2.5 px-3 text-sm outline-none focus:ring-2 focus:ring-[#7d988a] focus:border-transparent transition"
-              placeholder="Full Name" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <input type="text" value={profile.first_name || ""} onChange={e => updateField("first_name", e.target.value)}
+                className="w-full rounded-lg border border-input bg-background py-2.5 px-3 text-sm outline-none focus:ring-2 focus:ring-[#7d988a] focus:border-transparent transition"
+                placeholder="First Name" />
+              <input type="text" value={profile.last_name || ""} onChange={e => updateField("last_name", e.target.value)}
+                className="w-full rounded-lg border border-input bg-background py-2.5 px-3 text-sm outline-none focus:ring-2 focus:ring-[#7d988a] focus:border-transparent transition"
+                placeholder="Last Name" />
+            </div>
             <input type="email" value={profile.email} disabled
               className="w-full rounded-lg border border-input bg-muted py-2.5 px-3 text-sm text-muted-foreground outline-none cursor-not-allowed" />
             <input type="tel" value={profile.phone || ""} onChange={e => updateField("phone", e.target.value)}
