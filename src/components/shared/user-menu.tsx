@@ -51,21 +51,18 @@ export function UserMenu() {
     <DropdownMenu>
       <DropdownMenuTrigger
         render={
-          <button className="hidden sm:flex items-center gap-2 px-2 py-1.5 rounded-full border border-white/10 hover:border-white/30 transition-colors cursor-default">
+          <button className="hidden sm:flex items-center justify-center w-9 h-9 rounded-full border border-white/10 hover:border-white/30 transition-colors cursor-default">
             {profile.avatar_url ? (
               <img
                 src={profile.avatar_url}
                 alt=""
-                className="w-7 h-7 rounded-full object-cover"
+                className="w-8 h-8 rounded-full object-cover"
               />
             ) : (
-              <span className="w-7 h-7 rounded-full bg-[#ffb81b]/20 text-[#ffb81b] flex items-center justify-center text-xs font-semibold">
+              <span className="w-8 h-8 rounded-full bg-[#ffb81b]/20 text-[#ffb81b] flex items-center justify-center text-xs font-semibold">
                 {initials}
               </span>
             )}
-            <span className="text-sm text-white/80 max-w-[100px] truncate hidden md:block">
-              {profile.full_name || profile.email}
-            </span>
           </button>
         }
       />
@@ -91,7 +88,7 @@ export function UserMenu() {
           onClick={() => { window.location.href = `/${locale}/profile` }}
         >
           <User01 size={16} />
-          My Profile
+          Profile
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem
