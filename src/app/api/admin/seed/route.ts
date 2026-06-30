@@ -1,10 +1,8 @@
 import { NextResponse } from "next/server"
 import { getAdminClient } from "@/lib/supabase/admin"
+import { ADMIN_ACCOUNTS } from "@/lib/admin"
 
-const ADMINS = [
-  { email: "yassin24624@gmail.com", password: "AccinorAdmin2026!1" },
-  { email: "saad.ofqir.1995@gmail.com", password: "AccinorAdmin2026!2" },
-]
+const ADMINS = ADMIN_ACCOUNTS
 
 export async function POST() {
   try {

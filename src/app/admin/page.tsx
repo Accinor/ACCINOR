@@ -1,48 +1,41 @@
-"use client"
+import { createClient } from "@/lib/supabase/server"
 
-import { useEffect, useState } from "react"
-import { createClient } from "@/lib/supabase/client"
+export const dynamic = "force-dynamic"
 
-export default function AdminDashboard() {
-  const supabase = createClient()
-  const [stats, setStats] = useState({
-    consultations: 0,
-    projects: 0,
-    contacts: 0,
-    posts: 0,
-  })
+export default async function AdminDashboard() {
+  const supabase = await createClient()
 
-  useEffect(() => {
-    Promise.all([
-      supabase.from("consultation_requests").select("*", { count: "exact", head: true }),
-      supabase.from("project_submissions").select("*", { count: "exact", head: true }),
-      supabase.from("contacts").select("*", { count: "exact", head: true }),
-      supabase.from("blog_posts").select("*", { count: "exact", head: true }),
-    ]).then(([consultations, projects, contacts, posts]) => {
-      setStats({
-        consultations: consultations.count ?? 0,
-        projects: projects.count ?? 0,
-        contacts: contacts.count ?? 0,
-        posts: posts.count ?? 0,
-      })
-    })
-  }, [])
+  const { count: requests } = await supabase
+    .from("project_submissions")
+    .select("*", { count: "exact", head: true })
+
+  const { count: consultations } = await supabase
+    .from("consultation_requests")
+    .select("*", { count: "exact", head: true })
+
+  const { count: leads } = await supabase
+    .from("contacts")
+    .select("*", { count: "exact", head: true })
+
+  const { count: posts } = await supabase
+    .from("blog_posts")
+    .select("*", { count: "exact", head: true })
 
   const cards = [
-    { label: "Consultations", value: stats.consultations },
-    { label: "Project Submissions", value: stats.projects },
-    { label: "Contacts", value: stats.contacts },
-    { label: "Blog Posts", value: stats.posts },
+    { label: "Project Requests", value: requests ?? 0 },
+    { label: "Consultations", value: consultations ?? 0 },
+    { label: "Leads", value: leads ?? 0 },
+    { label: "Blog Posts", value: posts ?? 0 },
   ]
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-8">Dashboard</h1>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <h1 className="text-2xl font-bold mb-6">Dashboard</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {cards.map((card) => (
-          <div key={card.label} className="rounded-lg border p-6">
-            <div className="text-3xl font-bold text-primary">{card.value}</div>
-            <div className="text-sm text-muted-foreground mt-1">{card.label}</div>
+          <div key={card.label} className="rounded-xl border bg-card p-6">
+            <p className="text-sm text-muted-foreground">{card.label}</p>
+            <p className="text-3xl font-bold mt-1">{card.value}</p>
           </div>
         ))}
       </div>

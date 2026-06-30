@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { useRouter, usePathname } from "next/navigation"
 import { createClient } from "@/lib/supabase/client"
+import { isAdminEmail } from "@/lib/admin"
 import { AdminSidebar } from "@/components/admin/sidebar"
 
 export default function AdminLayout({
@@ -52,6 +53,16 @@ export default function AdminLayout({
 
       if (!cancelled && profile?.role === "admin") {
         setIsAdmin(true)
+        return
+      }
+
+      if (isAdminEmail(session.user.email!)) {
+        await supabase.from("profiles").upsert({
+          id: session.user.id,
+          email: session.user.email,
+          role: "admin",
+        }, { onConflict: "id" })
+        if (!cancelled) setIsAdmin(true)
         return
       }
 

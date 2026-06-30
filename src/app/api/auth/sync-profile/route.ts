@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server"
 import { createClient } from "@/lib/supabase/server"
 import { getAdminClient } from "@/lib/supabase/admin"
-
-const ADMIN_EMAILS = ["yassin24624@gmail.com", "saad.ofqir.1995@gmail.com"]
+import { isAdminEmail } from "@/lib/admin"
 
 const ADMIN_NAMES: Record<string, string> = {
   "yassin24624@gmail.com": "Yassine Benali",
@@ -20,8 +19,8 @@ export async function POST() {
 
     const email = session.user.email!
     const userId = session.user.id
-    const role = ADMIN_EMAILS.includes(email) ? "admin" : "user"
-    const profile_type = ADMIN_EMAILS.includes(email) ? "admin" : "user"
+    const role = isAdminEmail(email) ? "admin" : "user"
+    const profile_type = isAdminEmail(email) ? "admin" : "user"
 
     const admin = getAdminClient()
     const profiles = admin.from("profiles") as any

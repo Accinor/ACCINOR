@@ -54,7 +54,7 @@ export function ServicesSection() {
 
         <StaggerReveal staggerDelay={0.08}>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {(["consulting", "coaching", "business_plan", "training", "funding_support", "feasibility"] as const).map(
+            {(["consulting", "coaching", "business_plan", "training", "funding", "guidance"] as const).map(
               (service, i) => {
                 const Icon = serviceIcons[i]
                 return (
@@ -69,10 +69,10 @@ export function ServicesSection() {
                           <Icon size={24} color="#ffb81b" />
                         </motion.div>
                         <h3 className="text-xl font-semibold text-foreground mb-2">
-                          {t(`services_list.${service}.title`)}
+                          {t(`items.${service}.title`)}
                         </h3>
                         <p className="text-muted-foreground text-sm leading-relaxed">
-                          {t(`services_list.${service}.description`)}
+                          {t(`items.${service}.desc`)}
                         </p>
                       </div>
                     </MagicBentoCard>

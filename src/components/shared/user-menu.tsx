@@ -2,10 +2,9 @@
 
 import { useTranslations } from "next-intl"
 import { useParams, useRouter } from "next/navigation"
-import { useCallback, useEffect, useRef, useState } from "react"
 import Link from "next/link"
-import { createClient } from "@/lib/supabase/client"
 import { LogOut01, User01 } from "@untitledui/icons"
+import { useAuth } from "@/contexts/auth"
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -15,52 +14,12 @@ import {
   DropdownMenuLabel,
 } from "@/components/ui/dropdown-menu"
 
-interface Profile {
-  id: string
-  email: string
-  full_name?: string
-  avatar_url?: string
-  role?: string
-}
-
 export function UserMenu() {
   const t = useTranslations("common")
   const params = useParams()
   const locale = params.locale as string
   const router = useRouter()
-  const [profile, setProfile] = useState<Profile | null>(null)
-  const [loading, setLoading] = useState(true)
-  const mounted = useRef(true)
-
-  useEffect(() => {
-    mounted.current = true
-    async function load() {
-      try {
-        const supabase = createClient()
-        if (!supabase) { if (mounted.current) setLoading(false); return }
-        const { data: { session } } = await supabase.auth.getSession()
-        if (!session || !mounted.current) { if (mounted.current) setLoading(false); return }
-        const res = await fetch("/api/auth/profile")
-        if (res.ok && mounted.current) {
-          const p = await res.json()
-          setProfile(p)
-        }
-      } catch {
-        // ignore
-      } finally {
-        if (mounted.current) setLoading(false)
-      }
-    }
-    load()
-    return () => { mounted.current = false }
-  }, [])
-
-  const handleLogout = useCallback(async () => {
-    const supabase = createClient()
-    if (supabase) await supabase.auth.signOut()
-    setProfile(null)
-    router.refresh()
-  }, [router])
+  const { profile, loading, signOut } = useAuth()
 
   if (loading) return <div className="w-8 h-8 rounded-full bg-white/10 animate-pulse hidden sm:block" />
 
@@ -82,6 +41,11 @@ export function UserMenu() {
     .join("")
     .toUpperCase()
     .slice(0, 2)
+
+  const handleLogout = async () => {
+    await signOut()
+    router.refresh()
+  }
 
   return (
     <DropdownMenu>

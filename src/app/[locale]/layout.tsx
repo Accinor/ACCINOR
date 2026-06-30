@@ -5,6 +5,7 @@ import { routing } from "@/i18n/routing"
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 import { SplashCursorWrapper } from "@/components/shared/splash-cursor-wrapper"
+import { AuthProvider } from "@/contexts/auth"
 import { EditModeProvider } from "@/contexts/edit-mode"
 import { EditModeToggle } from "@/components/shared/edit-mode-toggle"
 import { SpeedInsights } from "@vercel/speed-insights/next"
@@ -67,12 +68,14 @@ export default async function LocaleLayout({ children, params }: Props) {
       <body className="min-h-screen flex flex-col">
         <NextIntlClientProvider messages={messages}>
           <SplashCursorWrapper />
-          <EditModeProvider>
-            <Navbar />
-            <main className="flex-1 pt-16">{children}</main>
-            <Footer />
-            <EditModeToggle />
-          </EditModeProvider>
+          <AuthProvider>
+            <EditModeProvider>
+              <Navbar />
+              <main className="flex-1 pt-16">{children}</main>
+              <Footer />
+              <EditModeToggle />
+            </EditModeProvider>
+          </AuthProvider>
         </NextIntlClientProvider>
         <SpeedInsights />
       </body>
