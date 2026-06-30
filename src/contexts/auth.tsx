@@ -7,6 +7,8 @@ export interface Profile {
   id: string
   email: string
   full_name?: string
+  first_name?: string
+  last_name?: string
   phone?: string
   region?: string
   city?: string
@@ -16,6 +18,9 @@ export interface Profile {
   bio?: string
   website?: string
   title?: string
+  linkedin_url?: string
+  position?: string
+  notifications?: Record<string, boolean>
   has_project?: boolean
   project_description?: string
   project_stage?: string
