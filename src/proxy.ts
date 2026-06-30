@@ -9,8 +9,13 @@ const intlMiddleware = createMiddleware({
 })
 
 export async function proxy(request: NextRequest) {
+  const defaultLocale = request.cookies.get('NEXT_LOCALE')?.value || 'ar'
+
   if (request.nextUrl.pathname === '/') {
-    return NextResponse.redirect(new URL('/ar', request.url))
+    if (request.nextUrl.searchParams.has('code') || request.nextUrl.searchParams.has('token')) {
+      return NextResponse.redirect(new URL(`/${defaultLocale}/auth/callback${request.nextUrl.search}`, request.url))
+    }
+    return NextResponse.redirect(new URL(`/${defaultLocale}`, request.url))
   }
 
   const intlResponse = intlMiddleware(request)
