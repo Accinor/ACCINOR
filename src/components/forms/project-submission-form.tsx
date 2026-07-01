@@ -59,9 +59,17 @@ export function ProjectSubmissionForm() {
   }
 
   const cities = [
-    "Oujda", "Nador", "Berkane", "Taourirt",
-    "Jerada", "Figuig", "Driouch", "Guercif",
+    { value: "Oujda", key: "oujda" },
+    { value: "Nador", key: "nador" },
+    { value: "Berkane", key: "berkane" },
+    { value: "Taourirt", key: "taourirt" },
+    { value: "Jerada", key: "jerada" },
+    { value: "Figuig", key: "figuig" },
+    { value: "Driouch", key: "driouch" },
+    { value: "Guercif", key: "guercif" },
   ]
+
+  const stages = ["idea", "planning", "development", "launch"] as const
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -89,13 +97,14 @@ export function ProjectSubmissionForm() {
         <Label htmlFor="project_stage">{t("stage")}</Label>
         <Select name="project_stage" required>
           <SelectTrigger>
-            <SelectValue placeholder="Select stage" />
+            <SelectValue placeholder={t("select_stage")} />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="idea">Idea</SelectItem>
-            <SelectItem value="planning">Planning</SelectItem>
-            <SelectItem value="development">Development</SelectItem>
-            <SelectItem value="launch">Ready to Launch</SelectItem>
+            {stages.map((stage) => (
+              <SelectItem key={stage} value={stage}>
+                {t(`stages.${stage}`)}
+              </SelectItem>
+            ))}
           </SelectContent>
         </Select>
       </div>
@@ -103,12 +112,12 @@ export function ProjectSubmissionForm() {
         <Label htmlFor="city">{t("city")}</Label>
         <Select name="city" required>
           <SelectTrigger>
-            <SelectValue placeholder="Select city" />
+            <SelectValue placeholder={t("select_city")} />
           </SelectTrigger>
           <SelectContent>
             {cities.map((city) => (
-              <SelectItem key={city} value={city}>
-                {city}
+              <SelectItem key={city.value} value={city.value}>
+                {t(`cities.${city.key}`)}
               </SelectItem>
             ))}
           </SelectContent>
@@ -119,7 +128,7 @@ export function ProjectSubmissionForm() {
         <Input id="funding_needed" name="funding_needed" />
       </div>
       {error && <p className="text-sm text-destructive">{error}</p>}
-      <Button type="submit">Submit</Button>
+      <Button type="submit">{t("button")}</Button>
     </form>
   )
 }

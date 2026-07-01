@@ -1,11 +1,41 @@
 import { NextResponse } from "next/server"
 import { getAdminClient } from "@/lib/supabase/admin"
-import { ADMIN_ACCOUNTS } from "@/lib/admin"
+import { ADMIN_EMAILS } from "@/lib/admin"
+import { requireAdmin } from "@/lib/auth-guard"
 
-const ADMINS = ADMIN_ACCOUNTS
+// Seed/reset admin credentials from the ADMIN_SEED_PASSWORDS env var.
+// Format: "email1:password1,email2:password2". Only emails present in the
+// admin whitelist are accepted. No credentials are stored in source code.
+function getSeedAccounts(): { email: string; password: string }[] {
+  const raw = process.env.ADMIN_SEED_PASSWORDS
+  if (!raw) return []
+  return raw
+    .split(",")
+    .map((pair) => {
+      const idx = pair.indexOf(":")
+      if (idx === -1) return null
+      return { email: pair.slice(0, idx).trim(), password: pair.slice(idx + 1).trim() }
+    })
+    .filter(
+      (a): a is { email: string; password: string } =>
+        !!a && !!a.email && !!a.password && ADMIN_EMAILS.includes(a.email.toLowerCase())
+    )
+}
 
 export async function POST() {
   try {
+    if (!(await requireAdmin())) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 })
+    }
+
+    const ADMINS = getSeedAccounts()
+    if (ADMINS.length === 0) {
+      return NextResponse.json(
+        { error: "No seed accounts configured. Set ADMIN_SEED_PASSWORDS env var (email:password,...)." },
+        { status: 400 }
+      )
+    }
+
     const admin = getAdminClient()
     const profiles = admin.from("profiles") as any
     const results: { email: string; success: boolean; error?: string }[] = []

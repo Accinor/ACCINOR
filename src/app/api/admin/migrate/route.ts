@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
 import { getAdminClient } from "@/lib/supabase/admin"
+import { requireAdmin } from "@/lib/auth-guard"
 
 const MIGRATIONS = [
   `ALTER TABLE profiles ADD COLUMN IF NOT EXISTS avatar_url TEXT;`,
@@ -13,6 +14,9 @@ const MIGRATIONS = [
 ]
 
 export async function GET() {
+  if (!(await requireAdmin())) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 })
+  }
   return NextResponse.json({
     sql: MIGRATIONS.join("\n"),
     instructions:
@@ -23,6 +27,9 @@ export async function GET() {
 }
 
 export async function POST() {
+  if (!(await requireAdmin())) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 })
+  }
   const managementToken = process.env.SUPABASE_MANAGEMENT_ACCESS_TOKEN
   const projectRef = process.env.NEXT_PUBLIC_SUPABASE_URL?.match(
     /https:\/\/(.+)\.supabase\.co/

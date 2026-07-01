@@ -73,14 +73,14 @@ export function ConsultationForm() {
         <Label htmlFor="service_type">{t("service")}</Label>
         <Select name="service_type" required>
           <SelectTrigger>
-            <SelectValue placeholder="Select service" />
+            <SelectValue placeholder={t("select_service")} />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="consulting">Consulting</SelectItem>
-            <SelectItem value="coaching">Coaching</SelectItem>
-            <SelectItem value="business_plan">Business Plan</SelectItem>
-            <SelectItem value="funding">Funding Support</SelectItem>
-            <SelectItem value="training">Training</SelectItem>
+            <SelectItem value="consulting">{t("services.consulting")}</SelectItem>
+            <SelectItem value="coaching">{t("services.coaching")}</SelectItem>
+            <SelectItem value="business_plan">{t("services.business_plan")}</SelectItem>
+            <SelectItem value="funding">{t("services.funding")}</SelectItem>
+            <SelectItem value="training">{t("services.training")}</SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -89,7 +89,7 @@ export function ConsultationForm() {
         <Textarea id="message" name="message" />
       </div>
       {error && <p className="text-sm text-destructive">{error}</p>}
-      <Button type="submit">Submit</Button>
+      <Button type="submit">{t("button")}</Button>
     </form>
   )
 }

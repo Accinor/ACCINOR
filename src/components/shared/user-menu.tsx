@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl"
 import { useParams, useRouter } from "next/navigation"
 import Link from "next/link"
-import { LogOut01, User01 } from "@untitledui/icons"
+import { LogOut01, User01, Grid01 } from "@untitledui/icons"
 import { useAuth } from "@/contexts/auth"
 import {
   DropdownMenu,
@@ -19,7 +19,7 @@ export function UserMenu() {
   const params = useParams()
   const locale = params.locale as string
   const router = useRouter()
-  const { profile, loading, signOut } = useAuth()
+  const { profile, loading, isAdmin, signOut } = useAuth()
 
   if (loading) return <div className="w-8 h-8 rounded-full bg-white/10 animate-pulse hidden sm:block" />
 
@@ -83,9 +83,17 @@ export function UserMenu() {
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => router.push("/admin/profile")}>
+        {isAdmin && (
+          <DropdownMenuItem onClick={() => router.push("/admin")}>
+            <Grid01 size={16} />
+            {t("profile.dashboard")}
+          </DropdownMenuItem>
+        )}
+        <DropdownMenuItem
+          onClick={() => router.push(isAdmin ? "/admin/profile" : `/${locale}/profile`)}
+        >
           <User01 size={16} />
-          Profile
+          {t("profile.title")}
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem
@@ -94,7 +102,7 @@ export function UserMenu() {
           onClick={handleLogout}
         >
           <LogOut01 size={16} />
-          {t("admin.logout")}
+          {t("profile.sign_out")}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

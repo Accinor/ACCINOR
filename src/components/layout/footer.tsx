@@ -7,6 +7,7 @@ import { Mail01, MarkerPin01, Phone } from "@untitledui/icons"
 
 export function Footer() {
   const t = useTranslations("common")
+  const info = useTranslations("contact.info")
   const params = useParams()
   const locale = params.locale as string
 
@@ -110,20 +111,20 @@ export function Footer() {
 
           <div>
             <h4 className="font-semibold mb-4 text-section-foreground/90">
-              {locale === "ar" ? "اتصل بنا" : "Contact"}
+              {t("footer.contact")}
             </h4>
             <ul className="space-y-3">
               <li className="flex items-start gap-3 text-sm text-section-foreground/50">
                 <MarkerPin01 size={16} className="mt-0.5 text-[#ffb81b] shrink-0" />
-                <span>Oriental Region, Morocco</span>
+                <span>{info("address")}</span>
               </li>
               <li className="flex items-start gap-3 text-sm text-section-foreground/50">
                 <Mail01 size={16} className="mt-0.5 text-[#ffb81b] shrink-0" />
-                <span>contact@accinor.ma</span>
+                <span>{info("email")}</span>
               </li>
               <li className="flex items-start gap-3 text-sm text-section-foreground/50">
                 <Phone size={16} className="mt-0.5 text-[#ffb81b] shrink-0" />
-                <span>+212 5XX XX XX XX</span>
+                <span>{info("phone")}</span>
               </li>
             </ul>
           </div>

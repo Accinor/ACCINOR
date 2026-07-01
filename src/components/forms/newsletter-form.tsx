@@ -1,10 +1,13 @@
 "use client"
 
 import { useState } from "react"
+import { useTranslations } from "next-intl"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 
 export function NewsletterForm() {
+  const t = useTranslations("newsletter")
+  const tc = useTranslations("common.cta")
   const [email, setEmail] = useState("")
   const [submitted, setSubmitted] = useState(false)
 
@@ -20,21 +23,21 @@ export function NewsletterForm() {
   }
 
   if (submitted) {
-    return <p className="text-sm text-accent">Subscribed successfully!</p>
+    return <p className="text-sm text-accent">{t("success")}</p>
   }
 
   return (
     <form onSubmit={handleSubmit} className="flex gap-2">
       <Input
         type="email"
-        placeholder="your@email.com"
+        placeholder={t("placeholder")}
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         required
         className="max-w-xs"
       />
       <Button type="submit" size="sm">
-        Subscribe
+        {tc("subscribe")}
       </Button>
     </form>
   )

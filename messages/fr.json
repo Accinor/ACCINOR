@@ -33,11 +33,13 @@
     },
     "footer": {
       "rights": "Tous droits réservés à ACCINOR",
-      "description": "Plateforme spécialisée dans le soutien à l'entrepreneuriat, l'innovation et l'accompagnement professionnel dans la région de l'Oriental"
+      "description": "Plateforme spécialisée dans le soutien à l'entrepreneuriat, l'innovation et l'accompagnement professionnel dans la région de l'Oriental",
+      "contact": "Contact"
     },
     "profile": {
       "title": "Profil",
       "subtitle": "Gérez vos informations personnelles et vos préférences.",
+      "dashboard": "Tableau de bord",
       "settings": "Paramètres",
       "my_details": "Mes informations",
       "password": "Mot de passe",
@@ -220,12 +222,52 @@
   },
   "programs": {
     "title": "Programmes de formation",
-    "subtitle": "Des programmes de formation professionnelle pour renforcer vos compétences entrepreneuriales",
-    "notice": "Ceci est un contenu de démonstration — Demo Content"
+    "subtitle": "Une formation pratique pour renforcer vos compétences entrepreneuriales",
+    "intro": "Nos programmes transforment le savoir en action. Chacun est construit autour de projets réels, animé par des coachs expérimentés, et conçu pour les entrepreneurs de la région de l'Oriental — des porteurs de projet débutants aux entreprises en croissance.",
+    "items": {
+      "fundamentals": { "title": "Fondamentaux de l'entrepreneuriat", "desc": "De l'idée au projet : validez votre concept, comprenez votre marché et adoptez l'état d'esprit d'un entrepreneur qui réussit." },
+      "business_model": { "title": "Modèle et plan d'affaires", "desc": "Concevez un modèle économique clair et un plan d'affaires professionnel qui convainc partenaires et financeurs." },
+      "financial": { "title": "Culture financière", "desc": "Maîtrisez le budget, la tarification, la trésorerie et des projections financières réalistes pour votre projet." },
+      "marketing": { "title": "Marketing et ventes", "desc": "Attirez et fidélisez vos clients grâce à des techniques concrètes de marketing, de branding et de vente pour les petites entreprises." },
+      "pitch": { "title": "Pitch et financement", "desc": "Préparez un pitch convaincant et les documents nécessaires pour approcher banques, programmes et investisseurs." },
+      "digital": { "title": "Compétences numériques", "desc": "Utilisez les outils numériques qui vous aident à gérer, promouvoir et développer votre entreprise en ligne." }
+    },
+    "format": {
+      "title": "Comment nous formons",
+      "workshops": { "title": "Ateliers de groupe", "desc": "Des sessions interactives avec d'autres entrepreneurs pour apprendre en pratiquant." },
+      "individual": { "title": "Coaching individuel", "desc": "Un accompagnement personnalisé axé sur votre projet et vos objectifs." },
+      "cohort": { "title": "Cohortes de programme", "desc": "Des parcours structurés sur plusieurs semaines qui vous mènent de l'idée au lancement." }
+    },
+    "cta": {
+      "title": "Prêt à développer vos compétences ?",
+      "desc": "Réservez une consultation gratuite et nous vous aiderons à choisir le programme adapté à votre étape.",
+      "button": "Réserver une consultation"
+    }
   },
   "funding": {
     "title": "Aide au financement",
-    "subtitle": "Nous vous aidons à accéder aux sources de financement adaptées à votre projet"
+    "subtitle": "Nous vous aidons à accéder au financement adapté à votre projet",
+    "intro": "De nombreux bons projets ne sont jamais financés — non par manque de potentiel, mais par manque de préparation. Nous vous aidons à devenir finançable et vous orientons vers les opportunités adaptées à votre projet.",
+    "items": {
+      "readiness": { "title": "Préparation au financement", "desc": "Nous évaluons votre projet et vous disons honnêtement ce qu'il faut pour devenir finançable." },
+      "preparation": { "title": "Préparation du dossier", "desc": "Plan d'affaires, projections financières et dossier de financement complet prêt à déposer." },
+      "guidance": { "title": "Orientation vers les programmes", "desc": "Nous vous aidons à identifier les subventions, prêts et programmes de soutien adaptés à votre projet." },
+      "application": { "title": "Accompagnement à la demande", "desc": "Nous vous guidons étape par étape dans la demande et les documents requis." },
+      "pitch": { "title": "Préparation du pitch", "desc": "Entraînez-vous et affinez le pitch que vous présenterez aux banques, programmes et investisseurs." },
+      "followup": { "title": "Suivi après financement", "desc": "Un accompagnement continu après le financement pour bien l'utiliser et rester sur la bonne voie." }
+    },
+    "process": {
+      "title": "Comment ça marche",
+      "step1": "Diagnostic",
+      "step2": "Préparation",
+      "step3": "Demande",
+      "step4": "Suivi"
+    },
+    "cta": {
+      "title": "À la recherche de financement ?",
+      "desc": "Réservez une consultation gratuite et nous tracerons votre chemin vers le bon financement.",
+      "button": "Réserver une consultation"
+    }
   },
   "blog": {
     "title": "Blog",
@@ -241,6 +283,7 @@
       "email": "Email",
       "phone": "Téléphone",
       "message": "Votre message",
+      "button": "Envoyer",
       "success": "Votre message a été envoyé avec succès. Nous vous contacterons bientôt."
     },
     "info": {
@@ -257,9 +300,22 @@
       "email": "Email",
       "phone": "Téléphone",
       "service": "Type de service",
+      "select_service": "Choisir un service",
+      "services": {
+        "consulting": "Conseil individuel",
+        "coaching": "Accompagnement personnel",
+        "business_plan": "Plan d'affaires",
+        "funding": "Soutien au financement",
+        "training": "Formation"
+      },
       "message": "Brève description de votre projet",
+      "button": "Envoyer",
       "success": "Votre demande de consultation a été envoyée avec succès. Nous vous contacterons bientôt."
     }
+  },
+  "newsletter": {
+    "placeholder": "votre@email.com",
+    "success": "Inscription réussie !"
   },
   "project_submission": {
     "title": "Soumettre votre projet",
@@ -271,8 +327,27 @@
       "project_name": "Nom du projet",
       "description": "Description du projet",
       "stage": "Phase du projet",
+      "select_stage": "Choisir une phase",
+      "stages": {
+        "idea": "Idée",
+        "planning": "Planification",
+        "development": "Développement",
+        "launch": "Prêt à lancer"
+      },
       "city": "Ville",
+      "select_city": "Choisir une ville",
+      "cities": {
+        "oujda": "Oujda",
+        "nador": "Nador",
+        "berkane": "Berkane",
+        "taourirt": "Taourirt",
+        "jerada": "Jerada",
+        "figuig": "Figuig",
+        "driouch": "Driouch",
+        "guercif": "Guercif"
+      },
       "funding": "Financement requis",
+      "button": "Envoyer",
       "success": "Votre projet a été reçu avec succès. Notre équipe l'étudiera et vous contactera."
     }
   },

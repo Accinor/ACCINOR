@@ -33,11 +33,13 @@
     },
     "footer": {
       "rights": "All rights reserved to ACCINOR",
-      "description": "A specialized platform for entrepreneurship support, innovation, and professional coaching in the Oriental region"
+      "description": "A specialized platform for entrepreneurship support, innovation, and professional coaching in the Oriental region",
+      "contact": "Contact"
     },
     "profile": {
       "title": "Profile",
       "subtitle": "Manage your personal information and preferences.",
+      "dashboard": "Dashboard",
       "settings": "Settings",
       "my_details": "My Details",
       "password": "Password",
@@ -220,12 +222,52 @@
   },
   "programs": {
     "title": "Training Programs",
-    "subtitle": "Professional training programs to enhance your entrepreneurial skills",
-    "notice": "This is demo content — Demo Content"
+    "subtitle": "Practical training to sharpen your entrepreneurial skills",
+    "intro": "Our programs turn knowledge into action. Each one is built around real projects, led by experienced coaches, and designed for entrepreneurs in the Oriental region — from first-time founders to growing businesses.",
+    "items": {
+      "fundamentals": { "title": "Entrepreneurship Fundamentals", "desc": "From idea to project: validate your concept, understand your market, and build the mindset of a successful entrepreneur." },
+      "business_model": { "title": "Business Model & Plan", "desc": "Design a clear business model and a professional business plan that convinces partners and funders." },
+      "financial": { "title": "Financial Literacy", "desc": "Master budgeting, pricing, cash flow, and realistic financial projections for your project." },
+      "marketing": { "title": "Marketing & Sales", "desc": "Attract and keep customers with practical marketing, branding, and sales techniques for small businesses." },
+      "pitch": { "title": "Pitch & Fundraising", "desc": "Prepare a compelling pitch and the documents you need to approach banks, programs, and investors." },
+      "digital": { "title": "Digital Skills", "desc": "Use the digital tools that help you manage, promote, and grow your business online." }
+    },
+    "format": {
+      "title": "How We Train",
+      "workshops": { "title": "Group Workshops", "desc": "Interactive sessions with other entrepreneurs to learn by doing." },
+      "individual": { "title": "Individual Coaching", "desc": "One-on-one guidance focused on your specific project and goals." },
+      "cohort": { "title": "Program Cohorts", "desc": "Structured multi-week journeys that take you from idea to launch." }
+    },
+    "cta": {
+      "title": "Ready to build your skills?",
+      "desc": "Book a free consultation and we'll help you choose the right program for your stage.",
+      "button": "Book a Consultation"
+    }
   },
   "funding": {
     "title": "Funding Support",
-    "subtitle": "We help you access the right funding sources for your project"
+    "subtitle": "We help you access the right funding for your project",
+    "intro": "Many great projects never get funded — not for lack of potential, but for lack of preparation. We help you become fundable and guide you to the opportunities that fit your project.",
+    "items": {
+      "readiness": { "title": "Funding Readiness", "desc": "We assess your project and tell you honestly what is needed to become fundable." },
+      "preparation": { "title": "File Preparation", "desc": "Business plan, financial projections, and a complete funding file ready to submit." },
+      "guidance": { "title": "Program Guidance", "desc": "We help you identify the grants, loans, and support programs that fit your project." },
+      "application": { "title": "Application Support", "desc": "We guide you step by step through the application and required documents." },
+      "pitch": { "title": "Pitch Preparation", "desc": "Practice and refine the pitch you will present to banks, programs, and investors." },
+      "followup": { "title": "Post-Funding Follow-up", "desc": "Continued support after funding to help you use it well and stay on track." }
+    },
+    "process": {
+      "title": "How It Works",
+      "step1": "Diagnosis",
+      "step2": "Preparation",
+      "step3": "Application",
+      "step4": "Follow-up"
+    },
+    "cta": {
+      "title": "Looking for funding?",
+      "desc": "Book a free consultation and we'll map your path to the right funding.",
+      "button": "Book a Consultation"
+    }
   },
   "blog": {
     "title": "Blog",
@@ -241,6 +283,7 @@
       "email": "Email",
       "phone": "Phone",
       "message": "Your Message",
+      "button": "Send",
       "success": "Your message has been sent successfully. We will contact you soon."
     },
     "info": {
@@ -257,9 +300,22 @@
       "email": "Email",
       "phone": "Phone",
       "service": "Service Type",
+      "select_service": "Select service",
+      "services": {
+        "consulting": "Consulting",
+        "coaching": "Coaching",
+        "business_plan": "Business Plan",
+        "funding": "Funding Support",
+        "training": "Training"
+      },
       "message": "Brief description of your project",
+      "button": "Submit",
       "success": "Your consultation request has been sent successfully. We will contact you soon."
     }
+  },
+  "newsletter": {
+    "placeholder": "your@email.com",
+    "success": "Subscribed successfully!"
   },
   "project_submission": {
     "title": "Submit Your Project",
@@ -271,8 +327,27 @@
       "project_name": "Project Name",
       "description": "Project Description",
       "stage": "Project Stage",
+      "select_stage": "Select stage",
+      "stages": {
+        "idea": "Idea",
+        "planning": "Planning",
+        "development": "Development",
+        "launch": "Ready to Launch"
+      },
       "city": "City",
+      "select_city": "Select city",
+      "cities": {
+        "oujda": "Oujda",
+        "nador": "Nador",
+        "berkane": "Berkane",
+        "taourirt": "Taourirt",
+        "jerada": "Jerada",
+        "figuig": "Figuig",
+        "driouch": "Driouch",
+        "guercif": "Guercif"
+      },
       "funding": "Funding Required",
+      "button": "Submit",
       "success": "Your project has been received successfully. Our team will review it and contact you."
     }
   },

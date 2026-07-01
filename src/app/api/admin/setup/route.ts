@@ -1,8 +1,12 @@
 import { NextResponse } from "next/server"
 import { getAdminClient } from "@/lib/supabase/admin"
+import { requireAdmin } from "@/lib/auth-guard"
 
 export async function POST() {
   try {
+    if (!(await requireAdmin())) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 })
+    }
     const admin = getAdminClient()
     const results: string[] = []
 

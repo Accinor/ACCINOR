@@ -66,7 +66,7 @@ export function ContactForm() {
         <Textarea id="message" name="message" required />
       </div>
       {error && <p className="text-sm text-destructive">{error}</p>}
-      <Button type="submit">Send</Button>
+      <Button type="submit">{t("button")}</Button>
     </form>
   )
 }
