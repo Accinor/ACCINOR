@@ -84,13 +84,19 @@ export function UserMenu() {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         {isAdmin && (
-          <DropdownMenuItem onClick={() => router.push("/admin")}>
+          <DropdownMenuItem onClick={() => { window.location.href = "/admin" }}>
             <Grid01 size={16} />
             {t("profile.dashboard")}
           </DropdownMenuItem>
         )}
         <DropdownMenuItem
-          onClick={() => router.push(isAdmin ? "/admin/profile" : `/${locale}/profile`)}
+          onClick={() => {
+            // The /admin tree lives outside the [locale] layout, so a soft
+            // client navigation into it can't reconcile the document — use a
+            // full navigation. The user profile is in the same tree, so push works.
+            if (isAdmin) window.location.href = "/admin/profile"
+            else router.push(`/${locale}/profile`)
+          }}
         >
           <User01 size={16} />
           {t("profile.title")}

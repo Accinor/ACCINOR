@@ -48,21 +48,34 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    async function load() {
+    const supabase = createClient()
+    if (!supabase) { setLoading(false); return }
+
+    async function loadFromSession(session: { user?: { id: string; email?: string } } | null) {
+      if (!session?.user?.id) {
+        setUser(null)
+        setProfile(null)
+        setLoading(false)
+        return
+      }
+      setUser({ id: session.user.id, email: session.user.email! })
       try {
-        const supabase = createClient()
-        if (!supabase) { setLoading(false); return }
-        const { data: { session } } = await supabase.auth.getSession()
-        if (!session?.user?.id) { setLoading(false); return }
-        setUser({ id: session.user.id, email: session.user.email! })
         const res = await fetch("/api/auth/profile")
-        if (res.ok) {
-          const p = await res.json()
-          setProfile(p)
-        }
+        if (res.ok) setProfile(await res.json())
       } catch {} finally { setLoading(false) }
     }
-    load()
+
+    supabase.auth.getSession().then(({ data: { session } }: any) => loadFromSession(session))
+
+    // Keep the navbar/menu in sync the moment the user signs in or out —
+    // without this, sign-in only shows after a manual page reload.
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (_event: string, session: any) => {
+        setLoading(true)
+        loadFromSession(session)
+      }
+    )
+    return () => subscription?.unsubscribe()
   }, [])
 
   const signOut = useCallback(async () => {
