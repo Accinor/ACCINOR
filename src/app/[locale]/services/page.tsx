@@ -1,6 +1,7 @@
 "use client"
 
-import { useTranslations } from "next-intl"
+import { useTranslations, useLocale } from "next-intl"
+import { EditableText } from "@/components/shared/editable-text"
 
 const serviceKeys = [
   "consulting",
@@ -23,13 +24,22 @@ const icons: Record<string, string> = {
 export default function ServicesPage() {
   const t = useTranslations("home.services")
   const sp = useTranslations("services_page")
+  const locale = useLocale()
 
   return (
     <div className="container mx-auto px-4 py-16">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">{sp("title")}</h1>
-          <p className="text-xl text-muted-foreground">{sp("subtitle")}</p>
+          <h1 className="text-4xl font-bold mb-4">
+            <EditableText page="services" section="header" field="title" as="span" locale={locale}>
+              {sp("title")}
+            </EditableText>
+          </h1>
+          <p className="text-xl text-muted-foreground">
+            <EditableText page="services" section="header" field="subtitle" as="span" locale={locale}>
+              {sp("subtitle")}
+            </EditableText>
+          </p>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">

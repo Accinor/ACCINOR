@@ -34,7 +34,9 @@ export function EditableText({
   const [saved, setSaved] = useState(false)
   const [content, setContent] = useState<string | null>(null)
   const ref = useRef<HTMLElement>(null)
-  const key = `${page}:${section}:${field}`
+  // Locale is part of the key so each language stores its own text —
+  // editing the French page never overwrites the Arabic/English versions.
+  const key = `${locale}:${page}:${section}:${field}`
   const pathname = usePathname()
 
   useEffect(() => {

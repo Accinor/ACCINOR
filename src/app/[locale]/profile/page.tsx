@@ -160,9 +160,21 @@ export default function UserProfilePage() {
     <div className="container mx-auto px-4 py-16">
       <div className="max-w-3xl mx-auto space-y-8 pb-12">
 
-        <div className="text-center">
-          <h1 className="text-3xl font-bold mb-2">{t("title")}</h1>
-          <p className="text-muted-foreground">{t("subtitle")}</p>
+        <div className="flex items-center justify-between gap-4">
+          <div>
+            <h1 className="text-3xl font-bold mb-1">{t("title")}</h1>
+            <p className="text-muted-foreground">{t("subtitle")}</p>
+          </div>
+          <button
+            onClick={async () => {
+              const supabase = createClient()
+              if (supabase) await supabase.auth.signOut()
+              router.replace(`/${locale}`)
+            }}
+            className="shrink-0 px-4 py-2 rounded-lg border border-input text-sm font-medium hover:bg-muted transition-colors"
+          >
+            {t("sign_out")}
+          </button>
         </div>
 
         {error && (

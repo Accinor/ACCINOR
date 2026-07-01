@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabase/server"
 import { BlogCard } from "@/components/blog/blog-card"
 import { getTranslations } from "next-intl/server"
+import { EditableText } from "@/components/shared/editable-text"
 
 export const dynamic = "force-dynamic"
 
@@ -24,8 +25,16 @@ export default async function BlogPage({ params }: Props) {
     <div className="container mx-auto px-4 py-16">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">{t("title")}</h1>
-          <p className="text-xl text-muted-foreground">{t("subtitle")}</p>
+          <h1 className="text-4xl font-bold mb-4">
+            <EditableText page="blog" section="header" field="title" as="span" locale={locale}>
+              {t("title")}
+            </EditableText>
+          </h1>
+          <p className="text-xl text-muted-foreground">
+            <EditableText page="blog" section="header" field="subtitle" as="span" locale={locale}>
+              {t("subtitle")}
+            </EditableText>
+          </p>
         </div>
 
         {(posts?.length ?? 0) === 0 ? (

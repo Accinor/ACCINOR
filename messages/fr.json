@@ -80,9 +80,9 @@
   "home": {
     "name_meaning": {
       "title": "Le nom derrière la mission",
-      "acc": "Accompaniment, Acceleration: nous restons à vos côtés, de la première étincelle d'idée au moment où elle transforme le monde",
-      "in": "Innovation, Incubation: où les idées brutes sont façonnées, nourries et propulsées en projets qui comptent vraiment",
-      "or": "Orientation, Originality: une direction claire rencontre une vision authentique — nous vous aidons à créer ce que vous seul pouvez créer",
+      "acc": "Accompagnement et accélération : nous restons à vos côtés, de la première étincelle d'idée au moment où elle transforme le monde",
+      "in": "Innovation et incubation : où les idées brutes sont façonnées, nourries et propulsées en projets qui comptent vraiment",
+      "or": "Orientation et originalité : une direction claire rencontre une vision authentique — nous vous aidons à créer ce que vous seul pouvez créer",
       "footer": "Chaque lettre raconte une histoire. Chaque syllabe est une promesse."
     },
     "hero": {
@@ -273,7 +273,7 @@
     "title": "Blog",
     "subtitle": "Articles et conseils en entrepreneuriat et innovation",
     "read_more": "Lire la suite",
-    "notice": "Ceci est un contenu de démonstration — Demo Content"
+    "notice": "Aucun article publié pour le moment. Revenez bientôt."
   },
   "contact": {
     "title": "Contactez-nous",

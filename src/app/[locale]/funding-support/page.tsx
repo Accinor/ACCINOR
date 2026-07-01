@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl"
 import { useParams } from "next/navigation"
 import Link from "next/link"
+import { EditableText } from "@/components/shared/editable-text"
 
 const supportKeys = [
   "readiness",
@@ -31,9 +32,21 @@ export default function FundingSupportPage() {
     <div className="container mx-auto px-4 py-16">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">{t("title")}</h1>
-          <p className="text-xl text-muted-foreground mb-4">{t("subtitle")}</p>
-          <p className="text-muted-foreground max-w-2xl mx-auto">{t("intro")}</p>
+          <h1 className="text-4xl font-bold mb-4">
+            <EditableText page="funding" section="header" field="title" as="span" locale={locale}>
+              {t("title")}
+            </EditableText>
+          </h1>
+          <p className="text-xl text-muted-foreground mb-4">
+            <EditableText page="funding" section="header" field="subtitle" as="span" locale={locale}>
+              {t("subtitle")}
+            </EditableText>
+          </p>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            <EditableText page="funding" section="header" field="intro" as="span" locale={locale}>
+              {t("intro")}
+            </EditableText>
+          </p>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
