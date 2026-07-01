@@ -1,11 +1,11 @@
 "use client"
 
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import {
   Grid01, User01, FileCheck02, Users01, Briefcase01, Edit05,
-  MessageChatCircle, Database01, ArrowLeft, LogOut01, ChevronDown,
+  MessageChatCircle, Database01, ArrowLeft, LogOut01,
 } from "@untitledui/icons"
 
 type Props = {
@@ -16,20 +16,19 @@ type SidebarUser = { email: string; name: string; avatar: string | null }
 
 const links = [
   { href: "/admin", label: "Dashboard", Icon: Grid01 },
+  { href: "/admin/profile", label: "My Profile", Icon: User01 },
   { href: "/admin/requests", label: "Requests", Icon: FileCheck02 },
   { href: "/admin/leads", label: "Leads", Icon: Users01 },
   { href: "/admin/clients", label: "Clients", Icon: Briefcase01 },
   { href: "/admin/consultations", label: "Consultations", Icon: MessageChatCircle },
   { href: "/admin/blog", label: "Blog Posts", Icon: Edit05 },
-  { href: "/admin/users", label: "Users", Icon: User01 },
+  { href: "/admin/users", label: "Users", Icon: Users01 },
   { href: "/admin/migrate", label: "Migration", Icon: Database01 },
 ]
 
 export function AdminSidebar({ onLogout }: Props) {
   const pathname = usePathname()
-  const [dropdownOpen, setDropdownOpen] = useState(false)
   const [user, setUser] = useState<SidebarUser | null>(null)
-  const dropdownRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     fetch("/api/auth/profile")
@@ -40,16 +39,6 @@ export function AdminSidebar({ onLogout }: Props) {
         setUser({ email: p.email ?? "", name, avatar: p.avatar_url ?? null })
       })
       .catch(() => {})
-  }, [])
-
-  useEffect(() => {
-    function handleClick(e: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setDropdownOpen(false)
-      }
-    }
-    document.addEventListener("mousedown", handleClick)
-    return () => document.removeEventListener("mousedown", handleClick)
   }, [])
 
   const initials = user?.name
@@ -76,42 +65,23 @@ export function AdminSidebar({ onLogout }: Props) {
         Back to website
       </a>
 
-      {/* Profile with dropdown */}
-      <div className="relative mx-3 mt-3 mb-4" ref={dropdownRef}>
-        <button
-          onClick={() => setDropdownOpen(!dropdownOpen)}
-          className="w-full flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-muted transition-colors"
-        >
-          {user?.avatar ? (
-            <img src={user.avatar} alt="" className="w-9 h-9 rounded-full object-cover shrink-0" />
-          ) : (
-            <div className="w-9 h-9 rounded-full bg-[#ffb81b]/20 text-[#ffb81b] flex items-center justify-center text-sm font-bold shrink-0">
-              {initials}
-            </div>
-          )}
-          <div className="flex-1 text-left min-w-0">
-            <div className="text-sm font-medium truncate">{user?.name || "Admin"}</div>
-            <div className="text-xs text-muted-foreground truncate">{user?.email || ""}</div>
-          </div>
-          <ChevronDown size={16} className={`text-muted-foreground transition-transform ${dropdownOpen ? "rotate-180" : ""}`} />
-        </button>
-
-        {dropdownOpen && (
-          <div className="absolute top-full left-0 right-0 mt-1 bg-popover border border-border rounded-xl shadow-lg py-1.5 z-50">
-            <Link href="/admin/profile" onClick={() => setDropdownOpen(false)}
-              className="flex items-center gap-2.5 px-3 py-2 text-sm text-foreground hover:bg-muted transition-colors">
-              <User01 size={16} className="text-muted-foreground" />
-              View Profile
-            </Link>
-            <hr className="my-1 border-border" />
-            <button onClick={() => { setDropdownOpen(false); onLogout() }}
-              className="w-full flex items-center gap-2.5 px-3 py-2 text-sm text-red-400 hover:bg-red-500/10 transition-colors">
-              <LogOut01 size={16} />
-              Sign Out
-            </button>
+      {/* Profile summary — links straight to the profile page */}
+      <Link
+        href="/admin/profile"
+        className="flex items-center gap-3 mx-3 mt-3 mb-4 px-2 py-2 rounded-lg hover:bg-muted transition-colors"
+      >
+        {user?.avatar ? (
+          <img src={user.avatar} alt="" className="w-9 h-9 rounded-full object-cover shrink-0" />
+        ) : (
+          <div className="w-9 h-9 rounded-full bg-[#ffb81b]/20 text-[#ffb81b] flex items-center justify-center text-sm font-bold shrink-0">
+            {initials}
           </div>
         )}
-      </div>
+        <div className="flex-1 text-left min-w-0">
+          <div className="text-sm font-medium truncate">{user?.name || "Admin"}</div>
+          <div className="text-xs text-muted-foreground truncate">{user?.email || ""}</div>
+        </div>
+      </Link>
 
       {/* Navigation */}
       <nav className="flex-1 px-3 space-y-1 overflow-y-auto">
@@ -140,7 +110,7 @@ export function AdminSidebar({ onLogout }: Props) {
           className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-sm border border-border text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
         >
           <LogOut01 size={16} />
-          Logout
+          Sign Out
         </button>
       </div>
     </aside>

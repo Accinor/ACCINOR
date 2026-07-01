@@ -208,6 +208,21 @@ export default function AdminProfile() {
             )}
           </div>
 
+          {/* Avatar upload / delete */}
+          <input ref={fileInputRef} type="file" accept="image/*" onChange={handleAvatarUpload} className="hidden" />
+          <div className="flex gap-2 mb-6">
+            <button type="button" onClick={() => fileInputRef.current?.click()} disabled={avatarUploading}
+              className="px-3 py-1.5 rounded-lg bg-[#ffb81b] text-[#050a30] text-xs font-semibold disabled:opacity-50">
+              {avatarUploading ? "Uploading..." : "Change photo"}
+            </button>
+            {profile.avatar_url && (
+              <button type="button" onClick={handleAvatarRemove} disabled={avatarUploading}
+                className="px-3 py-1.5 rounded-lg border border-input text-xs font-medium hover:bg-muted disabled:opacity-50">
+                Remove
+              </button>
+            )}
+          </div>
+
           <div className="text-center mb-6">
             <h1 className="text-2xl font-bold text-[#1a1a1a] dark:text-foreground">{displayName}</h1>
             <p className="text-sm text-[#666] dark:text-muted-foreground mt-1">
@@ -230,18 +245,6 @@ export default function AdminProfile() {
               <a href={profile.linkedin_url} target="_blank" rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-[#f0f2f5] dark:bg-muted flex items-center justify-center shadow-[0_2px_5px_rgba(0,0,0,0.1)] hover:bg-[#e4e6e9] hover:-translate-y-1.5 hover:shadow-[0_4px_10px_rgba(0,0,0,0.15)] transition-all group">
                 <svg className="w-5 h-5 fill-[#1a1a1a] dark:fill-foreground group-hover:fill-[#0a66c2] transition-all" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-              </a>
-            )}
-            {profile.email && (
-              <a href={`mailto:${profile.email}`}
-                className="w-10 h-10 rounded-full bg-[#f0f2f5] dark:bg-muted flex items-center justify-center shadow-[0_2px_5px_rgba(0,0,0,0.1)] hover:bg-[#e4e6e9] hover:-translate-y-1.5 hover:shadow-[0_4px_10px_rgba(0,0,0,0.15)] transition-all group">
-                <svg className="w-5 h-5 fill-[#1a1a1a] dark:fill-foreground group-hover:fill-[#ea4335] transition-all" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-              </a>
-            )}
-            {profile.phone && (
-              <a href={`tel:${profile.phone}`}
-                className="w-10 h-10 rounded-full bg-[#f0f2f5] dark:bg-muted flex items-center justify-center shadow-[0_2px_5px_rgba(0,0,0,0.1)] hover:bg-[#e4e6e9] hover:-translate-y-1.5 hover:shadow-[0_4px_10px_rgba(0,0,0,0.15)] transition-all group">
-                <svg className="w-5 h-5 fill-[#1a1a1a] dark:fill-foreground group-hover:fill-[#34a853] transition-all" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
               </a>
             )}
           </div>
@@ -301,6 +304,14 @@ export default function AdminProfile() {
             <input type="tel" value={profile.phone || ""} onChange={e => updateField("phone", e.target.value)}
               className="w-full rounded-lg border border-input bg-background py-2.5 px-3 text-sm outline-none focus:ring-2 focus:ring-[#ffb81b] focus:border-transparent transition"
               placeholder="+212 6XX XX XX XX" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <input type="text" value={profile.city || ""} onChange={e => updateField("city", e.target.value)}
+                className="w-full rounded-lg border border-input bg-background py-2.5 px-3 text-sm outline-none focus:ring-2 focus:ring-[#ffb81b] focus:border-transparent transition"
+                placeholder="City" />
+              <input type="text" value={profile.region || ""} onChange={e => updateField("region", e.target.value)}
+                className="w-full rounded-lg border border-input bg-background py-2.5 px-3 text-sm outline-none focus:ring-2 focus:ring-[#ffb81b] focus:border-transparent transition"
+                placeholder="Region" />
+            </div>
             <input type="text" value={profile.title || ""} onChange={e => updateField("title", e.target.value)}
               className="w-full rounded-lg border border-input bg-background py-2.5 px-3 text-sm outline-none focus:ring-2 focus:ring-[#ffb81b] focus:border-transparent transition"
               placeholder="Title / Role" />
