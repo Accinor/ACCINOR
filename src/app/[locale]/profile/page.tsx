@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react"
 import { useTranslations } from "next-intl"
 import { useParams, useRouter } from "next/navigation"
 import { createClient } from "@/lib/supabase/client"
+import { RegionCitySelect } from "@/components/shared/region-city-select"
 
 type Profile = {
   id: string
@@ -221,10 +222,14 @@ export default function UserProfilePage() {
           </div>
           <input type="email" value={profile.email} disabled className={`${inputClass} bg-muted text-muted-foreground cursor-not-allowed`} />
           <input type="tel" value={profile.phone || ""} onChange={e => updateField("phone", e.target.value)} className={inputClass} placeholder={t("phone")} />
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <input type="text" value={profile.city || ""} onChange={e => updateField("city", e.target.value)} className={inputClass} placeholder={t("city")} />
-            <input type="text" value={profile.region || ""} onChange={e => updateField("region", e.target.value)} className={inputClass} placeholder={t("region")} />
-          </div>
+          <RegionCitySelect
+            region={profile.region || ""}
+            city={profile.city || ""}
+            onRegionChange={(v) => updateField("region", v)}
+            onCityChange={(v) => updateField("city", v)}
+            regionLabel={t("region")}
+            cityLabel={t("city")}
+          />
           <input type="text" value={profile.title || ""} onChange={e => updateField("title", e.target.value)} className={inputClass} placeholder={t("title_placeholder")} />
           <textarea value={profile.bio || ""} onChange={e => updateField("bio", e.target.value)} rows={3} className={`${inputClass} resize-none`} placeholder={t("bio_placeholder")} />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">

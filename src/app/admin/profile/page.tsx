@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from "react"
 import { createClient } from "@/lib/supabase/client"
 import { useRouter } from "next/navigation"
+import { RegionCitySelect } from "@/components/shared/region-city-select"
 
 type Profile = {
   id: string
@@ -267,18 +268,6 @@ export default function AdminProfile() {
         </div>
       </div>
 
-      {/* ──── SAVE BAR ──── */}
-      <div className="flex items-center justify-end gap-4">
-        <button onClick={handleSave} disabled={saving}
-          className="px-8 py-2.5 rounded-xl bg-[#ffb81b] hover:bg-[#e5a318] text-[#050a30] font-semibold text-sm transition-all disabled:opacity-50 flex items-center gap-2 shadow-sm hover:-translate-y-0.5">
-          {saving ? (
-            <><span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /> Saving...</>
-          ) : saved ? (
-            <><svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg> Saved</>
-          ) : "Save Changes"}
-        </button>
-      </div>
-
       {/* ──── EDIT SECTIONS ──── */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
@@ -304,14 +293,14 @@ export default function AdminProfile() {
             <input type="tel" value={profile.phone || ""} onChange={e => updateField("phone", e.target.value)}
               className="w-full rounded-lg border border-input bg-background py-2.5 px-3 text-sm outline-none focus:ring-2 focus:ring-[#ffb81b] focus:border-transparent transition"
               placeholder="+212 6XX XX XX XX" />
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <input type="text" value={profile.city || ""} onChange={e => updateField("city", e.target.value)}
-                className="w-full rounded-lg border border-input bg-background py-2.5 px-3 text-sm outline-none focus:ring-2 focus:ring-[#ffb81b] focus:border-transparent transition"
-                placeholder="City" />
-              <input type="text" value={profile.region || ""} onChange={e => updateField("region", e.target.value)}
-                className="w-full rounded-lg border border-input bg-background py-2.5 px-3 text-sm outline-none focus:ring-2 focus:ring-[#ffb81b] focus:border-transparent transition"
-                placeholder="Region" />
-            </div>
+            <RegionCitySelect
+              region={profile.region || ""}
+              city={profile.city || ""}
+              onRegionChange={(v) => updateField("region", v)}
+              onCityChange={(v) => updateField("city", v)}
+              regionLabel="Region"
+              cityLabel="City"
+            />
             <input type="text" value={profile.title || ""} onChange={e => updateField("title", e.target.value)}
               className="w-full rounded-lg border border-input bg-background py-2.5 px-3 text-sm outline-none focus:ring-2 focus:ring-[#ffb81b] focus:border-transparent transition"
               placeholder="Title / Role" />
@@ -412,6 +401,18 @@ export default function AdminProfile() {
           </div>
         </div>
 
+      </div>
+
+      {/* ──── SAVE BAR ──── */}
+      <div className="flex items-center justify-end gap-4 pt-2">
+        <button onClick={handleSave} disabled={saving}
+          className="px-8 py-2.5 rounded-xl bg-[#ffb81b] hover:bg-[#e5a318] text-[#050a30] font-semibold text-sm transition-all disabled:opacity-50 flex items-center gap-2 shadow-sm hover:-translate-y-0.5">
+          {saving ? (
+            <><span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /> Saving...</>
+          ) : saved ? (
+            <><svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg> Saved</>
+          ) : "Save Changes"}
+        </button>
       </div>
     </div>
   )
