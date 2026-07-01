@@ -14,6 +14,13 @@ const MOROCCAN_REGIONS = [
 
 type AuthMode = "sign-in" | "register"
 
+// Where to go after login: honor an internal ?next= path (e.g. /admin), else home.
+function getNextPath(): string | null {
+  if (typeof window === "undefined") return null
+  const n = new URLSearchParams(window.location.search).get("next")
+  return n && n.startsWith("/") ? n : null
+}
+
 export default function AuthPage() {
   const params = useParams()
   const locale = params.locale as string
@@ -40,7 +47,11 @@ export default function AuthPage() {
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }: any) => {
-      if (session) router.replace(`/${locale}`)
+      if (session) {
+        const next = getNextPath()
+        if (next) window.location.href = next
+        else router.replace(`/${locale}`)
+      }
     })
   }, [])
 
@@ -60,6 +71,12 @@ export default function AuthPage() {
     }
 
     await fetch("/api/auth/sync-profile", { method: "POST" })
+    const next = getNextPath()
+    if (next) {
+      // Full navigation — covers /admin, which lives outside the [locale] tree.
+      window.location.href = next
+      return
+    }
     router.push(`/${locale}`)
     router.refresh()
   }

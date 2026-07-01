@@ -7,13 +7,6 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-import {
   Table,
   TableBody,
   TableCell,
@@ -173,40 +166,33 @@ export default function AdminBlogPage() {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label>Locale</Label>
-                  <Select
+                  <Label htmlFor="locale">Locale</Label>
+                  <select
+                    id="locale"
                     value={editing.locale ?? "ar"}
-                    onValueChange={(v) =>
-                      setEditing({ ...editing, locale: v ?? "ar" })
+                    onChange={(e) =>
+                      setEditing({ ...editing, locale: e.target.value })
                     }
+                    className="w-full h-9 rounded-lg border border-input bg-background px-3 text-sm outline-none focus:ring-2 focus:ring-[#ffb81b]"
                   >
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="ar">Arabic</SelectItem>
-                      <SelectItem value="fr">French</SelectItem>
-                      <SelectItem value="en">English</SelectItem>
-                    </SelectContent>
-                  </Select>
+                    <option value="ar">Arabic</option>
+                    <option value="fr">French</option>
+                    <option value="en">English</option>
+                  </select>
                 </div>
                 <div className="space-y-2">
-                  <Label>Published</Label>
-                  <Select
+                  <Label htmlFor="published">Published</Label>
+                  <select
+                    id="published"
                     value={editing.published ? "true" : "false"}
-                    onValueChange={(v) =>
-                      setEditing({ ...editing, published: v === "true" })
+                    onChange={(e) =>
+                      setEditing({ ...editing, published: e.target.value === "true" })
                     }
-
+                    className="w-full h-9 rounded-lg border border-input bg-background px-3 text-sm outline-none focus:ring-2 focus:ring-[#ffb81b]"
                   >
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="false">Draft</SelectItem>
-                      <SelectItem value="true">Published</SelectItem>
-                    </SelectContent>
-                  </Select>
+                    <option value="false">Draft</option>
+                    <option value="true">Published</option>
+                  </select>
                 </div>
               </div>
               <div className="flex gap-4">
