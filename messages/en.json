@@ -2,6 +2,7 @@
   "common": {
     "site_name": "ACCINOR",
     "tagline": "From Idea to Project",
+    "slogan": "Build Up Your Startup",
     "nav": {
       "home": "Home",
       "about": "About",
@@ -79,7 +80,7 @@
   },
   "home": {
     "name_meaning": {
-      "title": "The Name Behind the Mission",
+      "title": "What ACCINOR Stands For",
       "acc": "Accompaniment, Acceleration: we stand by your side, from the very first spark of an idea to the moment it changes the world",
       "in": "Innovation, Incubation: where raw ideas are shaped, nurtured, and launched into ventures that truly matter",
       "or": "Orientation, Originality: clear direction meets authentic vision — we help you build what only you can build",

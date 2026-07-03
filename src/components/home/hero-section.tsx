@@ -12,6 +12,7 @@ import { EditableText } from "@/components/shared/editable-text"
 export function HeroSection() {
   const t = useTranslations("home.hero")
   const cta = useTranslations("common.cta")
+  const common = useTranslations("common")
   const params = useParams()
   const locale = params.locale as string
   const isRtl = locale === "ar"
@@ -63,6 +64,15 @@ export function HeroSection() {
               className="h-28 w-auto"
             />
           </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="mb-5 text-sm md:text-base font-semibold tracking-[0.2em] uppercase bg-gradient-to-r from-[#ffb81b] via-[#ffd77a] to-[#ffb81b] bg-clip-text text-transparent"
+          >
+            {common("slogan")}
+          </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}

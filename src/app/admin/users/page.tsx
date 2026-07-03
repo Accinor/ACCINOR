@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { createClient } from "@/lib/supabase/client"
 
 interface Profile {
   id: string
@@ -18,9 +17,9 @@ interface Profile {
 }
 
 export default function AdminUsersPage() {
-  const supabase = createClient()
   const [profiles, setProfiles] = useState<Profile[]>([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState("")
   const [search, setSearch] = useState("")
   const [toggling, setToggling] = useState<string | null>(null)
 
@@ -28,29 +27,38 @@ export default function AdminUsersPage() {
     loadProfiles()
   }, [])
 
+  // Fetch through the admin API (service role, admin-gated) so ALL users are
+  // returned — a browser query is limited by RLS to the current user only.
   async function loadProfiles() {
-    const { data } = await supabase
-      .from("profiles")
-      .select("*")
-      .order("created_at", { ascending: false })
-
-    if (data) setProfiles(data)
-    setLoading(false)
+    setLoading(true)
+    setError("")
+    try {
+      const res = await fetch("/api/admin/users")
+      const data = await res.json()
+      if (!res.ok) throw new Error(data?.error || "Failed to load users")
+      setProfiles(Array.isArray(data) ? data : [])
+    } catch (e: any) {
+      setError(e.message || "Failed to load users")
+    } finally {
+      setLoading(false)
+    }
   }
 
   async function toggleRole(profile: Profile) {
     setToggling(profile.id)
     const newRole = profile.role === "admin" ? "user" : "admin"
-    const { error } = await supabase
-      .from("profiles")
-      .update({ role: newRole })
-      .eq("id", profile.id)
-
-    if (!error) {
-      setProfiles((prev) =>
-        prev.map((p) => (p.id === profile.id ? { ...p, role: newRole } : p))
-      )
-    }
+    try {
+      const res = await fetch("/api/admin/users", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: profile.id, role: newRole }),
+      })
+      if (res.ok) {
+        setProfiles((prev) =>
+          prev.map((p) => (p.id === profile.id ? { ...p, role: newRole } : p))
+        )
+      }
+    } catch {}
     setToggling(null)
   }
 
@@ -63,6 +71,12 @@ export default function AdminUsersPage() {
   return (
     <div>
       <h1 className="text-2xl font-bold mb-6">Users Management</h1>
+
+      {error && (
+        <div className="mb-6 rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-400">
+          {error}
+        </div>
+      )}
 
       <input
         type="text"
@@ -101,7 +115,7 @@ export default function AdminUsersPage() {
                     <span
                       className={`inline-block rounded-full px-2 py-0.5 text-xs font-medium ${
                         profile.role === "admin"
-                          ? "bg-green-100 text-green-800 bg-green-900 text-green-200"
+                          ? "bg-[#ffb81b]/15 text-[#ffb81b]"
                           : "bg-muted text-muted-foreground"
                       }`}
                     >

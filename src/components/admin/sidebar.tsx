@@ -5,7 +5,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import {
   Grid01, User01, FileCheck02, Users01, Briefcase01, Edit05,
-  MessageChatCircle, Database01, ArrowLeft, LogOut01,
+  MessageChatCircle, ArrowLeft, LogOut01,
 } from "@untitledui/icons"
 
 type Props = {
@@ -23,7 +23,7 @@ const links = [
   { href: "/admin/consultations", label: "Consultations", Icon: MessageChatCircle },
   { href: "/admin/blog", label: "Blog Posts", Icon: Edit05 },
   { href: "/admin/users", label: "Users", Icon: Users01 },
-  { href: "/admin/migrate", label: "Migration", Icon: Database01 },
+  // Migration is a developer-only tool — reachable by URL but hidden from the nav.
 ]
 
 export function AdminSidebar({ onLogout }: Props) {

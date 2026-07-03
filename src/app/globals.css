@@ -114,6 +114,74 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Accessibility: clear, consistent keyboard focus across the platform. */
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+/* Skip-to-content link (visible only when focused). */
+.skip-link {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -120%);
+  z-index: 200;
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+  padding: 0.5rem 1rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: transform 0.2s ease;
+}
+.skip-link:focus {
+  transform: translate(-50%, 0);
+}
+
+/* Subtle premium cursor (see components/shared/custom-cursor.tsx). */
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 9999px;
+  border: 1.5px solid rgba(255, 184, 27, 0.55);
+  pointer-events: none;
+  z-index: 100;
+  will-change: transform;
+  transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  mix-blend-mode: difference;
+}
+.cursor-ring--hover {
+  width: 44px;
+  height: 44px;
+  border-color: rgba(255, 184, 27, 0.9);
+}
+.cursor-ring--active {
+  width: 22px;
+  height: 22px;
+  background-color: rgba(255, 184, 27, 0.18);
+}
+@media (pointer: coarse) {
+  .cursor-ring { display: none; }
+}
+
+/* Respect users who prefer reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .cursor-ring { display: none; }
 }
 
 html[lang="ar"] {
