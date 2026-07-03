@@ -29,6 +29,8 @@ MAINTENANCE LEGEND (canonical — referenced by every file in /docs)
 
 | Document | Purpose | Primary Owner |
 |----------|---------|---------------|
+| [STATUS](./STATUS.md) | **Start here to resume** — where we are & what's left | 🤖 Claude |
+| [AUDIT](./AUDIT.md) | Full product/engineering audit + phased plan | 🤖 Claude |
 | [PROJECT_CONTEXT](./PROJECT_CONTEXT.md) | Vision, mission, problem, audience | 🖐️ Manual |
 | [PROJECT_MAP](./PROJECT_MAP.md) | Technical architecture & structure | 🤖 Claude |
 | [ROADMAP](./ROADMAP.md) | Milestones, status, changelog | 🔁 Shared |
