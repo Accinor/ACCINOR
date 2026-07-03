@@ -17,7 +17,7 @@ type SidebarUser = { email: string; name: string; avatar: string | null }
 const links = [
   { href: "/admin", label: "Dashboard", Icon: Grid01 },
   { href: "/admin/profile", label: "My Profile", Icon: User01 },
-  { href: "/admin/requests", label: "Requests", Icon: FileCheck02 },
+  { href: "/admin/requests", label: "Project Requests", Icon: FileCheck02 },
   { href: "/admin/leads", label: "Leads", Icon: Users01 },
   { href: "/admin/clients", label: "Clients", Icon: Briefcase01 },
   { href: "/admin/consultations", label: "Consultations", Icon: MessageChatCircle },

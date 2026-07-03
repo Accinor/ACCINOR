@@ -16,12 +16,28 @@ export async function GET() {
   return NextResponse.json({ posts: data ?? [] })
 }
 
+// Rough reading-time estimate (~200 words / minute), min 1.
+function readingMinutes(content: string) {
+  const words = String(content || "").trim().split(/\s+/).filter(Boolean).length
+  return Math.max(1, Math.round(words / 200))
+}
+
+// Accepts tags as an array or a comma-separated string.
+function normalizeTags(tags: unknown): string[] {
+  if (Array.isArray(tags)) return tags.map((t) => String(t).trim()).filter(Boolean)
+  if (typeof tags === "string") return tags.split(",").map((t) => t.trim()).filter(Boolean)
+  return []
+}
+
 export async function POST(req: NextRequest) {
   if (!(await requireAdmin())) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 })
   }
   const body = await req.json()
-  const { id, title, slug, excerpt, content, published, locale } = body
+  const {
+    id, title, slug, excerpt, content, published, locale,
+    cover_image, category, tags, seo_title, seo_description, featured,
+  } = body
 
   if (!title || !slug) {
     return NextResponse.json({ error: "Title and slug are required" }, { status: 400 })
@@ -37,6 +53,13 @@ export async function POST(req: NextRequest) {
     content: content || "",
     published: !!published,
     locale: locale || "ar",
+    cover_image: cover_image || null,
+    category: category || null,
+    tags: normalizeTags(tags),
+    seo_title: seo_title || null,
+    seo_description: seo_description || null,
+    featured: !!featured,
+    reading_minutes: readingMinutes(content),
   }
   if (published) payload.published_at = new Date().toISOString()
 

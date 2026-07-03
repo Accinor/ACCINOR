@@ -51,11 +51,11 @@ visual identity while raising the product to firm-grade quality.
 | H3 | Conversion | Homepage lacks a crisp slogan and consistent CTAs guiding users to contact. | ✅ Shipped (batch 1) |
 | H4 | Accessibility | Missing global focus-visible styles, skip-to-content link, and aria labels on icon-only controls; no reduced-motion handling. | ✅ Shipped (batch 1) |
 | H5 | Admin | Migration module is exposed to administrators (developer-only tool). | ✅ Shipped (batch 1) |
-| H6 | CRM | `contacts` mixes leads + newsletter; `consultations` and `project_submissions` overlap; no `clients` pipeline/status flow. | 📋 Planned (batch 2) |
-| H7 | Dashboard | Only raw counts; "Clients" is a stub; no recent activity or quick actions. | 📋 Planned (batch 2) |
-| H8 | Blog | No categories, tags, featured image, rich text, SEO fields, or preview. | 📋 Planned (batch 2) |
+| H6 | CRM | `contacts` mixes leads + newsletter; `consultations` and `project_submissions` overlap; no `clients` pipeline/status flow. | ✅ Shipped (batch 2) |
+| H7 | Dashboard | Only raw counts; "Clients" is a stub; no recent activity or quick actions. | ✅ Shipped (batch 2) |
+| H8 | Blog | No categories, tags, featured image, rich text, SEO fields, or preview. | ✅ Shipped (batch 2) |
 | H9 | Mobile | No per-page responsive pass; several sections are desktop-first and only scale down. | 📋 Planned (batch 4) |
-| H10 | Trust | Pre-launch credibility sections (Methodology, Why ACCINOR, Expertise, Commitment) are missing. | 📋 Planned (batch 2) |
+| H10 | Trust | Pre-launch credibility sections (Methodology, Why ACCINOR, Expertise, Commitment) are missing. | ✅ Shipped (batch 2) |
 
 ### 🟡 Medium
 
@@ -93,6 +93,25 @@ visual identity while raising the product to firm-grade quality.
 
 ## 4. Implementation Log
 <!-- 🤖 CLAUDE (AUTO) — append what shipped, newest first. -->
+
+### Batch 2 — Admin & Trust (2026-07-03)
+- **CRM model (H6):** migration `00005_crm_and_blog.sql` adds a `status` + `notes` workflow to
+  `contacts` (leads), `notes` to consultations/project requests, and a dedicated `clients` table
+  (engagement, stage pipeline, source link). New service-role APIs `/api/admin/crm` (read + status
+  update for leads/consultations/requests) and `/api/admin/clients` (CRUD). Reusable `CrmBoard`
+  client component powers the leads/consultations/requests pages (search, status filter chips,
+  inline status change); the clients page is a full pipeline with CRUD and a graceful
+  "run the migration" notice if the table is absent. Sidebar clarified ("Project Requests").
+- **Dashboard (H7):** rebuilt as real metrics (leads, consultations, project requests, clients,
+  published/total posts, users) with clickable cards, a merged Recent Activity feed, and Quick Actions.
+- **Blog CMS (H8):** migration adds `category`, `tags[]`, `seo_title`, `seo_description`, `featured`,
+  `reading_minutes`. Editor now has cover image (with live preview), category, tags, SEO fields,
+  featured flag, auto-slug from title, a Write/Preview Markdown toggle, and reading-time estimate.
+- **Trust (H10):** added honest, pre-launch credibility sections — "Why ACCINOR" (Rooted in the
+  Region / Structured Method / Cross-Disciplinary Expertise / Committed to Your Success) and a
+  4-step "How We Work" methodology — all trilingual (AR/FR/EN) and editable. No fake clients or metrics.
+- **Owner action:** run `supabase/migrations/00005_crm_and_blog.sql` in the Supabase SQL Editor to
+  enable the clients table, CRM statuses, and blog CMS fields.
 
 ### Batch 1 — Foundations (2026-07-03)
 - **SEO (C1):** added `src/lib/site.ts`, `app/robots.ts`, `app/sitemap.ts` (per-locale + hreflang

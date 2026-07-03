@@ -1,64 +1,27 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { createClient } from "@/lib/supabase/client"
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table"
-
-type Contact = {
-  id: string
-  name: string
-  email: string
-  phone: string | null
-  source: string
-  created_at: string
-}
+import { CrmBoard } from "@/components/admin/crm-board"
 
 export default function AdminLeadsPage() {
-  const supabase = createClient()
-  const [contacts, setContacts] = useState<Contact[]>([])
-
-  useEffect(() => {
-    supabase
-      .from("contacts")
-      .select("*")
-      .order("created_at", { ascending: false })
-      .then(({ data }: { data: Contact[] | null }) => {
-        if (data) setContacts(data)
-      })
-  }, [])
-
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-8">Leads</h1>
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead>Name</TableHead>
-            <TableHead>Email</TableHead>
-            <TableHead>Phone</TableHead>
-            <TableHead>Source</TableHead>
-            <TableHead>Date</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {contacts.map((c) => (
-            <TableRow key={c.id}>
-              <TableCell>{c.name}</TableCell>
-              <TableCell>{c.email}</TableCell>
-              <TableCell>{c.phone || "-"}</TableCell>
-              <TableCell>{c.source}</TableCell>
-              <TableCell>{new Date(c.created_at).toLocaleDateString()}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </div>
+    <CrmBoard
+      type="leads"
+      title="Leads"
+      subtitle="Newsletter subscribers and general inquiries. Work each lead from first touch to conversion."
+      columns={[
+        { key: "name", label: "Name" },
+        { key: "email", label: "Email" },
+        { key: "phone", label: "Phone" },
+        { key: "source", label: "Source" },
+      ]}
+      statuses={["new", "contacted", "qualified", "converted", "archived"]}
+      statusColors={{
+        new: "bg-blue-500/15 text-blue-400",
+        contacted: "bg-yellow-500/15 text-yellow-400",
+        qualified: "bg-purple-500/15 text-purple-400",
+        converted: "bg-green-500/15 text-green-400",
+        archived: "bg-muted text-muted-foreground",
+      }}
+    />
   )
 }

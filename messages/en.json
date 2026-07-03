@@ -185,6 +185,50 @@
       "subtitle": "Don't wait any longer. Start your entrepreneurial journey today with ACCINOR",
       "button": "Contact Us",
       "secondary": "View Services"
+    },
+    "why": {
+      "title": "Why ACCINOR",
+      "subtitle": "A partner built for the Oriental region's entrepreneurs — grounded in method, proximity, and genuine commitment.",
+      "items": {
+        "local": {
+          "title": "Rooted in the Region",
+          "desc": "We understand the Oriental region's economy, its institutions, and its opportunities — and we work where you are."
+        },
+        "method": {
+          "title": "A Structured Method",
+          "desc": "A clear, step-by-step approach that takes a raw idea to a fundable, launch-ready project."
+        },
+        "expertise": {
+          "title": "Cross-Disciplinary Expertise",
+          "desc": "Strategy, business planning, funding, and training under one roof, tailored to each project."
+        },
+        "commitment": {
+          "title": "Committed to Your Success",
+          "desc": "We measure our work by your progress — practical guidance, honest advice, real accompaniment."
+        }
+      }
+    },
+    "methodology": {
+      "title": "How We Work",
+      "subtitle": "A proven path from first idea to sustainable growth.",
+      "steps": {
+        "discover": {
+          "title": "Discover",
+          "desc": "We listen, assess your idea, and understand your ambition and constraints."
+        },
+        "structure": {
+          "title": "Structure",
+          "desc": "We shape the model, plan, and strategy that make your project viable."
+        },
+        "build": {
+          "title": "Build",
+          "desc": "We prepare you to launch — business plan, funding readiness, and skills."
+        },
+        "grow": {
+          "title": "Grow",
+          "desc": "We accompany you beyond launch, toward funding, scale, and lasting impact."
+        }
+      }
     }
   },
   "about": {

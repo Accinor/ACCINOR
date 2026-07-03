@@ -185,6 +185,50 @@
       "subtitle": "N'attendez plus. Commencez votre parcours entrepreneurial dès aujourd'hui avec ACCINOR",
       "button": "Contactez-nous",
       "secondary": "Voir les services"
+    },
+    "why": {
+      "title": "Pourquoi ACCINOR",
+      "subtitle": "Un partenaire conçu pour les entrepreneurs de la région de l'Oriental — fondé sur la méthode, la proximité et un engagement sincère.",
+      "items": {
+        "local": {
+          "title": "Ancrés dans la région",
+          "desc": "Nous connaissons l'économie de l'Oriental, ses institutions et ses opportunités, et nous travaillons là où vous êtes."
+        },
+        "method": {
+          "title": "Une méthode structurée",
+          "desc": "Une approche claire, étape par étape, qui mène d'une idée brute à un projet finançable et prêt à être lancé."
+        },
+        "expertise": {
+          "title": "Une expertise pluridisciplinaire",
+          "desc": "Stratégie, business plan, financement et formation réunis, adaptés à chaque projet."
+        },
+        "commitment": {
+          "title": "Engagés pour votre réussite",
+          "desc": "Nous mesurons notre travail à votre progression — conseils concrets, avis honnêtes, véritable accompagnement."
+        }
+      }
+    },
+    "methodology": {
+      "title": "Notre méthode",
+      "subtitle": "Un parcours éprouvé, de la première idée à une croissance durable.",
+      "steps": {
+        "discover": {
+          "title": "Découvrir",
+          "desc": "Nous écoutons, évaluons votre idée et comprenons votre ambition et vos contraintes."
+        },
+        "structure": {
+          "title": "Structurer",
+          "desc": "Nous façonnons le modèle, le plan et la stratégie qui rendent votre projet viable."
+        },
+        "build": {
+          "title": "Construire",
+          "desc": "Nous vous préparons au lancement — business plan, préparation au financement et compétences."
+        },
+        "grow": {
+          "title": "Développer",
+          "desc": "Nous vous accompagnons au-delà du lancement, vers le financement, l'échelle et un impact durable."
+        }
+      }
     }
   },
   "about": {
