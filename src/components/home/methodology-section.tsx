@@ -2,8 +2,10 @@
 
 import { useTranslations } from "next-intl"
 import { useParams } from "next/navigation"
+import { useRef } from "react"
 import { Reveal, StaggerReveal, StaggerItem } from "@/components/shared/animations"
 import { MagicBentoCard } from "@/components/shared/magic-bento-card"
+import { SectionSpotlight } from "@/components/shared/section-spotlight"
 import { EditableText } from "@/components/shared/editable-text"
 
 const steps = ["discover", "structure", "build", "grow"] as const
@@ -12,9 +14,11 @@ export function MethodologySection() {
   const t = useTranslations("home.methodology")
   const params = useParams()
   const locale = params.locale as string
+  const sectionRef = useRef<HTMLElement>(null)
 
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section ref={sectionRef} className="py-24 relative overflow-hidden">
+      <SectionSpotlight sectionRef={sectionRef} glowColor="255, 184, 27" spotlightRadius={280} />
       <div className="absolute inset-0 bg-gradient-to-b from-background to-background" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(255,184,27,0.05),transparent_70%)]" />
 
