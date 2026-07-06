@@ -353,8 +353,11 @@
         "training": "Training"
       },
       "message": "Brief description of your project",
-      "button": "Submit",
-      "success": "Your consultation request has been sent successfully. We will contact you soon."
+      "button": "Book My Free Consultation",
+      "sending": "Sending...",
+      "incentive": "Your first consultation is free. Share your details and our team will contact you directly to schedule it.",
+      "success_title": "Request received",
+      "success": "Thank you — your free consultation request is in. Our team will contact you directly very soon, and a confirmation email is on its way."
     }
   },
   "newsletter": {
@@ -391,8 +394,11 @@
         "guercif": "Guercif"
       },
       "funding": "Funding Required",
-      "button": "Submit",
-      "success": "Your project has been received successfully. Our team will review it and contact you."
+      "button": "Submit My Project",
+      "sending": "Sending...",
+      "incentive": "Your project details are safe with us. Every submission gets a free consultation — we'll contact you directly to help you build it up.",
+      "success_title": "Project received",
+      "success": "Thank you — we've received your project. You'll get a free consultation as the next step, our team will contact you directly, and a confirmation email is on its way."
     }
   },
   "auth": {

@@ -1,10 +1,13 @@
-import { createClient } from "@/lib/supabase/server"
+import { getAdminClient } from "@/lib/supabase/admin"
+import { sendConsultationEmails } from "@/lib/email"
 import { logger } from "@/logger"
 
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const supabase = await createClient()
+    // Service-role client: public form tables have RLS enabled with no anon
+    // insert policy, so the anon client is denied. This is a trusted server route.
+    const supabase = getAdminClient()
 
     const { error } = await supabase.from("consultation_requests").insert({
       full_name: body.full_name,
@@ -15,6 +18,16 @@ export async function POST(request: Request) {
     })
 
     if (error) throw error
+
+    // Best-effort emails (confirmation to user + notify admin) — never block success.
+    await sendConsultationEmails({
+      name: body.full_name,
+      email: body.email,
+      phone: body.phone,
+      serviceType: body.service_type,
+      message: body.message,
+      locale: body.locale,
+    })
 
     logger.info("Consultation request saved", { email: body.email })
     return Response.json({ success: true })

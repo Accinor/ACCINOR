@@ -353,8 +353,11 @@
         "training": "Formation"
       },
       "message": "Brève description de votre projet",
-      "button": "Envoyer",
-      "success": "Votre demande de consultation a été envoyée avec succès. Nous vous contacterons bientôt."
+      "button": "Réserver ma consultation gratuite",
+      "sending": "Envoi...",
+      "incentive": "Votre première consultation est gratuite. Partagez vos coordonnées et notre équipe vous contactera directement pour la planifier.",
+      "success_title": "Demande reçue",
+      "success": "Merci — votre demande de consultation gratuite est enregistrée. Notre équipe vous contactera directement très bientôt, et un e-mail de confirmation est en route."
     }
   },
   "newsletter": {
@@ -391,8 +394,11 @@
         "guercif": "Guercif"
       },
       "funding": "Financement requis",
-      "button": "Envoyer",
-      "success": "Votre projet a été reçu avec succès. Notre équipe l'étudiera et vous contactera."
+      "button": "Soumettre mon projet",
+      "sending": "Envoi...",
+      "incentive": "Les détails de votre projet sont en sécurité chez nous. Chaque soumission bénéficie d'une consultation gratuite — nous vous contacterons directement.",
+      "success_title": "Projet reçu",
+      "success": "Merci — nous avons bien reçu votre projet. Vous bénéficierez d'une consultation gratuite, notre équipe vous contactera directement, et un e-mail de confirmation est en route."
     }
   },
   "auth": {

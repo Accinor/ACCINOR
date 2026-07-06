@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { useTranslations } from "next-intl"
+import { useParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -17,42 +18,57 @@ import { Card, CardContent } from "@/components/ui/card"
 
 export function ProjectSubmissionForm() {
   const t = useTranslations("project_submission.form")
+  const params = useParams()
+  const locale = params.locale as string
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setError("")
+    setLoading(true)
 
     const form = new FormData(e.currentTarget)
 
-    const res = await fetch("/api/project-submission", {
-      method: "POST",
-      body: JSON.stringify({
-        full_name: form.get("full_name"),
-        email: form.get("email"),
-        phone: form.get("phone"),
-        project_name: form.get("project_name"),
-        project_description: form.get("project_description"),
-        project_stage: form.get("project_stage"),
-        city: form.get("city"),
-        funding_needed: form.get("funding_needed"),
-      }),
-    })
+    try {
+      const res = await fetch("/api/project-submission", {
+        method: "POST",
+        body: JSON.stringify({
+          full_name: form.get("full_name"),
+          email: form.get("email"),
+          phone: form.get("phone"),
+          project_name: form.get("project_name"),
+          project_description: form.get("project_description"),
+          project_stage: form.get("project_stage"),
+          city: form.get("city"),
+          funding_needed: form.get("funding_needed"),
+          locale,
+        }),
+      })
 
-    if (res.ok) {
-      setSubmitted(true)
-    } else {
-      const data = await res.json()
-      setError(data.error || "Something went wrong")
+      if (res.ok) {
+        setSubmitted(true)
+      } else {
+        const data = await res.json()
+        setError(data.error || "Something went wrong")
+      }
+    } catch {
+      setError("Something went wrong")
+    } finally {
+      setLoading(false)
     }
   }
 
   if (submitted) {
     return (
       <Card>
-        <CardContent className="p-8 text-center text-muted-foreground">
-          {t("success")}
+        <CardContent className="p-8 text-center space-y-3">
+          <div className="mx-auto w-14 h-14 rounded-full bg-[#ffb81b]/15 flex items-center justify-center text-2xl text-[#ffb81b]">
+            ✓
+          </div>
+          <h3 className="text-xl font-semibold text-foreground">{t("success_title")}</h3>
+          <p className="text-muted-foreground leading-relaxed">{t("success")}</p>
         </CardContent>
       </Card>
     )
@@ -127,8 +143,13 @@ export function ProjectSubmissionForm() {
         <Label htmlFor="funding_needed">{t("funding")}</Label>
         <Input id="funding_needed" name="funding_needed" />
       </div>
+      <p className="text-sm text-[#ffb81b]/90 bg-[#ffb81b]/10 border border-[#ffb81b]/20 rounded-lg px-4 py-3">
+        {t("incentive")}
+      </p>
       {error && <p className="text-sm text-destructive">{error}</p>}
-      <Button type="submit">{t("button")}</Button>
+      <Button type="submit" size="lg" disabled={loading} className="w-full">
+        {loading ? t("sending") : t("button")}
+      </Button>
     </form>
   )
 }

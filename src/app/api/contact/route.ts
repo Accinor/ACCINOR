@@ -1,10 +1,11 @@
-import { createClient } from "@/lib/supabase/server"
+import { getAdminClient } from "@/lib/supabase/admin"
 import { logger } from "@/logger"
 
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const supabase = await createClient()
+    // Service-role: contacts has RLS enabled with no anon insert policy.
+    const supabase = getAdminClient()
 
     const { error } = await supabase.from("contacts").insert({
       name: body.name,

@@ -1,8 +1,10 @@
-import { createClient } from "@supabase/supabase-js"
+import { createClient, type SupabaseClient } from "@supabase/supabase-js"
 
-let adminClient: ReturnType<typeof createClient> | null = null
+// Untyped (no Database generic) so inserts/updates accept plain objects across
+// all tables without a generated schema type.
+let adminClient: SupabaseClient | null = null
 
-export function getAdminClient() {
+export function getAdminClient(): SupabaseClient {
   if (adminClient) return adminClient
 
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL
