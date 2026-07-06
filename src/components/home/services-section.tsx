@@ -69,10 +69,14 @@ export function ServicesSection() {
                           <Icon size={24} color="#ffb81b" />
                         </motion.div>
                         <h3 className="text-xl font-semibold text-foreground mb-2">
-                          {t(`items.${service}.title`)}
+                          <EditableText page="home" section="services" field={`item_${service}_title`} as="span" locale={locale}>
+                            {t(`items.${service}.title`)}
+                          </EditableText>
                         </h3>
                         <p className="text-muted-foreground text-sm leading-relaxed">
-                          {t(`items.${service}.desc`)}
+                          <EditableText page="home" section="services" field={`item_${service}_desc`} as="span" locale={locale}>
+                            {t(`items.${service}.desc`)}
+                          </EditableText>
                         </p>
                       </div>
                     </MagicBentoCard>

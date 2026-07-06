@@ -43,11 +43,15 @@ export function MethodologySection() {
                         {i + 1}
                       </span>
                       <h3 className="text-lg font-semibold text-foreground">
-                        {t(`steps.${step}.title`)}
+                        <EditableText page="home" section="methodology" field={`step_${step}_title`} as="span" locale={locale}>
+                          {t(`steps.${step}.title`)}
+                        </EditableText>
                       </h3>
                     </div>
                     <p className="text-muted-foreground text-sm leading-relaxed">
-                      {t(`steps.${step}.desc`)}
+                      <EditableText page="home" section="methodology" field={`step_${step}_desc`} as="span" locale={locale}>
+                        {t(`steps.${step}.desc`)}
+                      </EditableText>
                     </p>
                   </div>
                 </MagicBentoCard>

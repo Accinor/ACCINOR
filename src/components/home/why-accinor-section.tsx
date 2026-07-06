@@ -52,10 +52,14 @@ export function WhyAccinorSection() {
                       <Icon size={24} color="#ffb81b" />
                     </motion.div>
                     <h3 className="text-lg font-semibold text-foreground mb-2">
-                      {t(`items.${key}.title`)}
+                      <EditableText page="home" section="why" field={`item_${key}_title`} as="span" locale={locale}>
+                        {t(`items.${key}.title`)}
+                      </EditableText>
                     </h3>
                     <p className="text-muted-foreground text-sm leading-relaxed">
-                      {t(`items.${key}.desc`)}
+                      <EditableText page="home" section="why" field={`item_${key}_desc`} as="span" locale={locale}>
+                        {t(`items.${key}.desc`)}
+                      </EditableText>
                     </p>
                   </div>
                 </MagicBentoCard>
