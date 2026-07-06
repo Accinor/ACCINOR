@@ -148,12 +148,11 @@
       }
     },
     "stats": {
-      "title": "ACCINOR en chiffres",
-      "projects": "Projets soutenus",
-      "clients": "Bénéficiaires",
-      "trainings": "Formations",
-      "partners": "Partenaires",
-      "cities": "Villes"
+      "title": "ACCINOR en un coup d'œil",
+      "cities": "Villes dans l'Oriental",
+      "services": "Services d'accompagnement",
+      "programs": "Programmes de formation",
+      "languages": "Langues"
     },
     "audience": {
       "title": "À qui s'adressent nos services ?",

@@ -148,12 +148,11 @@
       }
     },
     "stats": {
-      "title": "ACCINOR بالأرقام",
-      "projects": "مشروع مدعوم",
-      "clients": "مستفيد",
-      "trainings": "تكوين",
-      "partners": "شريك",
-      "cities": "مدينة"
+      "title": "ACCINOR في لمحة",
+      "cities": "مدن في الجهة الشرقية",
+      "services": "خدمات الدعم",
+      "programs": "برامج تدريبية",
+      "languages": "لغات"
     },
     "audience": {
       "title": "لمن نقدم الخدمات؟",

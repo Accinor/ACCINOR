@@ -148,12 +148,11 @@
       }
     },
     "stats": {
-      "title": "ACCINOR by Numbers",
-      "projects": "Projects Supported",
-      "clients": "Beneficiaries",
-      "trainings": "Trainings",
-      "partners": "Partners",
-      "cities": "Cities"
+      "title": "ACCINOR at a Glance",
+      "cities": "Cities in the Oriental Region",
+      "services": "Support Services",
+      "programs": "Training Programs",
+      "languages": "Languages"
     },
     "audience": {
       "title": "Who We Serve",

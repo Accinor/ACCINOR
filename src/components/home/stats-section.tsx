@@ -11,11 +11,13 @@ export function StatsSection() {
   const params = useParams()
   const locale = params.locale as string
 
+  // Honest, verifiable facts about ACCINOR's scope — no fabricated track record
+  // (pre-launch: see docs/STATUS.md "do not invent trust content").
   const stats = [
-    { value: 150, suffix: "+", label: t("projects") },
-    { value: 50, suffix: "+", label: t("trainings") },
-    { value: 30, suffix: "+", label: t("partners") },
     { value: 8, suffix: "", label: t("cities") },
+    { value: 6, suffix: "", label: t("services") },
+    { value: 6, suffix: "", label: t("programs") },
+    { value: 3, suffix: "", label: t("languages") },
   ]
 
   return (
