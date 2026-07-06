@@ -155,7 +155,7 @@ export function useParallax(ref: RefObject<HTMLElement | null>, speed = 0.2) {
 export function MagneticButton({
   children,
   className = "",
-  as = "button",
+  as = "span",
 }: {
   children: ReactNode
   className?: string
@@ -191,7 +191,7 @@ export function MagneticButton({
 
   const Tag = as as any
   return (
-    <Tag ref={ref} className={`transition-transform duration-200 ease-out ${className}`}>
+    <Tag ref={ref} className={`inline-block transition-transform duration-200 ease-out ${className}`}>
       {children}
     </Tag>
   )
