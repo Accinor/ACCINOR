@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { useTranslations } from "next-intl"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/base/buttons/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
@@ -66,7 +66,7 @@ export function ContactForm() {
         <Textarea id="message" name="message" required />
       </div>
       {error && <p className="text-sm text-destructive">{error}</p>}
-      <Button type="submit">{t("button")}</Button>
+      <Button type="submit" color="primary" size="lg" className="w-full">{t("button")}</Button>
     </form>
   )
 }

@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl"
 import { useParams } from "next/navigation"
-import Link from "next/link"
+import { Button } from "@/components/base/buttons/button"
 import { EditableText } from "@/components/shared/editable-text"
 
 const programKeys = [
@@ -79,12 +79,9 @@ export default function ProgramsTrainingPage() {
         <div className="rounded-2xl border bg-card p-8 text-center">
           <h2 className="text-2xl font-semibold mb-2">{t("cta.title")}</h2>
           <p className="text-muted-foreground mb-6 max-w-xl mx-auto">{t("cta.desc")}</p>
-          <Link
-            href={`/${locale}/consultation`}
-            className="inline-flex items-center px-6 py-3 rounded-xl bg-[#ffb81b] hover:bg-[#e5a318] text-[#050a30] font-semibold text-sm transition-colors"
-          >
+          <Button href={`/${locale}/consultation`} color="primary" size="xl" className="rounded-xl">
             {t("cta.button")}
-          </Link>
+          </Button>
         </div>
       </div>
     </div>

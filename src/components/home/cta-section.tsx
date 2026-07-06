@@ -2,8 +2,7 @@
 
 import { useTranslations } from "next-intl"
 import { useParams } from "next/navigation"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/base/buttons/button"
 import { motion } from "framer-motion"
 import { ArrowRight, Mail01 } from "@untitledui/icons"
 import { MagneticButton, Reveal } from "@/components/shared/animations"
@@ -58,29 +57,28 @@ export function CtaSection() {
 
           <Reveal delay={0.2}>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link href={`/${locale}/contact`}>
-                <MagneticButton>
-                  <Button
-                    size="lg"
-                    className="bg-[#ffb81b] hover:bg-[#e5a318] text-[#050a30] font-bold shadow-lg shadow-[#ffb81b]/25 hover:shadow-xl hover:shadow-[#ffb81b]/30 hover:scale-105 transition-all duration-300 rounded-full animate-pulse-glow"
-                  >
-                    <Mail01 size={16} className={isRtl ? "ml-2" : "mr-2"} />
-                    {t("button")}
-                  </Button>
-                </MagneticButton>
-              </Link>
-              <Link href={`/${locale}/services`}>
-                <MagneticButton>
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="border-white/20 text-white hover:bg-white/10 hover:border-white/30 hover:scale-105 transition-all duration-300"
-                  >
-                    {t("secondary")}
-                    {!isRtl && <ArrowRight size={16} className="ml-2" />}
-                  </Button>
-                </MagneticButton>
-              </Link>
+              <MagneticButton>
+                <Button
+                  href={`/${locale}/contact`}
+                  size="xl"
+                  color="primary"
+                  iconLeading={Mail01}
+                  className="rounded-full shadow-lg shadow-[#ffb81b]/25 animate-pulse-glow"
+                >
+                  {t("button")}
+                </Button>
+              </MagneticButton>
+              <MagneticButton>
+                <Button
+                  href={`/${locale}/services`}
+                  size="xl"
+                  color="secondary"
+                  iconTrailing={isRtl ? undefined : ArrowRight}
+                  className="rounded-full border-white/20 bg-white/5 text-white hover:bg-white/10 hover:border-white/30"
+                >
+                  {t("secondary")}
+                </Button>
+              </MagneticButton>
             </div>
           </Reveal>
         </div>

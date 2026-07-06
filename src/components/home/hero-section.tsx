@@ -2,8 +2,7 @@
 
 import { useTranslations } from "next-intl"
 import { useParams } from "next/navigation"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/base/buttons/button"
 import { motion } from "framer-motion"
 import { ArrowRight, Stars02 } from "@untitledui/icons"
 import { MagneticButton } from "@/components/shared/animations"
@@ -113,28 +112,27 @@ export function HeroSection() {
             transition={{ duration: 0.7, delay: 0.6 }}
             className="mt-10 flex flex-wrap justify-center gap-4"
           >
-            <Link href={`/${locale}/consultation`}>
-              <MagneticButton>
-                <Button
-                  size="lg"
-                  className="bg-[#ffb81b] hover:bg-[#e5a318] text-[#050a30] font-bold shadow-lg shadow-[#ffb81b]/25 hover:shadow-xl hover:shadow-[#ffb81b]/30 hover:scale-105 transition-all duration-300 rounded-full"
-                >
-                  {cta("consultation")}
-                  {!isRtl && <ArrowRight size={16} className="ml-2" />}
-                </Button>
-              </MagneticButton>
-            </Link>
-            <Link href={`/${locale}/project-submission`}>
-              <MagneticButton>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-white/20 text-white hover:bg-white/10 hover:border-white/30 hover:scale-105 transition-all duration-300"
-                >
-                  {cta("submit_project")}
-                </Button>
-              </MagneticButton>
-            </Link>
+            <MagneticButton>
+              <Button
+                href={`/${locale}/consultation`}
+                size="xl"
+                color="primary"
+                iconTrailing={isRtl ? undefined : ArrowRight}
+                className="rounded-full shadow-lg shadow-[#ffb81b]/25"
+              >
+                {cta("consultation")}
+              </Button>
+            </MagneticButton>
+            <MagneticButton>
+              <Button
+                href={`/${locale}/project-submission`}
+                size="xl"
+                color="secondary"
+                className="rounded-full border-white/20 bg-white/5 text-white hover:bg-white/10 hover:border-white/30"
+              >
+                {cta("submit_project")}
+              </Button>
+            </MagneticButton>
           </motion.div>
 
           <motion.div

@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { useTranslations } from "next-intl"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/base/buttons/button"
 import { Input } from "@/components/ui/input"
 
 export function NewsletterForm() {
@@ -36,7 +36,7 @@ export function NewsletterForm() {
         required
         className="max-w-xs"
       />
-      <Button type="submit" size="sm">
+      <Button type="submit" size="sm" color="primary">
         {tc("subscribe")}
       </Button>
     </form>

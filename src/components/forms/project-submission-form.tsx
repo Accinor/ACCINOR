@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { useTranslations } from "next-intl"
 import { useParams } from "next/navigation"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/base/buttons/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
@@ -147,8 +147,8 @@ export function ProjectSubmissionForm() {
         {t("incentive")}
       </p>
       {error && <p className="text-sm text-destructive">{error}</p>}
-      <Button type="submit" size="lg" disabled={loading} className="w-full">
-        {loading ? t("sending") : t("button")}
+      <Button type="submit" color="primary" size="lg" isLoading={loading} showTextWhileLoading className="w-full">
+        {t("button")}
       </Button>
     </form>
   )
