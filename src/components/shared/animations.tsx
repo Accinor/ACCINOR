@@ -171,7 +171,9 @@ export function MagneticButton({
       const rect = el.getBoundingClientRect()
       const x = e.clientX - rect.left - rect.width / 2
       const y = e.clientY - rect.top - rect.height / 2
-      el.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`
+      // Subtle magnetic pull: still reacts, but travels much less (and never runs away).
+      const clamp = (v: number, max: number) => Math.max(-max, Math.min(max, v))
+      el.style.transform = `translate(${clamp(x * 0.15, 10)}px, ${clamp(y * 0.15, 10)}px)`
     }
 
     const onMouseLeave = () => {

@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl"
 import { useParams } from "next/navigation"
 import { Reveal, StaggerReveal, StaggerItem } from "@/components/shared/animations"
+import { MagicBentoCard } from "@/components/shared/magic-bento-card"
 import { EditableText } from "@/components/shared/editable-text"
 
 const steps = ["discover", "structure", "build", "grow"] as const
@@ -35,19 +36,21 @@ export function MethodologySection() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
             {steps.map((step, i) => (
               <StaggerItem key={step}>
-                <div className="relative h-full p-6 rounded-2xl border border-border/50 bg-card/40 backdrop-blur-sm hover:border-[#ffb81b]/30 transition-colors">
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="shrink-0 w-10 h-10 rounded-full bg-[#ffb81b] text-[#050a30] font-black flex items-center justify-center">
-                      {i + 1}
-                    </span>
-                    <h3 className="text-lg font-semibold text-foreground">
-                      {t(`steps.${step}.title`)}
-                    </h3>
+                <MagicBentoCard className="h-full" particleCount={6}>
+                  <div className="relative h-full p-6 rounded-2xl border border-border/50 bg-card/40 backdrop-blur-sm">
+                    <div className="flex items-center gap-3 mb-4">
+                      <span className="shrink-0 w-10 h-10 rounded-full bg-[#ffb81b] text-[#050a30] font-black flex items-center justify-center">
+                        {i + 1}
+                      </span>
+                      <h3 className="text-lg font-semibold text-foreground">
+                        {t(`steps.${step}.title`)}
+                      </h3>
+                    </div>
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      {t(`steps.${step}.desc`)}
+                    </p>
                   </div>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {t(`steps.${step}.desc`)}
-                  </p>
-                </div>
+                </MagicBentoCard>
               </StaggerItem>
             ))}
           </div>

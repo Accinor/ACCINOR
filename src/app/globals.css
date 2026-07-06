@@ -143,63 +143,73 @@
 }
 
 /* Premium lightweight cursor (see components/shared/custom-cursor.tsx). */
-.cursor-dot,
-.cursor-ring {
+.cursor-layer {
   position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.cursor-layer.is-visible {
+  opacity: 1;
+}
+.cursor-dot,
+.cursor-ring,
+.cursor-trail {
+  position: absolute;
   top: 0;
   left: 0;
   border-radius: 9999px;
-  pointer-events: none;
-  z-index: 100;
-  opacity: 0;
   will-change: transform;
-}
-.cursor-dot.is-visible,
-.cursor-ring.is-visible {
-  opacity: 1;
 }
 
 /* The tight-tracking glowing dot. */
 .cursor-dot {
-  width: 7px;
-  height: 7px;
+  width: 9px;
+  height: 9px;
   background-color: rgb(255, 184, 27);
-  box-shadow: 0 0 12px 2px rgba(255, 184, 27, 0.7);
-  transition: width 0.2s ease, height 0.2s ease, opacity 0.3s ease,
-    background-color 0.2s ease;
+  box-shadow: 0 0 18px 4px rgba(255, 184, 27, 0.8),
+    0 0 5px 1px rgba(255, 255, 255, 0.6);
+  transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
 }
 .cursor-dot.cursor--hover {
-  width: 10px;
-  height: 10px;
+  width: 13px;
+  height: 13px;
 }
 .cursor-dot.cursor--active {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
+}
+
+/* Comet trail nodes (size + opacity set inline per index). */
+.cursor-trail {
+  background-color: rgb(255, 184, 27);
+  box-shadow: 0 0 9px 2px rgba(255, 184, 27, 0.5);
 }
 
 /* The trailing ring. */
 .cursor-ring {
-  width: 34px;
-  height: 34px;
-  border: 1.5px solid rgba(255, 184, 27, 0.6);
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid rgba(255, 184, 27, 0.65);
   transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease,
-    background-color 0.2s ease, opacity 0.3s ease;
+    background-color 0.2s ease;
 }
 .cursor-ring.cursor--hover {
-  width: 54px;
-  height: 54px;
+  width: 58px;
+  height: 58px;
   border-color: rgba(255, 184, 27, 0.95);
   background-color: rgba(255, 184, 27, 0.08);
 }
 .cursor-ring.cursor--active {
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   border-color: rgba(255, 184, 27, 1);
   background-color: rgba(255, 184, 27, 0.15);
 }
 @media (pointer: coarse) {
-  .cursor-dot,
-  .cursor-ring { display: none; }
+  .cursor-layer { display: none; }
 }
 
 /* Respect users who prefer reduced motion. */
@@ -212,8 +222,7 @@
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
-  .cursor-dot,
-  .cursor-ring { display: none; }
+  .cursor-layer { display: none; }
 }
 
 html[lang="ar"] {
@@ -238,6 +247,7 @@ html[lang="ar"] {
 .magic-bento-card {
   position: relative;
   overflow: hidden;
+  border-radius: 1rem; /* keeps the border-glow ::after (border-radius: inherit) rounded, never sharp */
   transition: all 0.3s ease;
   --glow-x: 50%;
   --glow-y: 50%;
